@@ -6,4 +6,11 @@
     </style>
 
     <style name="Theme.Electrigo" parent="Base.Theme.Electrigo" />
+
+    <style name="ThemeOverlay.Search" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="android:editTextColor">@color/black</item>
+        <item name="android:textColorHint">@color/hintTextColor</item>
+        <!-- Customize your theme here. -->
+    </style>
 </resources>
