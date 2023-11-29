@@ -18,81 +18,32 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/contraint"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:id="@+id/header"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:id="@+id/tv_home"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/myfont"
-                        android:text="Accueil"
-                        android:textColor="@color/accent"
-                        android:textSize="25sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tv_would_like_to_eat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/myfont"
-                    android:text="Que souhaitez-vous louer aujourd'hui ?"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/header"
-                    app:layout_constraintTop_toBottomOf="@id/header" />
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/random_meal"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="25dp"
-                    android:elevation="2dp"
-                    app:cardCornerRadius="10dp"
-                    app:cardUseCompatPadding="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_would_like_to_eat">
-
-                    <ImageView
-                        android:id="@+id/img_random_meal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/audi" />
-                </androidx.cardview.widget.CardView>
+                <View
+                    android:layout_width="429dp"
+                    android:layout_height="196dp"
+                    android:background="@drawable/entete_bleu"
+                    app:layout_constraintBottom_toTopOf="@+id/recyclerViewlogo"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:layout_editor_absoluteX="-9dp" />
 
                 <TextView
                     android:id="@+id/tv_over_pup_items"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
                     android:fontFamily="@font/myfont"
                     android:text="logo"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@id/tv_would_like_to_eat"
-                    app:layout_constraintTop_toBottomOf="@id/random_meal" />
+                    tools:layout_editor_absoluteX="30dp"
+                    tools:layout_editor_absoluteY="317dp" />
 
                 <!-- recycleViewlogo-->
                 <androidx.recyclerview.widget.RecyclerView
@@ -148,8 +99,7 @@
                         android:id="@+id/recyclerViewVehicules"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scrollbars="none"
-                        tools:listitem="@layout/item_vehicule" />
+                        android:scrollbars="none" />
                 </androidx.cardview.widget.CardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </RelativeLayout>
