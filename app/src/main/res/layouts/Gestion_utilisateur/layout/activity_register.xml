@@ -62,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="Nom"
+                android:hint="@string/input_full_name"
                 app:errorEnabled="true"
                 app:startIconDrawable="@drawable/baseline_person_24">
 
@@ -82,7 +82,7 @@
                 android:id="@+id/tiPrenomLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Prenom"
+                android:hint="@string/beforename"
                 app:errorEnabled="true"
                 app:startIconDrawable="@drawable/baseline_person_24">
 
@@ -98,7 +98,7 @@
                 android:id="@+id/tiEmailLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"
+                android:hint="@string/input_email"
                 app:errorEnabled="true"
                 app:startIconDrawable="@drawable/ic_email">
 
@@ -123,11 +123,13 @@
                     android:layout_height="wrap_content"
                     android:inputType="none"
                     android:focusable="false"
-                    android:onClick="showDatePicker" />
+                    android:onClick="showDatePicker"
+                    app:startIconDrawable="@drawable/calendrier"
+                    />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tiadresse"
+                android:id="@+id/tiadresselayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Adresse"
@@ -136,7 +138,7 @@
 
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/adresse"
+                    android:id="@+id/tiadresse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />

@@ -20,7 +20,7 @@
 
         <LinearLayout
             android:layout_width="362dp"
-            android:layout_height="431dp"
+            android:layout_height="443dp"
             android:layout_gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="24dp"
@@ -31,7 +31,7 @@
                 android:id="@+id/loginText"
                 android:layout_width="302dp"
                 android:layout_height="wrap_content"
-                android:text="Connctez-vous"
+                android:text="@string/txt_otp_validation"
                 android:textAlignment="center"
                 android:textColor="@color/purple"
                 android:textSize="36sp"
@@ -42,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:hint="Email"
+                android:hint="@string/input_email"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="Mot_passe"
+                android:hint="@string/input_password"
                 app:cornerRadius="20dp"
                 app:errorEnabled="true"
                 app:startIconDrawable="@drawable/baseline_lock_24">
