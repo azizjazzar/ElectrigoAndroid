@@ -254,14 +254,14 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ajouter"
         android:backgroundTint="@color/colorPrimary"
-
         android:fontFamily="@font/myfont"
+
         android:gravity="center"
+        android:text="Ajouter"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.121"
+        app:layout_constraintHorizontal_bias="0.167"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="667dp" />
 
