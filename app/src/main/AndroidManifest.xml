@@ -12,9 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Electrigo"
         tools:targetApi="31">
+
+        <activity
+            android:name=".ViewModel.WelcomeViewActivity"
+            android:exported="true"
+            />
+        <activity
+            android:name=".ViewModel.LoginActivity"
+            android:exported="true"
+            />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
