@@ -62,16 +62,25 @@
         <!-- Reset Filter -->
 
         <ImageView
-            android:id="@+id/resetFilterButton"
+        android:id="@+id/resetFilterButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_reset"
+        android:background="@drawable/spinner_background"
+        android:layout_marginEnd="16dp"
+        android:onClick="onStationFilterClic"/>
+        <ImageView
+            android:id="@+id/addlocation"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_reset"
+            android:src="@drawable/ic_add"
             android:background="@drawable/spinner_background"
             android:layout_marginEnd="16dp"
-            android:onClick="onStationFilterClic"/>
-
+          />
 
     </LinearLayout>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleLocation"
@@ -80,5 +89,7 @@
         android:layout_weight="1"
         android:dividerHeight="1dp"
         tools:listitem="@layout/list_location" />
+
+
 
 </LinearLayout>
