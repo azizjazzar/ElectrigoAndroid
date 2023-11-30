@@ -13,7 +13,7 @@ import com.example.electrigo.R
 
 class VehiculeAdapter(private val vehicules: ArrayList<Vehicule>) :
     RecyclerView.Adapter<VehiculeAdapter.VehiculeViewHolder>() {
-
+    var onItemClick : ((Vehicule ) -> Unit)? =null
     class VehiculeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageViewVehicule)
         val textViewMarque: TextView = itemView.findViewById(R.id.textViewMarque)
@@ -36,6 +36,12 @@ class VehiculeAdapter(private val vehicules: ArrayList<Vehicule>) :
         holder.textViewPrix.text = vehicule.prix
         holder.textViewnombreDePlaces.text = vehicule.nombreDePlaces.toString()
         holder.textViewvitesseMax.text = vehicule.vitesseMax.toString()
+
+        holder.itemView.setOnClickListener{
+
+            onItemClick?.invoke(vehicule)
+        }
+
 
     }
 

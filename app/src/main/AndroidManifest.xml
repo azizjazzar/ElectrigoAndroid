@@ -32,7 +32,7 @@
             android:name=".ViewModel.formulaireVehiculeActivity"
             >
         </activity>
-
+        <activity android:name=".ViewModel.reservationActivity"></activity>
     </application>
 
 </manifest>

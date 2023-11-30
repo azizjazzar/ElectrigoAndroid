@@ -19,7 +19,9 @@
     <string name="imagecartegrise">imagecartegrise</string>
 
     <string name="voirplus">Voir plus</string>
-
+    <string name="title_activity_details_vehicule">DetailsVehiculeActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
