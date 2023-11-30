@@ -5,4 +5,21 @@
     <string name="title3">Audi</string>
     <string name="title4">Ford</string>
     <string name="title5">Fiat</string>
+
+
+    <string name="Marque">Marque</string>
+    <string name="prix">prix</string>
+    <string name="modele">modele</string>
+    <string name="description">description</string>
+    <string name="vitessemax">Vitesse Maximale</string>
+    <string name="capaciteBatterie">capaciteBatterie</string>
+    <string name="nombreDePlaces">nombreDePlaces</string>
+    <string name="boite">Boite de vitesse</string>
+    <string name="image">image</string>
+    <string name="imagecartegrise">imagecartegrise</string>
+
+    <string name="voirplus">Voir plus</string>
+
+
+
 </resources>

@@ -26,8 +26,11 @@
         <activity
             android:name=".ViewModel.VehiculeViewModel"
             >
+        </activity>
 
-
+        <activity
+            android:name=".ViewModel.formulaireVehiculeActivity"
+            >
         </activity>
 
     </application>

@@ -18,7 +18,8 @@ class VehiculeAdapter(private val vehicules: ArrayList<Vehicule>) :
         val imageView: ImageView = itemView.findViewById(R.id.imageViewVehicule)
         val textViewMarque: TextView = itemView.findViewById(R.id.textViewMarque)
         val textViewPrix: TextView = itemView.findViewById(R.id.Textprice)
-        val textViewnombreDePlaces: TextView = itemView.findViewById(R.id.textNbredeplaces)
+        // val textViewnombreDePlaces: TextView = itemView.findViewById(R.id.textNbredeplaces)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VehiculeViewHolder {
@@ -32,7 +33,8 @@ class VehiculeAdapter(private val vehicules: ArrayList<Vehicule>) :
         holder.imageView.setImageResource(vehicule.image)
         holder.textViewMarque.text = vehicule.marque
         holder.textViewPrix.text = vehicule.prix
-        holder.textViewnombreDePlaces.text = vehicule.nombreDePlaces.toString()
+        // holder.textViewnombreDePlaces.text = vehicule.nombreDePlaces.toString()
+
     }
 
 
