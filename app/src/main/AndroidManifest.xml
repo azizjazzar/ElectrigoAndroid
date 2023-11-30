@@ -23,16 +23,10 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".ViewModel.VehiculeViewModel"
-            >
-        </activity>
-
-        <activity
-            android:name=".ViewModel.formulaireVehiculeActivity"
-            >
-        </activity>
-
+        <activity android:name=".ViewModel.VehiculeViewModel"></activity>
+        <activity android:name=".ViewModel.formulaireVehiculeActivity"></activity>
+        <activity android:name=".ViewModel.reservationActivity"></activity>
+        <activity android:name=".ViewModel.DetailsVehiculeActivity"></activity>
     </application>
 
 </manifest>
