@@ -1,5 +1,6 @@
 package com.example.electrigo.ViewModel
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.electrigo.databinding.ActivityOptvalidationBinding
@@ -12,9 +13,13 @@ class OtpvalidationActivity : AppCompatActivity() {
         binding = ActivityOptvalidationBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        binding.backForget.setOnClickListener {
+        binding.back.setOnClickListener {
             super.onBackPressedDispatcher.onBackPressed()
 
+        }
+        binding.otpbutton.setOnClickListener{
+            val intent = Intent(this@OtpvalidationActivity, ChangepasswordActivity::class.java)
+            startActivity(intent)
         }
 
     }

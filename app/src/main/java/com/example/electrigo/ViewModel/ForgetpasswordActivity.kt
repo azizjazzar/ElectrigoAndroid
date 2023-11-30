@@ -14,7 +14,7 @@ class ForgetpasswordActivity : AppCompatActivity() {
         binding = ActivityForgetpasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.backForget.setOnClickListener{
+        binding.back.setOnClickListener{
             super.onBackPressedDispatcher.onBackPressed()
 
         }
