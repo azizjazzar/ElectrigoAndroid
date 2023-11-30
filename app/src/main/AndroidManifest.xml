@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Electrigo"
         tools:targetApi="31">
         <activity
+            android:name=".ViewModel.OtpvalidationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ViewModel.ForgetpasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".ViewModel.RegisterActivity"
             android:exported="false" />
         <activity

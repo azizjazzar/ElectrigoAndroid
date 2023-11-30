@@ -20,7 +20,7 @@ class RegisterActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
         binding.back.setOnClickListener {
-            super.onBackPressed()
+            super.onBackPressedDispatcher.onBackPressed()
         }
 
         // Add your code specific to RegisterActivity here
