@@ -3,7 +3,7 @@
     <string name="signup_text">
     <![CDATA[pas encore inscrit ? <u>Créer un compte</u>]]>
 </string>
-    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_login">Connectez vous</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
