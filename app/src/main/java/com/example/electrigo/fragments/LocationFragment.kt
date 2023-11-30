@@ -2,15 +2,13 @@
 
 package com.example.electrigo.fragments
 
+import LocationAdapter
+import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -18,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.electrigo.Model.LocationItem
 import com.example.electrigo.R
 import com.example.electrigo.ViewModel.LocationViewModel
+import com.example.electrigo.activities.DetailLocation
 import com.example.electrigo.databinding.FragmentLocationBinding
 import com.example.electrigo.utils.ApiResult
 
@@ -35,10 +34,12 @@ class LocationFragment : Fragment(R.layout.fragment_location) {
         val binding = FragmentLocationBinding.bind(view)
         val recyclerView = binding.recycleLocation
 
-        locationAdapter = LocationAdapter(mutableListOf())
+        // Initialize the LocationAdapter with a click listener
+        locationAdapter = LocationAdapter(mutableListOf()) { clickedLocation ->
+            navigateToDetailActivity(clickedLocation)
+        }
         recyclerView.adapter = locationAdapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
 
         val restaurantFilter = view.findViewById<ImageView>(R.id.restaurantFilter)
         val stationFilter = view.findViewById<ImageView>(R.id.stationFilter)
@@ -51,7 +52,6 @@ class LocationFragment : Fragment(R.layout.fragment_location) {
         searchAutoCompleteTextView.setAdapter(adapter)
 
         searchAutoCompleteTextView.setOnItemClickListener { _, _, _, _ ->
-            // Handle item click, for example, initiate the search with the selected suggestion
             val selectedSuggestion = searchAutoCompleteTextView.text.toString()
             locationViewModel.searchLocations(selectedSuggestion)
         }
@@ -67,7 +67,6 @@ class LocationFragment : Fragment(R.layout.fragment_location) {
         hotelFilter.setOnClickListener {
             locationViewModel.filterLocationsByType("Hotel")
         }
-
 
         observeFilteredLocationData()
 
@@ -102,5 +101,12 @@ class LocationFragment : Fragment(R.layout.fragment_location) {
         locationViewModel.filteredLocations.observe(viewLifecycleOwner) { filteredList ->
             locationAdapter.updateList(filteredList)
         }
+    }
+
+    private fun navigateToDetailActivity(locationItem: LocationItem) {
+        val intent = Intent(requireContext(), DetailLocation::class.java)
+        intent.putExtra("locationId", locationItem.Id)
+        intent.putExtra("locationName", locationItem.name)
+        startActivity(intent)
     }
 }
