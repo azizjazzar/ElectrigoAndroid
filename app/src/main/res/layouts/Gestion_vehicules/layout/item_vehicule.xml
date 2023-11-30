@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="250dp"
+    android:layout_width="400dp"
     android:layout_height="200dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:elevation="10dp"
@@ -10,15 +10,40 @@
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="250dp"
+        android:layout_width="400dp"
         android:layout_height="200dp">
 
 
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="18dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="164dp"
+            android:src="@drawable/capaciteb"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewVehicule"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/users"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.399"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewVehicule"
+            app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
             android:id="@+id/imageViewVehicule"
-            android:layout_width="217dp"
-            android:layout_height="143dp"
+            android:layout_width="268dp"
+            android:layout_height="145dp"
             android:scaleType="centerCrop"
             android:src="@drawable/audi"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -48,21 +73,24 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="298dp"
             android:text="par jour"
             android:textColor="#767F87"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/Textprice"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.849" />
+            app:layout_constraintVertical_bias="0.86" />
 
         <TextView
             android:id="@+id/Textprice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:fontFamily="@font/myfont"
             android:textColor="@color/seatcolor"
             android:textSize="22sp"
             android:textStyle="bold"
@@ -83,10 +111,10 @@
             android:textSize="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.857"
+            app:layout_constraintHorizontal_bias="0.926"
             app:layout_constraintStart_toEndOf="@+id/Textprice"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.953" />
+            app:layout_constraintVertical_bias="0.936" />
 
         <ImageView
             android:id="@+id/imageView7"
@@ -97,6 +125,50 @@
             app:layout_constraintStart_toStartOf="@+id/button2"
             app:layout_constraintTop_toTopOf="@+id/button2"
             app:srcCompat="@drawable/card" />
+
+        <TextView
+            android:id="@+id/textNbredeplaces"
+            android:layout_width="31dp"
+            android:layout_height="26dp"
+            android:fontFamily="@font/myfont"
+            android:text="n"
+            android:textColor="@color/seatcolor"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button2"
+            app:layout_constraintHorizontal_bias="0.456"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewVehicule"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textvitesseMax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/myfont"
+            android:text="n"
+            android:textColor="@color/seatcolor"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.629"
+            app:layout_constraintStart_toStartOf="@+id/Textprice"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewVehicule"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="36dp"
+            android:layout_height="20dp"
+            android:text="kWh"
+            android:textColor="#767F87"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textvitesseMax"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewVehicule"
+            app:layout_constraintVertical_bias="0.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

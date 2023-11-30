@@ -24,7 +24,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.054" />
+        app:layout_constraintVertical_bias="0.051" />
 
     <TextView
         android:id="@+id/textAcceuil2"
@@ -250,6 +250,7 @@
         </RadioGroup>
     </com.google.android.material.textfield.TextInputLayout>
 
+
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
@@ -260,10 +261,38 @@
         android:gravity="center"
         android:text="Ajouter"
         android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.167"
+        app:layout_constraintHorizontal_bias="0.112"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="667dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
+
+    <Button
+        android:id="@+id/buttonbackhome"
+        android:layout_width="44dp"
+        android:layout_height="39dp"
+        android:color="@color/colorPrimary"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/myfont"
+        app:layout_constraintBottom_toBottomOf="@+id/view_entete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.008"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.009" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_entete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.031"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.043"
+        app:srcCompat="@drawable/flechback" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

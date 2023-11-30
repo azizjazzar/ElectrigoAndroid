@@ -6,6 +6,7 @@ data class Vehicule(
     val marque: String,
     val prix: String,
     val nombreDePlaces : Int,
+    val  vitesseMax :Int,
 
 
     )
