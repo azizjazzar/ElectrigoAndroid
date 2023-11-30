@@ -20,21 +20,14 @@ class WelcomeViewActivity : AppCompatActivity() {
 
         // Now you can use binding to access your views
         binding.textViewTitle.setOnClickListener {
-            Log.d("WelcomeViewActivity", "TextView Title Clicked")
             // Add your logic or start an activity here
         }
 
         binding.dz.setOnClickListener {
-            Log.d("WelcomeViewActivity", "DZ TextView Clicked")
             // Add your logic or start an activity here
         }
 
-        binding.imageViewArrow.setOnClickListener {
-            System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-            Log.d("WelcomeViewActivity", "ImageView Arrow Clicked")
-            val intent = Intent(this@WelcomeViewActivity, LoginActivity::class.java)
-            startActivity(intent)
-        }
+
 
 
     }

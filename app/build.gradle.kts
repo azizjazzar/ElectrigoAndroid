@@ -3,13 +3,14 @@ plugins {
     id("kotlin-android")
 }
 android {
+
     namespace = "com.example.electrigo"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.electrigo"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -41,6 +42,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
     sourceSets {
         getByName("main") {
             res {
@@ -105,4 +107,9 @@ android {
         debugImplementation("androidx.compose.ui:ui-test-manifest:1.1.0")
         implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.28")
     }
+}
+dependencies {
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.10.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 }
