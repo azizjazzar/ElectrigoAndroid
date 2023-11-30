@@ -24,7 +24,7 @@
             android:layout_gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="24dp"
-
+            android:gravity="center"
             app:startIconDrawable="@drawable/ic_email">
 
             <TextView
@@ -80,18 +80,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:layout_marginLeft="83dp"
-
                 android:text="Mot passe oublier ?"
                 android:textColor="@color/purple"
                 android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/signupTextCombined"
-                android:layout_width="315dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-
                 android:text="@string/signup_text"
                 android:textColor="@color/purple"
                 android:textSize="15sp" />
@@ -108,7 +105,5 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-
-
 
 </LinearLayout>
