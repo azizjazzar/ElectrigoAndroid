@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="SpinnerDatePickerStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">#3F51B5</item>
+        <item name="android:textColorPrimary">#000000</item>
+        <item name="android:textColorSecondary">#000000</item>
+        <item name="android:datePickerMode">calendar</item>
+        <item name="android:calendarTextColor">#000000</item>
+        <item name="android:yearListSelectorColor">#000000</item>
+    </style>
+
+</resources>
