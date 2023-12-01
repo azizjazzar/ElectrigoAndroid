@@ -2,4 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="colorPrimary">#137CCF</color>
+    <color name="hintTextColor">#787878</color>
+    <color name="accent">#f52c56</color>
+    <color name="seatcolor">#1e87e3</color>
+    <color name="logocolor">#B0DAFF</color>
 </resources>

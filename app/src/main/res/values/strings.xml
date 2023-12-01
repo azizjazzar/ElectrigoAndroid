@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Electrigo</string>
+    <string name="Tesla">Tesla</string>
+    <string name="title2">Porche</string>
+    <string name="title3">Audi</string>
+    <string name="title4">Ford</string>
+    <string name="title5">Fiat</string>
+
+
+    <string name="Nom">Nom</string>
+    <string name="prix">prix</string>
+    <string name="categorie">categorie</string>
+    <string name="description">description</string>
+    <string name="vitessemax">Vitesse Maximale</string>
+    <string name="capaciteBatterie">capaciteBatterie</string>
+    <string name="nombreDePlaces">nombreDePlaces</string>
+    <string name="boite">Boite de vitesse</string>
+    <string name="image">image</string>
+    <string name="imagecartegrise">imagecartegrise</string>
+
+    <string name="voirplus">Voir plus</string>
 </resources>
