@@ -20,11 +20,13 @@ class WelcomeViewActivity : AppCompatActivity() {
 
         // Now you can use binding to access your views
         binding.textViewTitle.setOnClickListener {
-            // Add your logic or start an activity here
+            val intent = Intent(this@WelcomeViewActivity, LoginActivity::class.java)
+            startActivity(intent)
         }
 
         binding.dz.setOnClickListener {
-            // Add your logic or start an activity here
+            val intent = Intent(this@WelcomeViewActivity, LoginActivity::class.java)
+            startActivity(intent)
         }
 
 

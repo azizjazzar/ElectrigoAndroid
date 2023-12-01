@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.Html
 import androidx.appcompat.app.AppCompatActivity
 import com.example.electrigo.R
+import com.example.electrigo.activities.MainActivity
 import com.example.electrigo.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -30,6 +31,10 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this@LoginActivity, ForgetpasswordActivity::class.java)
             startActivity(intent)
 
+        }
+        binding.loginButton.setOnClickListener{
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            startActivity(intent)
         }
 
     }
