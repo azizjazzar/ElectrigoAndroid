@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@drawable/card_border">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/locationCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="6dp">
+
+        <!-- Image ViewPager -->
+        <ImageView
+            android:id="@+id/newsImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_borne" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <LinearLayout
+        android:id="@+id/detailsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/locationCard"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Location Name -->
+        <TextView
+            android:id="@+id/locationName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location Name"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"/>
+
+
+
+        <!-- City Name -->
+        <TextView
+            android:id="@+id/locationCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="City Name"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"/>
+
+        <!-- Location Details -->
+        <TextView
+            android:id="@+id/locationDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Address: 123 Main Street, Phone: (555) 555-5555, Website: www.locationwebsite.com"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"/>
+
+        <!-- Visit Button -->
+        <TextView
+            android:id="@+id/typelocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="16dp"
+            android:paddingStart="12dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="6dp"
+            android:background="@color/green"
+            android:text="Location Type"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</RelativeLayout>
