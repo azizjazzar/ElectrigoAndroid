@@ -11,6 +11,7 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface LocationApi {
     @GET("borne/bornes")
@@ -24,4 +25,7 @@ interface LocationApi {
 
     @POST("addvehicules")
     fun ajouterVehicule(@Body vehicule: Vehicule): Call<VehiculeResponse>
+
+    @GET("vehicule/{id}")
+    fun getVehiculeDetails(@Path("id") vehiculeId: String): Call<Vehicule>
 }
