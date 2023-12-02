@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:layout_editor_absoluteX="2dp"
+    tools:layout_editor_absoluteY="108dp">
+
+    <!-- Entête bleu en haut de la page -->
+
+
+    <View
+        android:id="@+id/view_entete"
+        android:layout_width="418dp"
+        android:layout_height="123dp"
+        android:background="@drawable/entete_bleu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textAcceuil2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/myfont"
+        android:text="Que souhaitez-vous\nlouer aujourd'hui ?"
+        android:textColor="@color/white"
+        android:textSize="19dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view_entete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.077"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.784" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/category_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        app:cardCornerRadius="10dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_entete">
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewVehicules"
+        android:layout_width="395dp"
+        android:layout_height="445dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.172"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:listitem="@layout/item_vehicule" />
+
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/category_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.958"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.116"
+        app:srcCompat="@drawable/notif" />
+
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="340dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="144dp"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="415dp"
+            android:layout_height="57dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerViewVehicules"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.188"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_entete"
+            app:layout_constraintVertical_bias="0.611">
+
+            <!-- Restaurant Filter -->
+
+
+            <ImageView
+                android:id="@+id/bmwFilter"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/spinner_back_ground_logo"
+                android:onClick="onRestaurantFilterClick"
+                android:src="@drawable/bmwlogo" />
+
+            <!-- Station Filter -->
+            <ImageView
+                android:id="@+id/fiatFilter"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/spinner_back_ground_logo"
+                android:onClick="onStationFilterClick"
+                android:src="@drawable/fiatlogo" />
+
+            <!-- Hotel Filter -->
+            <ImageView
+                android:id="@+id/skodaFilter"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/spinner_back_ground_logo"
+                android:onClick="onHotelFilterClick"
+                android:src="@drawable/skodalogo" />
+
+            <ImageView
+                android:id="@+id/kiaFilter"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/spinner_back_ground_logo"
+                android:onClick="onHotelFilterClick"
+                android:src="@drawable/kialogo" />
+
+            <ImageView
+                android:id="@+id/opelFilter"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/spinner_back_ground_logo"
+                android:onClick="onHotelFilterClick"
+                android:src="@drawable/opellogo" />
+
+            <ImageView
+                android:id="@+id/alfaromaFilter"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/spinner_back_ground_logo"
+                android:onClick="onHotelFilterClick"
+                android:src="@drawable/alfa_romeologo" />
+
+            <ImageView
+                android:id="@+id/nissanFilter"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/spinner_back_ground_logo"
+                android:onClick="onHotelFilterClick"
+                android:src="@drawable/logonissan" />
+
+            <ImageView
+                android:id="@+id/rangerFilter"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/spinner_back_ground_logo"
+                android:onClick="onHotelFilterClick"
+                android:src="@drawable/logoranger" />
+
+            <ImageView
+                android:id="@+id/audiFilter"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/spinner_back_ground_logo"
+                android:onClick="onHotelFilterClick"
+                android:src="@drawable/logoaudi" />
+
+            <ImageView
+                android:id="@+id/ferrariFilter"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/spinner_back_ground_logo"
+                android:onClick="onHotelFilterClick"
+                android:src="@drawable/logoferrari" />
+
+            <ImageView
+                android:id="@+id/citroenFilter"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/spinner_back_ground_logo"
+                android:onClick="onHotelFilterClick"
+                android:src="@drawable/logocitroen" />
+
+
+            <ImageView
+                android:id="@+id/hyndaiFilter"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/spinner_back_ground_logo"
+                android:onClick="onHotelFilterClick"
+                android:src="@drawable/logohundra" />
+
+            <ImageView
+                android:id="@+id/teslaFilter"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/spinner_back_ground_logo"
+                android:onClick="onHotelFilterClick"
+                android:src="@drawable/logotesla" />
+
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="29dp"
+        android:layout_height="27dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_entete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.013"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.065"
+        app:srcCompat="@drawable/home" />
+
+
+    <Button
+        android:id="@+id/buttonaddVehicule"
+        android:layout_width="67dp"
+        android:layout_height="58dp"
+
+        android:background="@android:color/transparent"
+        android:color="@color/colorPrimary"
+        android:fontFamily="@font/myfont"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/recyclerViewVehicules"
+        app:layout_constraintVertical_bias="0.872" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/imageView6"
+        android:layout_width="67dp"
+        android:layout_height="55dp"
+        android:src="@drawable/boutonplus"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonaddVehicule"
+        app:layout_constraintEnd_toEndOf="@+id/buttonaddVehicule"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/buttonaddVehicule"
+        app:layout_constraintTop_toTopOf="@+id/buttonaddVehicule"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/addcar" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/myfont"
+        android:text="ELECTRI"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view_entete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.436"
+        app:layout_constraintStart_toStartOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.083" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/myfont"
+        android:text="GO"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view_entete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.63"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.086"
+
+        />
+
+    <Button
+        android:id="@+id/resetFilterButton"
+        android:layout_width="115dp"
+        android:layout_height="41dp"
+        android:backgroundTint="#40FFFFFF"
+        android:fontFamily="@font/myfont"
+        android:text="Voir tout"
+        android:textColor="@color/hintTextColor"
+        app:layout_constraintBottom_toBottomOf="@+id/recyclerViewVehicules"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view_entete"
+        app:layout_constraintVertical_bias="0.215" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+<item
+    android:id="@+id/map"
+    android:enabled="true"
+    android:icon="@drawable/map"
+    android:title="Home"/>
+<item
+    android:id="@+id/vehicule"
+    android:enabled="true"
+    android:icon="@drawable/caricon"
+    android:title="store"/>
+<item
+    android:id="@+id/profile"
+    android:enabled="true"
+    android:icon="@drawable/baseline_person_24"
+    android:title="profile"/>
+
+</menu>

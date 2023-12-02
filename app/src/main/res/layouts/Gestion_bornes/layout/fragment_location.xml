@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+
+
+    <AutoCompleteTextView
+        android:id="@+id/searchBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Search Locations"
+        android:background="@drawable/edit_text_background"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:inputType="text"
+        android:imeOptions="actionSearch"
+        android:textColorHint="#A9A9A9"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <!-- Restaurant Filter -->
+        <ImageView
+            android:id="@+id/restaurantFilter"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_restau"
+            android:background="@drawable/spinner_background"
+            android:layout_marginEnd="16dp"
+            android:onClick="onRestaurantFilterClick"/>
+
+        <!-- Station Filter -->
+        <ImageView
+            android:id="@+id/stationFilter"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_station"
+            android:background="@drawable/spinner_background"
+            android:layout_marginEnd="16dp"
+            android:onClick="onStationFilterClick"/>
+
+        <!-- Hotel Filter -->
+        <ImageView
+            android:id="@+id/hotelFilter"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_hotel"
+            android:background="@drawable/spinner_background"
+            android:layout_marginEnd="16dp"
+            android:onClick="onHotelFilterClick"/>
+
+        <!-- Reset Filter -->
+
+        <ImageView
+        android:id="@+id/resetFilterButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_reset"
+        android:background="@drawable/spinner_background"
+        android:layout_marginEnd="16dp"
+        android:onClick="onStationFilterClic"/>
+        <ImageView
+            android:id="@+id/addlocation"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_add"
+            android:background="@drawable/spinner_background"
+            android:layout_marginEnd="16dp"
+          />
+
+    </LinearLayout>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleLocation"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:dividerHeight="1dp"
+        tools:listitem="@layout/list_location" />
+
+
+
+</LinearLayout>
