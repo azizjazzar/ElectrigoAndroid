@@ -7,7 +7,7 @@ import com.example.electrigo.R
 import com.example.electrigo.databinding.ActivityMainBinding
 
 import com.example.electrigo.fragments.LocationFragment
-import com.example.electrigo.fragments.Vehicule
+import com.example.electrigo.fragments.VehiculeFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.map -> replaceFragrament(LocationFragment())
-                R.id.vehicule -> replaceFragrament(Vehicule())
+                R.id.vehicule -> replaceFragrament(VehiculeFragment())
                 else -> {
                 }
             }
@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
+
 
 
 

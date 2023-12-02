@@ -79,12 +79,12 @@ class LocationFragment : Fragment(R.layout.fragment_location) {
             locationViewModel.resetFilter()
         }
 
-       // val btnAddLocation: ImageView = view.findViewById(R.id.addlocation)
+        val btnAddLocation: ImageView = view.findViewById(R.id.addlocation)
 
-       // btnAddLocation.setOnClickListener {
-           // val intent = Intent(requireContext(), AddLocation::class.java)
-            //startActivity(intent)
-       //}
+        btnAddLocation.setOnClickListener {
+            val intent = Intent(requireContext(), AddLocation::class.java)
+            startActivity(intent)
+       }
     }
 
     private fun observeAllLocationResponse() {

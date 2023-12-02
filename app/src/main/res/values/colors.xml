@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#0D99FF</color>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="colorPrimary">#137CCF</color>
+    <color name="hintTextColor">#787878</color>
+    <color name="accent">#f52c56</color>
+    <color name="seatcolor">#1e87e3</color>
+    <color name="logocolor">#B0DAFF</color>
+
+
+
     <color name="colorPrimaryDark">#D32F2F</color>
-    <color name="colorAccent">#FF5252</color>
-    <color name="white">#FFFFFF</color>
+    
+   
     <color name="lightGray">#F9F9F9</color>
     <color name="mediumGray">#D1D1D1</color>
     <color name="lightMediumGray">#80D1D1D1</color>
     <color name="darkGray">#4B4B4B</color>
     <color name="dark">#313C44</color>
     <color name="darker">#151B20</color>
-    <color name="black">#454545</color>
+   
     <color name="red">#FF4646</color>
     <color name="yellow">#FFC114</color>
     <color name="green">#14AE5C</color>
@@ -44,4 +55,5 @@
     <color name="bottomNavItemColor">@color/darkGray</color>
     <color name="bottomNavCheckedItemColor">@color/colorPrimary</color>
     <color name="purple">#8692f7</color>
+
 </resources>
