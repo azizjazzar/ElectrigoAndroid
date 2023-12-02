@@ -4,6 +4,8 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
+
+data class VehiculeResponse(val vehicule: Vehicule)
 data class Vehicule(
 
     @SerializedName("_id"              ) var Id               : String? = null,

@@ -5,6 +5,7 @@ import User
 import UserResponse
 import com.example.electrigo.Model.LocationItem
 import com.example.electrigo.Model.Vehicule
+import com.example.electrigo.Model.VehiculeResponse
 
 import retrofit2.Call
 import retrofit2.http.Body
@@ -20,4 +21,7 @@ interface LocationApi {
 
     @POST("register")
     fun ajouterUtilisateur(@Body user: User): Call<UserResponse>
+
+    @POST("addvehicules")
+    fun ajouterVehicule(@Body vehicule: Vehicule): Call<VehiculeResponse>
 }
