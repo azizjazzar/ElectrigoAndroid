@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,20 +15,44 @@
         android:theme="@style/Theme.Electrigo"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
-
-            android:exported="true">
+            android:name=".activities.ChangepasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.OtpvalidationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ForgetpasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.WelcomeViewActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:exported="true"/>
+
+
+        <activity
+            android:name=".activities.AddLocation"
+            android:exported="false" />
+        <activity
+            android:name=".activities.DetailLocation"
+            android:exported="false" />
 
         <activity android:name=".ViewModel.VehiculeViewModel"></activity>
-        <activity android:name=".ViewModel.formulaireVehiculeActivity"></activity>
-        <activity android:name=".ViewModel.reservationActivity"></activity>
-        <activity android:name=".ViewModel.DetailsVehiculeActivity"></activity>
+        <activity android:name=".activities.formulaireVehiculeActivity"></activity>
+        <activity android:name=".activities.reservationActivity"></activity>
+        <activity android:name=".activities.DetailsVehiculeActivity"></activity>
     </application>
 
 </manifest>

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.electrigo.Model.Vehicule
 import com.example.electrigo.R
 
+
 class DetailsVehiculeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
