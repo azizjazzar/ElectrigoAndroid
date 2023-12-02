@@ -1,12 +1,16 @@
+package com.example.electrigo.fragments
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.electrigo.Model.LocationItem
 import com.example.electrigo.databinding.ListLocationBinding
 
+
+
 class LocationAdapter(
     private val locationList: MutableList<LocationItem>,
-    private val onItemClick: (LocationItem) -> Unit
+    private val itemClickListener: LocationFragment
 ) : RecyclerView.Adapter<LocationAdapter.LocationsHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationsHolder {
@@ -23,7 +27,7 @@ class LocationAdapter(
 
         // Set click listener
         holder.itemView.setOnClickListener {
-            onItemClick.invoke(item)
+            itemClickListener.onItemClick(item)
         }
     }
 

@@ -81,6 +81,36 @@ class LocationViewModel : ViewModel() {
         }
     }
 
+    // Add this function to LocationViewModel
+    fun getDetailLocation(locationId: String?): LiveData<ApiResult> {
+        val resultLiveData = MutableLiveData<ApiResult>()
+
+        viewModelScope.launch(Dispatchers.IO) {
+            if (locationId != null) {
+                resultLiveData.postValue(ApiResult.Loading)
+                RetrofitInstance.retrofitService.getDetailLocation(locationId)
+                    .enqueue(object : Callback<LocationItem> {
+                        override fun onResponse(call: Call<LocationItem>, response: Response<LocationItem>) {
+                            if (response.isSuccessful) {
+                                val locationItem = response.body()
+                                resultLiveData.postValue(ApiResult.Success(listOfNotNull(locationItem)))
+                            } else {
+                                resultLiveData.postValue(ApiResult.Empty)
+                            }
+                        }
+
+                        override fun onFailure(call: Call<LocationItem>, t: Throwable) {
+                            resultLiveData.postValue(ApiResult.Failure(t))
+                        }
+                    })
+            } else {
+                resultLiveData.postValue(ApiResult.Empty)
+            }
+        }
+
+        return resultLiveData
+    }
+
 
 
 }

@@ -1,29 +1,25 @@
-// LocationFragment.kt
-
 package com.example.electrigo.fragments
 
-import LocationAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import android.widget.Button
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewbinding.ViewBindings
 import com.example.electrigo.Model.LocationItem
 import com.example.electrigo.R
 import com.example.electrigo.ViewModel.LocationViewModel
-import com.example.electrigo.activities.AddLocation
 import com.example.electrigo.activities.DetailLocation
 import com.example.electrigo.databinding.FragmentLocationBinding
 import com.example.electrigo.utils.ApiResult
-
-class LocationFragment : Fragment(R.layout.fragment_location) {
+interface OnItemClickListener {
+    fun onItemClick(locationItem: LocationItem)
+}
+class LocationFragment : Fragment(R.layout.fragment_location), OnItemClickListener  {
 
     private lateinit var locationViewModel: LocationViewModel
     private lateinit var locationAdapter: LocationAdapter
@@ -37,19 +33,17 @@ class LocationFragment : Fragment(R.layout.fragment_location) {
         val binding = FragmentLocationBinding.bind(view)
         val recyclerView = binding.recycleLocation
 
-        // Initialize the LocationAdapter with a click listener
-        locationAdapter = LocationAdapter(mutableListOf()) { clickedLocation ->
-            navigateToDetailActivity(clickedLocation)
-        }
-        recyclerView.adapter = locationAdapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        locationAdapter = LocationAdapter(mutableListOf(), this)
+        recyclerView.adapter = locationAdapter
 
         val restaurantFilter = view.findViewById<ImageView>(R.id.restaurantFilter)
         val stationFilter = view.findViewById<ImageView>(R.id.stationFilter)
         val hotelFilter = view.findViewById<ImageView>(R.id.hotelFilter)
 
         val searchAutoCompleteTextView = view.findViewById<AutoCompleteTextView>(R.id.searchBar)
-        val suggestions = listOf("Tunis", "Marsa", "Sfax",)
+        val suggestions = listOf("Tunis", "Marsa", "Sfax")
 
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, suggestions)
         searchAutoCompleteTextView.setAdapter(adapter)
@@ -78,13 +72,10 @@ class LocationFragment : Fragment(R.layout.fragment_location) {
         resetFilterButton.setOnClickListener {
             locationViewModel.resetFilter()
         }
+    }
 
-        val btnAddLocation: ImageView = view.findViewById(R.id.addlocation)
-
-        btnAddLocation.setOnClickListener {
-            val intent = Intent(requireContext(), AddLocation::class.java)
-            startActivity(intent)
-       }
+    override fun onItemClick(locationItem: LocationItem) {
+        locationItem.Id?.let { navigateToDetailActivity(it) }
     }
 
     private fun observeAllLocationResponse() {
@@ -113,10 +104,9 @@ class LocationFragment : Fragment(R.layout.fragment_location) {
         }
     }
 
-    private fun navigateToDetailActivity(locationItem: LocationItem) {
+    private fun navigateToDetailActivity(locationId: String) {
         val intent = Intent(requireContext(), DetailLocation::class.java)
-        intent.putExtra("locationId", locationItem.Id)
-        intent.putExtra("locationName", locationItem.name)
+        intent.putExtra("locationId", locationId)
         startActivity(intent)
     }
 }

@@ -10,10 +10,14 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface LocationApi {
     @GET("borne/bornes")
     fun getLocation() :Call<List<LocationItem>>
+
+    @GET("borne/borne/{locationId}")
+    fun getDetailLocation(@Path("locationId") locationId: String): Call<LocationItem>
 
     @GET("vehicule/vehicules")
     fun getVehicule() :Call<List<Vehicule>>
