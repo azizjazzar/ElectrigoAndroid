@@ -17,11 +17,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.electrigo.Adapter.VehiculeAdapter
 import com.example.electrigo.Model.Vehicule
 import com.example.electrigo.R
+import com.example.electrigo.activities.DetailsVehiculeActivity
 import com.example.electrigo.activities.formulaireVehiculeActivity
 import com.example.electrigo.databinding.FragmentVehiculeBinding
 import com.example.electrigo.utils.ApiResult
 
-class VehiculeFragment : Fragment(R.layout.fragment_vehicule) {
+
+interface OnItemClickListener {
+    fun onItemClick(vehiculeItem: Vehicule)
+}
+class VehiculeFragment : Fragment(R.layout.fragment_vehicule), OnItemClickListener {
 
 
     private lateinit var vehiculeViewModel: VehiculeViewModel
@@ -39,12 +44,13 @@ class VehiculeFragment : Fragment(R.layout.fragment_vehicule) {
         val binding = FragmentVehiculeBinding.bind(view)
         val recyclerView = binding.recyclerViewVehicules
 
-        vehiculeAdapter = VehiculeAdapter(mutableListOf()) { clickedVehicule ->
-            // Handle item click if needed
-        }
+
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        vehiculeAdapter = VehiculeAdapter(mutableListOf(), this)
+
 
         recyclerView.adapter = vehiculeAdapter  // Set the adapter to the RecyclerView
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
 
         val bmwFilter = view.findViewById<ImageView>(R.id.bmwFilter)
         val fiatFilter = view.findViewById<ImageView>(R.id.fiatFilter)
@@ -128,6 +134,11 @@ class VehiculeFragment : Fragment(R.layout.fragment_vehicule) {
 
     }
 
+
+    override fun onItemClick(vehiculeItem: Vehicule) {
+        vehiculeItem.Id?.let { navigateToDetailActivity(it) }
+    }
+
     private fun observeAllVehiculeResponse() {
         vehiculeViewModel.jobResponseVehiculeData.observe(viewLifecycleOwner) { apiResult ->
             when (apiResult) {
@@ -175,6 +186,11 @@ class VehiculeFragment : Fragment(R.layout.fragment_vehicule) {
     }
 
 
+    private fun navigateToDetailActivity(vehiculeId: String) {
+        val intent = Intent(requireContext(), DetailsVehiculeActivity::class.java)
+        intent.putExtra("vehiculeId", vehiculeId)
+        startActivity(intent)
+    }
 }
 
 

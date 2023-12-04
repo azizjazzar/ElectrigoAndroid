@@ -28,10 +28,6 @@ object RetrofitInstance {
 
     val retrofitService: LocationApi by lazy {
         retrofit().create(LocationApi::class.java)
-
-
-
-
     }
 
 

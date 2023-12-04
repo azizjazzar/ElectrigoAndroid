@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.electrigo.Model.LocationItem
 import com.example.electrigo.Model.Vehicule
 import com.example.electrigo.Service.RetrofitInstance
 import com.example.electrigo.utils.ApiResult
@@ -65,5 +66,35 @@ class VehiculeViewModel :ViewModel(){
             val vehiculeList = allvehicule.filterIsInstance<Vehicule>()
             _filteredVehicules.postValue(vehiculeList)
         }
+    }
+
+
+    fun getDetailVehicule(vehiculeId: String?): LiveData<ApiResult> {
+        val resultLiveData = MutableLiveData<ApiResult>()
+
+        viewModelScope.launch(Dispatchers.IO) {
+            if (vehiculeId != null) {
+                resultLiveData.postValue(ApiResult.Loading)
+                RetrofitInstance.retrofitService.getVehiculeDetails(vehiculeId)
+                    .enqueue(object : Callback<Vehicule> {
+                        override fun onResponse(call: Call<Vehicule>, response: Response<Vehicule>) {
+                            if (response.isSuccessful) {
+                                val vehiculeItem = response.body()
+                                resultLiveData.postValue(ApiResult.Success(listOfNotNull(vehiculeItem)))
+                            } else {
+                                resultLiveData.postValue(ApiResult.Empty)
+                            }
+                        }
+
+                        override fun onFailure(call: Call<Vehicule>, t: Throwable) {
+                            resultLiveData.postValue(ApiResult.Failure(t))
+                        }
+                    })
+            } else {
+                resultLiveData.postValue(ApiResult.Empty)
+            }
+        }
+
+        return resultLiveData
     }
 }

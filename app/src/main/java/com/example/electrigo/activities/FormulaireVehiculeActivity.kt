@@ -75,16 +75,21 @@ private lateinit var binding: FormulaireVehiculeBinding
                 // Hash the password
 
                 val vehicule = Vehicule(
-                    Id = null,
-                    marque = marque,
-                    prix = prix.toIntOrNull(),
-                    modele = modele,
-                    descriptionV = description,
-                    vitesseMax = vitesseMax.toIntOrNull(),
-                    capaciteBatterie = capaciteBatterie,
-                    boite = selectedValueBoite,
-                    nombreDePlaces = nombreDePlaces
+                    Id = "",  // ou toute autre valeur par défaut que vous souhaitez utiliser
+                    marque = marque.orEmpty(),
+                    prix = prix?.toIntOrNull() ?: 0,  // Vous pouvez choisir une autre valeur par défaut
+                    modele = modele.orEmpty(),
+                    descriptionV = description.orEmpty(),
+                    vitesseMax = vitesseMax?.toIntOrNull() ?: 0,  // Valeur par défaut
+                    capaciteBatterie = capaciteBatterie.orEmpty(),
+                    boite = selectedValueBoite.orEmpty(),
+                    nombreDePlaces = nombreDePlaces ?: 0,  // Valeur par défaut
+                    imagecartegrise = "",  // Ajoutez une valeur par défaut pour imagecartegrise
+                    image = "",            // Ajoutez une valeur par défaut pour image
+                    _v = 0                 // Ajoutez une valeur par défaut pour _v
                 )
+
+
 
                 CoroutineScope(Dispatchers.Main).launch {
                     ajouterVehicule(vehicule)

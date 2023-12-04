@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitVehicule {
 
-    private const val BASE_URL = "https://electrigo.onrender.com/api/vehicule/"
+    private const val BASE_URL = "https://electrigo.onrender.com/api/"
 
     val apiService: LocationApi by lazy {
         Retrofit.Builder()
