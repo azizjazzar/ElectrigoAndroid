@@ -23,9 +23,10 @@ interface LocationApi {
     @POST("register")
     fun ajouterUtilisateur(@Body user: User): Call<UserResponse>
 
-    @POST("addvehicules")
+    @POST("vehicule/addvehicules")
     fun ajouterVehicule(@Body vehicule: Vehicule): Call<VehiculeResponse>
 
-    @GET("vehicule/{id}")
-    fun getVehiculeDetails(@Path("id") vehiculeId: String): Call<Vehicule>
+    @GET("vehicule/vehicules/{vehiculeId}")
+    fun getVehiculeDetails(@Path("vehiculeId") vehiculeId: String): Call<Vehicule>
+
 }
