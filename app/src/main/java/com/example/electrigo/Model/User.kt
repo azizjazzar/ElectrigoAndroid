@@ -12,3 +12,4 @@ data class User(
     val type: String,
     val picture: String
 )
+

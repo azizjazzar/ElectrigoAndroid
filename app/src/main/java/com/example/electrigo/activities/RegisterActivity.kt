@@ -52,11 +52,10 @@ class RegisterActivity : AppCompatActivity() {
 
             if (validationErrors.isEmpty()) {
                 // Hash the password
-                val hashedMotPasse = hashPassword(motPasse)
 
                 val user = User(
                     nom, prenom, email, selectedValue,
-                    dateNaissance, telephone, adresse, hashedMotPasse,
+                    dateNaissance, telephone, adresse, confirmMotPasse,
                     "client", "Default"
                 )
 
@@ -158,6 +157,7 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+
     private fun showAlert(message: String) {
         runOnUiThread {
             val builder = AlertDialog.Builder(this)
@@ -169,9 +169,5 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun hashPassword(password: String): String {
-        val digest = MessageDigest.getInstance("SHA-256")
-        val hash = digest.digest(password.toByteArray(StandardCharsets.UTF_8))
-        return hash.joinToString("") { "%02x".format(it) }
-    }
+
 }

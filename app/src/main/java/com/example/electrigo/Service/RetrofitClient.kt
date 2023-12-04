@@ -1,17 +1,25 @@
 package com.example.electrigo.Service
 
+import com.example.electrigo.Model.Authentification
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-    private const val BASE_URL = "http://10.0.2.2:3000/api/auth/"
+    private const val BASE_URL = "http://10.0.2.2:3000/api"
+
+    private val retrofit: Retrofit = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
 
     val apiService: LocationApi by lazy {
-        Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(LocationApi::class.java)
+        retrofit.create(LocationApi::class.java)
     }
+
+
+
+
+
 }
