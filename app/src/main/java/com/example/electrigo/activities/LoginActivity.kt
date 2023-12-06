@@ -12,6 +12,7 @@ import com.example.electrigo.R
 import com.example.electrigo.Service.LocationApi
 import com.example.electrigo.Service.RetrofitClient
 import com.example.electrigo.Service.RetrofitInstance
+import com.example.electrigo.ViewModel.UserViewModel
 import com.example.electrigo.databinding.ActivityLoginBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,6 +25,7 @@ import retrofit2.await
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
+    val userViewModel = UserViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,29 +57,12 @@ class LoginActivity : AppCompatActivity() {
 
             // Call the loginUser function with the created User object
             CoroutineScope(Dispatchers.Main).launch {
-                getusers()
+                userViewModel.getusers()
+
             }
         }
 
 
-    }
-    fun getusers() {
-        val call: Call<List<User>> = RetrofitInstance.retrofitService.Getusers()
-
-        call.enqueue(object : Callback<List<User>> {
-            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
-                if (response.isSuccessful) {
-                    val users = response.body()
-                    println(users)
-                } else {
-                    // Gérer les erreurs ici
-                }
-            }
-
-            override fun onFailure(call: Call<List<User>>, t: Throwable) {
-                // Gérer les erreurs de connexion ici
-            }
-        })
     }
 
 
