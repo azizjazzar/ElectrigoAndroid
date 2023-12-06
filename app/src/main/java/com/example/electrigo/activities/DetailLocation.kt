@@ -29,7 +29,7 @@ class DetailLocation : AppCompatActivity() {
                 is ApiResult.Success -> {
                     val locationList = apiResult.data as List<LocationItem>
                     if (locationList.isNotEmpty()) {
-                        val locationItem = locationList[0] // Assuming there's only one item in the list
+                        val locationItem = locationList[0]
                         updateUI(locationItem)
                     }
                 }
@@ -40,7 +40,7 @@ class DetailLocation : AppCompatActivity() {
                     Log.e("Error", "Exception: ${apiResult.t}")
                 }
                 is ApiResult.Loading -> {
-                    // Handle loading state if needed
+
                 }
             }
         }
@@ -52,6 +52,6 @@ class DetailLocation : AppCompatActivity() {
         findViewById<TextView>(R.id.locationAddress).text = "Address: ${locationItem.adresse}"
         findViewById<TextView>(R.id.locationType).text = "Type of Location: ${locationItem.typelocation}"
         findViewById<TextView>(R.id.locationChargeType).text = "Charge Type: ${locationItem.typecharge}"
-        // Update other views as needed
+
     }
 }
