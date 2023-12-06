@@ -1,5 +1,6 @@
 package com.example.electrigo.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
@@ -31,7 +32,18 @@ class DetailsVehiculeActivity : AppCompatActivity() {
         vehiculeViewModel = ViewModelProvider(this).get(VehiculeViewModel::class.java)
 
         fetchVehiculeDetails(vehiculeId)
+        binding.reserver.setOnClickListener {
+            // Récupérer l'identifiant du véhicule
+            val vehiculeId = intent.getStringExtra("vehiculeId")
+
+            // Rediriger vers l'activité de réservation en passant l'identifiant du véhicule
+            val intent = Intent(this, ReservationActivity::class.java)
+            intent.putExtra("vehiculeId", vehiculeId)
+            startActivity(intent)
+        }
     }
+
+
 
     private fun fetchVehiculeDetails(vehiculeId: String?) {
         vehiculeViewModel.getDetailVehicule(vehiculeId).observe(this) { apiResult ->

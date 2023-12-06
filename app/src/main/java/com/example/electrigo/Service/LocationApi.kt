@@ -4,6 +4,8 @@ package com.example.electrigo.Service
 import User
 import UserResponse
 import com.example.electrigo.Model.LocationItem
+import com.example.electrigo.Model.Reservation
+import com.example.electrigo.Model.ReservationResponse
 import com.example.electrigo.Model.Vehicule
 import com.example.electrigo.Model.VehiculeResponse
 
@@ -28,5 +30,6 @@ interface LocationApi {
 
     @GET("vehicule/vehicules/{vehiculeId}")
     fun getVehiculeDetails(@Path("vehiculeId") vehiculeId: String): Call<Vehicule>
-
+    @POST("reservation/addreservations")
+    fun ajouterReservation(@Body reservation: Reservation): Call<ReservationResponse>
 }

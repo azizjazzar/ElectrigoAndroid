@@ -52,7 +52,7 @@
             android:exported="false" />
         <activity android:name=".ViewModel.VehiculeViewModel" />
         <activity android:name=".activities.formulaireVehiculeActivity" />
-        <activity android:name=".activities.reservationActivity" />
+        <activity android:name=".activities.ReservationActivity" />
     </application>
 
 </manifest>
