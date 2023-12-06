@@ -8,15 +8,23 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.electrigo.Model.Vehicule
 import com.example.electrigo.R
 import com.example.electrigo.ViewModel.VehiculeViewModel
+import com.example.electrigo.databinding.ActivityDetailsVehiculeBinding
 import com.example.electrigo.utils.ApiResult
 import com.google.gson.annotations.SerializedName
 
 class DetailsVehiculeActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityDetailsVehiculeBinding
     private lateinit var vehiculeViewModel: VehiculeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_details_vehicule)
+    binding = ActivityDetailsVehiculeBinding.inflate(layoutInflater)
+    val view = binding.root
+    setContentView(view)
+    binding.buttonbackhomedetail.setOnClickListener {
+        super.onBackPressedDispatcher.onBackPressed()
+    }
+
 
         val vehiculeId = intent.getStringExtra("vehiculeId")
 

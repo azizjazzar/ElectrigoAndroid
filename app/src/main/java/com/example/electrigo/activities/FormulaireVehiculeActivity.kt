@@ -75,18 +75,18 @@ private lateinit var binding: FormulaireVehiculeBinding
                 // Hash the password
 
                 val vehicule = Vehicule(
-                    Id = "",  // ou toute autre valeur par défaut que vous souhaitez utiliser
+                    Id = "",
                     marque = marque.orEmpty(),
-                    prix = prix?.toIntOrNull() ?: 0,  // Vous pouvez choisir une autre valeur par défaut
+                    prix = prix?.toIntOrNull() ?: 0,
                     modele = modele.orEmpty(),
                     descriptionV = description.orEmpty(),
-                    vitesseMax = vitesseMax?.toIntOrNull() ?: 0,  // Valeur par défaut
+                    vitesseMax = vitesseMax?.toIntOrNull() ?: 0,
                     capaciteBatterie = capaciteBatterie.orEmpty(),
                     boite = selectedValueBoite.orEmpty(),
-                    nombreDePlaces = nombreDePlaces ?: 0,  // Valeur par défaut
-                    imagecartegrise = "",  // Ajoutez une valeur par défaut pour imagecartegrise
-                    image = "",            // Ajoutez une valeur par défaut pour image
-                    _v = 0                 // Ajoutez une valeur par défaut pour _v
+                    nombreDePlaces = nombreDePlaces ?: 0,
+                    imagecartegrise = "",
+                    image = "",
+                    _v = 0
                 )
 
 
