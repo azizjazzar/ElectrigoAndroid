@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.electrigo.R
-
+import com.example.electrigo.ViewModel.UserViewModel
 
 
 class reservationActivity : AppCompatActivity() {
@@ -15,8 +15,10 @@ class reservationActivity : AppCompatActivity() {
         setContentView(R.layout.reservation_activity)
 
         val buttonbackdetail: Button = findViewById(R.id.buttonbackDetail)
+        val button: Button = findViewById(R.id.payer)
 
         // bouton back home
+
 
     }
 }

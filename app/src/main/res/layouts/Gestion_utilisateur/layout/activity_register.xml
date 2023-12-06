@@ -55,6 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Bienvenue !"
+                android:layout_marginBottom="10dp"
                 android:textAlignment="center"
                 android:textColor="@color/purple"
                 android:textSize="36sp"
@@ -111,58 +112,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tiDateNaissanceLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Date de naissance"
-                app:errorEnabled="true"
-              >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tiDateNaissance"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="none"
-                    android:focusable="false"
-                    android:onClick="showDatePicker"
-                    app:startIconDrawable="@drawable/calendrier"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tiadresselayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Adresse"
-                app:errorEnabled="true"
-                app:startIconDrawable="@drawable/epingle">
-
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tiadresse"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tiTelephoneLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Telephone"
-                app:errorEnabled="true"
-                app:startIconDrawable="@drawable/appel"
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tiTelephone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="phone" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

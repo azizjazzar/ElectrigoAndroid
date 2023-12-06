@@ -1,29 +1,21 @@
 package com.example.electrigo.activities
-
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.Html
-import User
 import android.content.Context
-import android.system.Os
 import androidx.appcompat.app.AppCompatActivity
 import com.example.electrigo.R
-import com.example.electrigo.Service.LocationApi
-import com.example.electrigo.Service.RetrofitClient
-import com.example.electrigo.Service.RetrofitInstance
 import com.example.electrigo.ViewModel.UserViewModel
 import com.example.electrigo.databinding.ActivityLoginBinding
+import com.example.electrigo.fragments.VehiculeFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.await
 
 class LoginActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityLoginBinding
     val userViewModel = UserViewModel()
 
@@ -48,19 +40,25 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
 
         }
-        binding.loginButton.setOnClickListener{
-            val user = User(
-                "nom", "prenom", "ali@gmail.com", "selectedValue",
-                "dateNaissance", "telephone", "adresse", "jazzar",
-                "client", "Default"
-            )
-
-            // Call the loginUser function with the created User object
+        binding.loginButton.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
-                userViewModel.getusers()
+                try {
+                    // Utilisez l'extension await pour attendre la réponse de l'appel réseau
+                      userViewModel.login("kil@gmail.com", "jazzar147")
 
+
+                } catch (e: Exception) {
+                    // Gérez les exceptions ici
+                    e.printStackTrace()
+                }
             }
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            startActivity(intent)
         }
+
+
+
+
 
 
     }
@@ -91,4 +89,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
+
 }
+
+
+
+
+
+
+

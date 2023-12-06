@@ -1,5 +1,3 @@
-data class UserResponse(val user: User)
-
 data class User(
     val nom: String,
     val prenom: String,
@@ -13,3 +11,17 @@ data class User(
     val picture: String
 )
 
+
+data class LoginRequest(
+    val email: String,
+    val password: String
+)
+
+data class UserResponse(
+    val type: String,
+    val success: Boolean,
+    val message: String,
+    val accessToken: String,
+    val refreshToken: String,
+    val user: User
+)
