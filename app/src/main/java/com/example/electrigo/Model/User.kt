@@ -1,3 +1,9 @@
+import android.util.Log
+import io.jsonwebtoken.Jwts
+import io.jsonwebtoken.SignatureAlgorithm
+import io.jsonwebtoken.security.Keys
+import java.util.Date
+
 data class User(
     val nom: String,
     val prenom: String,
@@ -11,10 +17,18 @@ data class User(
     val picture: String
 )
 
-
 data class LoginRequest(
     val email: String,
     val password: String
+)
+
+data class TokenResponse(
+    val accessToken: String,
+    val refreshToken: String
+)
+
+data class RefreshTokenRequest(
+    val refreshToken: String
 )
 
 data class UserResponse(
@@ -25,3 +39,26 @@ data class UserResponse(
     val refreshToken: String,
     val user: User
 )
+
+object TokenValidator {
+    // Use the previously defined secretKey constant
+    private val secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256)
+
+    fun isTokenExpired(token: String): Boolean {
+        try {
+            val claims = Jwts.parserBuilder()
+                .setSigningKey(secretKey)
+                .build()
+                .parseClaimsJws(token)
+                .body
+
+            val expirationDate = claims.expiration
+
+            return expirationDate.before(Date())
+        } catch (e: Exception) {
+            // Handle exception here
+            Log.e("TokenValidator", e.toString())
+            return true
+        }
+    }
+}

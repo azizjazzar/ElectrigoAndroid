@@ -101,6 +101,8 @@ dependencies {
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.1.1")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1")
-
+    implementation ("io.jsonwebtoken:jjwt-api:0.11.2")
+    implementation ("io.jsonwebtoken:jjwt-impl:0.11.2")
+    implementation ("io.jsonwebtoken:jjwt-jackson:0.11.2")
 
 }

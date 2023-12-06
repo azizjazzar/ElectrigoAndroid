@@ -1,7 +1,9 @@
 package com.example.electrigo.ViewModel
 import LoginRequest
+import RefreshTokenRequest
 import RetrofitClient
 import RetrofitClient.apiService
+import TokenResponse
 import User
 import UserResponse
 import android.app.AlertDialog
@@ -10,12 +12,16 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.electrigo.Service.RetrofitInstance
 import com.example.electrigo.activities.LoginActivity
+import io.jsonwebtoken.Jwts
+import io.jsonwebtoken.SignatureAlgorithm
+import io.jsonwebtoken.security.Keys
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.Date
 
 class UserViewModel : ViewModel() {
-    companion object TokenManager {
+     object TokenManager {
         var accessToken: String? = null
         var refreshToken: String? = null
     }
@@ -64,6 +70,7 @@ class UserViewModel : ViewModel() {
                 println("Login est fait avec succes")
                 TokenManager.accessToken = accessToken
                 TokenManager.refreshToken = refreshToken
+                println("refreshtoken:"+refreshToken)
             }
             else{
                 println("invalide user")
@@ -75,15 +82,35 @@ class UserViewModel : ViewModel() {
 
 
 
-    fun showAlert(context: Context, title: String, message: String) {
-        val builder = AlertDialog.Builder(context)
-        builder.setTitle(title)
-        builder.setMessage(message)
-        builder.setPositiveButton("OK", null)
+    suspend fun refreshTokens(refreshToken: String): TokenResponse? {
+        return try {
+            // Utilisez la fonction refreshToken de l'API Retrofit
+            val refreshedUserResponse: UserResponse = RetrofitInstance.retrofitService.refreshToken(RefreshTokenRequest(refreshToken))
 
-        val dialog = builder.create()
-        dialog.show()
+            // Accédez aux données de la réponse ici
+            val success = refreshedUserResponse.success
+            val accessToken = refreshedUserResponse.accessToken
+            val newRefreshToken = refreshedUserResponse.refreshToken
+
+            if (success) {
+                println("Token rafraîchi avec succès")
+                println("hetha:$newRefreshToken")
+                TokenManager.accessToken = accessToken
+                TokenManager.refreshToken = newRefreshToken
+
+                // Retournez un objet TokenResponse avec les nouveaux tokens
+                TokenResponse(accessToken, newRefreshToken)
+            } else {
+                println("Échec du rafraîchissement du token")
+                null
+            }
+        } catch (e: Exception) {
+            println("Problème lors du rafraîchissement du token")
+            null
+        }
     }
+
+
 
 
 

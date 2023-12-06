@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.electrigo.R
 import com.example.electrigo.ViewModel.UserViewModel
 import com.example.electrigo.ViewModel.VehiculeViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class formulaireVehiculeActivity : AppCompatActivity() {
@@ -24,7 +27,9 @@ class formulaireVehiculeActivity : AppCompatActivity() {
 
         }
         button.setOnClickListener {
-            userViewModel.getusers(UserViewModel.TokenManager.accessToken ?: "");
+            //userViewModel.getusers(UserViewModel.TokenManager.accessToken ?: "");
+            println("here:"+TokenValidator.isTokenExpired(UserViewModel.TokenManager.accessToken ?: ""))
+
         }
 
     }

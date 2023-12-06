@@ -38,5 +38,7 @@ object RetrofitClient {
     val apiService: LocationApi by lazy {
         retrofit.create(LocationApi::class.java)
     }
+    // Ajoutez une classe d'intercepteur pour gérer le token
+
 }
 
