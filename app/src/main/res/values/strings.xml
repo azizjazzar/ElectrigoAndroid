@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Electrigo</string>
 
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
     <string name="Tesla">Tesla</string>
     <string name="title2">Porche</string>
     <string name="title3">Audi</string>
