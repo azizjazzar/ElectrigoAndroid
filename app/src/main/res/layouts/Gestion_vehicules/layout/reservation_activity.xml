@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:context=".activities.ReservationActivity">
 
     <View
         android:id="@+id/view_entete"
@@ -13,10 +15,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- DatePicker for the date de fin -->
+
     <TextView
         android:id="@+id/textAcceuil2"
-        android:layout_width="145dp"
-        android:layout_height="85dp"
+        android:layout_width="204dp"
+        android:layout_height="89dp"
         android:fontFamily="@font/myfont"
         android:text="Réservez dès \nmaintenant!"
         android:textColor="@color/white"
@@ -24,89 +28,110 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/view_entete"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintHorizontal_bias="0.188"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.738" />
-
-    <!-- DatePicker pour la date de fin -->
-
-    <DatePicker
-        android:id="@+id/datePickerDebut"
-        android:layout_width="376dp"
-        android:layout_height="215dp"
-        android:layout_marginTop="42dp"
-        android:background="@drawable/custom_datepicker_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.457"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_entete"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <DatePicker
-        android:id="@+id/datePickerFin"
-        android:layout_width="376dp"
-        android:layout_height="215dp"
-        android:layout_marginTop="48dp"
-        android:background="@drawable/custom_datepicker_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.372"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/datePickerDebut" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:fontFamily="@font/myfont"
         android:text="DATE DE DEBUT:"
         android:textColor="@color/colorPrimary"
         android:textSize="12sp"
-        android:fontFamily="@font/myfont"
-        app:layout_constraintBottom_toTopOf="@+id/datePickerDebut"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_entete"
-        app:layout_constraintVertical_bias="0.434" />
+        app:layout_constraintTop_toBottomOf="@+id/view_entete" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiDateDebutLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Date de debut "
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintWidth_default="spread">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiDateDebut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:inputType="none"
+            android:onClick="showDatePicker"
+            app:startIconDrawable="@drawable/calendrier" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="DATE DE FIN:"
+        android:layout_marginBottom="300dp"
         android:fontFamily="@font/myfont"
+        android:text="DATE DE FIN:"
         android:textColor="@color/colorPrimary"
         android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/datePickerFin"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintHorizontal_bias="0.056"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/datePickerDebut"
-        app:layout_constraintVertical_bias="0.428" />
+        app:layout_constraintTop_toBottomOf="@+id/tiDateDebutLayout"
+        app:layout_constraintVertical_bias="0.153" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiDateFinLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Date de fin"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintWidth_default="spread">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiDateFin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:inputType="none"
+            android:onClick="showDatePicker"
+            app:startIconDrawable="@drawable/calendrier" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/payer"
+        android:id="@+id/reserveretpayer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorPrimary"
         android:fontFamily="@font/myfont"
-
         android:gravity="center"
-        android:text="Payer"
+        android:text="Reserver"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.884"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11"
         app:layout_constraintVertical_bias="0.994" />
+
     <Button
         android:id="@+id/buttonbackDetail"
         android:layout_width="44dp"
         android:layout_height="39dp"
-        android:color="@color/colorPrimary"
         android:background="@android:color/transparent"
         android:fontFamily="@font/myfont"
         app:layout_constraintBottom_toBottomOf="@+id/view_entete"
@@ -127,6 +152,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.043"
         app:srcCompat="@drawable/flechback" />
+
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView"
         android:layout_width="318dp"
@@ -142,17 +168,35 @@
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:fontFamily="@font/myfont"
         android:text="Montant Total:"
         android:textColor="@color/black"
         android:textSize="19dp"
         android:textStyle="bold"
-        android:fontFamily="@font/myfont"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/payer"
-        app:layout_constraintHorizontal_bias="0.092"
+        app:layout_constraintEnd_toStartOf="@+id/reserveretpayer"
+        app:layout_constraintHorizontal_bias="0.081"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/datePickerFin"
-        app:layout_constraintVertical_bias="0.384" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintVertical_bias="0.356"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tiMontant"
+        android:layout_width="213dp"
+        android:layout_height="83dp"
+        android:layout_weight="1"
+        android:textSize="18dp"
+        android:fontFamily="@font/myfont"
+        app:errorEnabled="true"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.83"
+
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

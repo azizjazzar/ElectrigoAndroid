@@ -4,6 +4,8 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
+
+data class VehiculeResponse(val vehicule: Vehicule)
 data class Vehicule(
 
     @SerializedName("_id"              ) var Id               : String? = null,
@@ -16,7 +18,8 @@ data class Vehicule(
     @SerializedName("boite"            ) var boite            : String? = null,
     @SerializedName("nombreDePlaces"   ) var nombreDePlaces   : Int?    = null,
     @SerializedName("imagecartegrise"  ) var imagecartegrise  : String? = null,
-    @SerializedName("image"            ) var image            : String? = null,
+    @SerializedName("image") var image: String? = null,
     @SerializedName("__v"              ) var _v               : Int?    = null
 
 )
+

@@ -252,7 +252,7 @@
 
 
     <Button
-        android:id="@+id/payer"
+        android:id="@+id/addvehicule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorPrimary"
@@ -293,6 +293,41 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.043"
         app:srcCompat="@drawable/flechback" />
+
+    <!-- Add these lines inside your ConstraintLayout -->
+
+    <Button
+        android:id="@+id/btnSelectImage"
+        android:layout_width="56dp"
+        android:layout_height="48dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.439"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
+
+    <ImageView
+        android:id="@+id/selectedImageView"
+        android:layout_width="127dp"
+        android:layout_height="89dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.942"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view_entete"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="33dp"
+        android:layout_height="35dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnSelectImage"
+        app:layout_constraintEnd_toEndOf="@+id/btnSelectImage"
+        app:layout_constraintStart_toStartOf="@+id/btnSelectImage"
+        app:layout_constraintTop_toTopOf="@+id/btnSelectImage"
+        app:srcCompat="@drawable/imageicon" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

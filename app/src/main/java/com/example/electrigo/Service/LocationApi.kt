@@ -7,7 +7,14 @@ import TokenResponse
 import User
 import UserResponse
 import com.example.electrigo.Model.LocationItem
+import com.example.electrigo.Model.PaymentConfirmationResponse
+import com.example.electrigo.Model.PaymentIntentResponse
+import com.example.electrigo.Model.Reservation
+import com.example.electrigo.Model.ReservationResponse
 import com.example.electrigo.Model.Vehicule
+import com.example.electrigo.Model.VehiculeResponse
+
+
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -16,6 +23,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+
 import retrofit2.http.Query
 
 
@@ -29,6 +37,19 @@ interface LocationApi {
     @POST("auth/register")
     fun ajouterUtilisateur(@Body user: User): Call<UserResponse>
 
+    @POST("vehicule/addvehicules")
+    fun ajouterVehicule(@Body vehicule: Vehicule): Call<VehiculeResponse>
+
+    @GET("vehicule/vehicules/{vehiculeId}")
+    fun getVehiculeDetails(@Path("vehiculeId") vehiculeId: String): Call<Vehicule>
+    @POST("reservation/addreservations")
+    fun ajouterReservation(@Body reservation: Reservation): Call<ReservationResponse>
+
+    @POST("reservation/create-payment-intent")
+    fun createPaymentIntent(@Body paymentData: Map<String, Any>): Call<PaymentIntentResponse>
+    @POST("reservation/confirm-payment")
+    fun confirmPayment(@Body paymentData: Map<String, Any>): Call<PaymentConfirmationResponse>
+}
     @GET("auth/users")
     fun Getusers(): Call<List<User>>
     @POST("auth/login")
