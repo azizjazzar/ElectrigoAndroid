@@ -181,25 +181,22 @@
         app:layout_constraintVertical_bias="0.356"
         tools:ignore="MissingConstraints" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiMontantLayout"
-        android:layout_width="195dp"
-        android:layout_height="68dp"
+    <TextView
+        android:id="@+id/tiMontant"
+        android:layout_width="213dp"
+        android:layout_height="83dp"
         android:layout_weight="1"
-        android:hint="montant "
+        android:textSize="18dp"
+        android:fontFamily="@font/myfont"
         app:errorEnabled="true"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.074"
+        app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.811">
+        app:layout_constraintVertical_bias="0.83"
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiMontant"
-            android:layout_width="195dp"
-            android:layout_height="52dp"
-            android:inputType="numberDecimal" /> />
-    </com.google.android.material.textfield.TextInputLayout>
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

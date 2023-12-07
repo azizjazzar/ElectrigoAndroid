@@ -4,6 +4,8 @@ package com.example.electrigo.Service
 import User
 import UserResponse
 import com.example.electrigo.Model.LocationItem
+import com.example.electrigo.Model.PaymentConfirmationResponse
+import com.example.electrigo.Model.PaymentIntentResponse
 import com.example.electrigo.Model.Reservation
 import com.example.electrigo.Model.ReservationResponse
 import com.example.electrigo.Model.Vehicule
@@ -32,4 +34,9 @@ interface LocationApi {
     fun getVehiculeDetails(@Path("vehiculeId") vehiculeId: String): Call<Vehicule>
     @POST("reservation/addreservations")
     fun ajouterReservation(@Body reservation: Reservation): Call<ReservationResponse>
+
+    @POST("reservation/create-payment-intent")
+    fun createPaymentIntent(@Body paymentData: Map<String, Any>): Call<PaymentIntentResponse>
+    @POST("reservation/confirm-payment")
+    fun confirmPayment(@Body paymentData: Map<String, Any>): Call<PaymentConfirmationResponse>
 }
