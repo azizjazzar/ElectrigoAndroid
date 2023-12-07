@@ -10,7 +10,12 @@
     android:id="@+id/vehicule"
     android:enabled="true"
     android:icon="@drawable/caricon"
-    android:title="store"/>
+    android:title="vehicule"/>
+    <item
+        android:id="@+id/product"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="store"/>
 <item
     android:id="@+id/profile"
     android:enabled="true"

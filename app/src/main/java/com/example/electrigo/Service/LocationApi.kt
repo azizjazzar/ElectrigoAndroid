@@ -4,6 +4,7 @@ package com.example.electrigo.Service
 import User
 import UserResponse
 import com.example.electrigo.Model.LocationItem
+import com.example.electrigo.Model.Product
 import com.example.electrigo.Model.Vehicule
 
 import retrofit2.Call
@@ -17,7 +18,11 @@ interface LocationApi {
 
     @GET("vehicule/vehicules")
     fun getVehicule() :Call<List<Vehicule>>
+    @GET("product/products")
+    fun getProducts() :Call<List<Product>>
 
     @POST("register")
     fun ajouterUtilisateur(@Body user: User): Call<UserResponse>
+    @POST("product/addproduct")
+    fun addProduct(@Body product: Product): Call<Void>
 }

@@ -9,4 +9,14 @@
         <item name="android:yearListSelectorColor">#000000</item>
     </style>
 
+    <!-- product -->
+    <style name="roundedImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8%</item>
+    </style>
+    <style name="Circular">
+        <item name="color">@color/white</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
 </resources>

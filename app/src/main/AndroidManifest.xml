@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -53,6 +55,7 @@
         <activity android:name=".activities.formulaireVehiculeActivity"></activity>
         <activity android:name=".activities.reservationActivity"></activity>
         <activity android:name=".activities.DetailsVehiculeActivity"></activity>
+        <activity android:name=".activities.FormulaireProduitActivity"></activity>
     </application>
 
 </manifest>
