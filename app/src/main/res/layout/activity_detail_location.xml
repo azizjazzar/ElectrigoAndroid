@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:text="City"
                 android:textSize="16sp"
-                android:textColor="@color/green"
+                android:textColor="@color/black"
                 android:padding="8dp" />
 
             <TextView
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:text="Address"
                 android:textSize="16sp"
-                android:textColor="@color/green"
+                android:textColor="@color/black"
                 android:padding="8dp" />
 
             <TextView
@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:text="Type of Location"
                 android:textSize="16sp"
-                android:textColor="@color/green"
+                android:textColor="@color/black"
                 android:padding="8dp" />
 
             <TextView
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:text="Charge Type"
                 android:textSize="16sp"
-                android:textColor="@color/green"
+                android:textColor="@color/black"
                 android:padding="8dp" />
 
             <RatingBar
@@ -103,3 +103,6 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
+
+
+
