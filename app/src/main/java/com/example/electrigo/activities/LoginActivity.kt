@@ -1,4 +1,5 @@
 package com.example.electrigo.activities
+import User
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
@@ -12,9 +13,12 @@ import com.example.electrigo.R
 import com.example.electrigo.ViewModel.UserViewModel
 import com.example.electrigo.databinding.ActivityLoginBinding
 import com.example.electrigo.fragments.VehiculeFragment
+import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import retrofit2.await
 
@@ -48,16 +52,52 @@ class LoginActivity : AppCompatActivity() {
             CoroutineScope(Dispatchers.Main).launch {
                 try {
                     // Utilisez l'extension await pour attendre la réponse de l'appel réseau
-                      userViewModel.login("kil@gmail.com", "jazzar147")
+                    val loginResult = userViewModel.login(binding.tiEmail.text.toString(), binding.tiPassword.text.toString())
 
+                    if (loginResult) {
+                        // Le login a réussi, récupérer l'utilisateur
+                        val userDeferred = async(Dispatchers.IO) {
+                            userViewModel.getUserByEmail(binding.tiEmail.text.toString())
+                        }
+
+                        // Attendre le résultat de la coroutine
+                        val user: User? = userDeferred.await()
+
+                        if (user != null) {
+                            // Démarrer l'activité principale et effacer la pile d'activités
+                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            startActivity(intent)
+                        } else {
+                            // Gérer le cas où l'utilisateur est null
+                            showAlert("Utilisateur introuvable")
+                        }
+                    } else {
+                        // Le login a échoué, afficher une alerte
+                        showAlert("Login incorrect")
+                    }
                 } catch (e: Exception) {
                     // Gérez les exceptions ici
                     e.printStackTrace()
                 }
             }
-            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-            startActivity(intent)
         }
+
+
+
+
+
+
+        // Fonction pour afficher une alerte
+        fun showAlert(message: String) {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Erreur de connexion")
+            builder.setMessage(message)
+            builder.setPositiveButton("OK", null)
+            val dialog = builder.create()
+            dialog.show()
+        }
+
 
 
 

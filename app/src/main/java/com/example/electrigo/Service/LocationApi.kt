@@ -15,6 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 
@@ -35,6 +36,8 @@ interface LocationApi {
 
     @POST("auth/refresh")
     suspend fun refreshToken(@Body refreshToken: RefreshTokenRequest): TokenResponse
+    @GET("auth/user/{email}")
+    fun getUserByEmail(@Path("email") email: String): Call<User>
 
 }
 

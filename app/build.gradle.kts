@@ -106,5 +106,8 @@ dependencies {
     implementation ("io.jsonwebtoken:jjwt-jackson:0.11.2")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+    implementation ("androidx.appcompat:appcompat:1.3.1")
+
 
 }

@@ -3,6 +3,7 @@ import LoginRequest
 import RefreshTokenRequest
 import RetrofitClient
 import RetrofitClient.apiService
+import SessionManager
 import TokenResponse
 import User
 import UserResponse
@@ -22,6 +23,8 @@ import retrofit2.Callback
 import retrofit2.Response
 import android.util.Base64
 import org.json.JSONObject
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class UserViewModel : ViewModel() {
      object TokenManager {
@@ -54,7 +57,7 @@ class UserViewModel : ViewModel() {
 
 
     // Fonction pour effectuer la connexion
-    suspend fun login(email: String, password: String) {
+    suspend fun login(email: String, password: String): Boolean {
         val loginRequest = LoginRequest(email, password)
 
         try {
@@ -62,25 +65,29 @@ class UserViewModel : ViewModel() {
             val userResponse: UserResponse = RetrofitInstance.retrofitService.login(loginRequest)
 
             // Accédez aux données de la réponse ici
-            val type = userResponse.type
             val success = userResponse.success
-            val message = userResponse.message
             val accessToken = userResponse.accessToken
             val refreshToken = userResponse.refreshToken
-            val user = userResponse.user
+
             if (success) {
-                println("Login est fait avec succes")
+                println("Login est fait avec succès")
                 TokenManager.accessToken = accessToken
                 TokenManager.refreshToken = refreshToken
-                println("refreshtoken:"+refreshToken)
-            }
-            else{
-                println("invalide user")
+                println("refreshtoken: $refreshToken")
+
+                // La connexion a réussi
+                return true
+            } else {
+                println("Utilisateur invalide")
             }
         } catch (e: Exception) {
-            println("Probleme au niveau du requette getusers")
+            println("Problème au niveau de la requête login: ${e.message}")
         }
+
+        // La connexion a échoué
+        return false
     }
+
 
 
 
@@ -139,5 +146,34 @@ class UserViewModel : ViewModel() {
             return true // En cas d'erreur, considérez le token comme expiré
         }
     }
+    suspend fun getUserByEmail(email: String): User? = suspendCoroutine { continuation ->
+        val call: Call<User> = RetrofitInstance.retrofitService.getUserByEmail(email)
+
+        // Ajoutez le jeton d'accès à l'en-tête de la demande
+        call.enqueue(object : Callback<User> {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                if (response.isSuccessful) {
+                    val user = response.body()
+                    // Traitement des données de l'utilisateur ici si nécessaire
+                    System.out.println(user)
+                    SessionManager.currentUser=user
+                    continuation.resume(user)
+                } else {
+                    // Gérer les erreurs ici
+                    System.out.println("Erreur lors de la récupération de l'utilisateur: ${response.code()}")
+                    continuation.resume(null)
+                }
+            }
+
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                // Gérer les erreurs de connexion ici
+                System.out.println("Erreur de connexion lors de la récupération de l'utilisateur: ${t.message}")
+                continuation.resume(null)
+            }
+        })
+    }
+
+
+
 
 }

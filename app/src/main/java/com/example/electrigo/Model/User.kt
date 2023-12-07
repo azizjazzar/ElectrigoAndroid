@@ -1,21 +1,25 @@
 import android.util.Log
+import com.google.gson.annotations.SerializedName
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.security.Keys
 import java.util.Date
 
 data class User(
-    val nom: String,
-    val prenom: String,
-    val email: String,
-    val genre: String,
-    val datenaissance: String,
-    val telephone: String,
-    val adresse: String,
-    val mot_passe: String,
-    val type: String,
-    val picture: String
+    val nom: String?,
+    val prenom: String?,
+    var email: String?,
+    val genre: String?,
+    val datenaissance: String?,
+    val telephone: String?,
+    val adresse: String?,
+    val mot_passe: String?,
+    val type: String?,
+    val picture: String?
 )
+
+
+
 
 data class LoginRequest(
     val email: String,
@@ -43,7 +47,9 @@ data class UserResponse(
     val refreshToken: String?,
     val user: User
 )
-
+object SessionManager {
+    var currentUser: User? = null
+}
 object TokenValidator {
     // Use the previously defined secretKey constant
     private val secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256)
