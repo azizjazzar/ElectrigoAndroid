@@ -49,7 +49,7 @@ interface LocationApi {
     fun createPaymentIntent(@Body paymentData: Map<String, Any>): Call<PaymentIntentResponse>
     @POST("reservation/confirm-payment")
     fun confirmPayment(@Body paymentData: Map<String, Any>): Call<PaymentConfirmationResponse>
-}
+
     @GET("auth/users")
     fun Getusers(): Call<List<User>>
     @POST("auth/login")

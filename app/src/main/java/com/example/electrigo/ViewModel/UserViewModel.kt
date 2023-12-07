@@ -31,7 +31,7 @@ class UserViewModel : ViewModel() {
         var accessToken: String? = null
         var refreshToken: String? = null
     }
-    fun getusers(accessToken: String) {
+    fun getusers() {
         val call: Call<List<User>> = RetrofitClient.apiService.Getusers()
 
         // Ajoutez le jeton d'accès à l'en-tête de la demande

@@ -18,7 +18,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = "http://10.0.2.2:3000/api/"
+    private const val BASE_URL = "https://electrigo.onrender.com/api/"
 
     // Créez un OkHttpClient avec deux Interceptors
     private val client = OkHttpClient.Builder()
@@ -26,6 +26,12 @@ object RetrofitClient {
         .addInterceptor(TokenInterceptor()) // Ajoutez l'intercepteur qui vérifie l'expiration du token
         .build()
 
+    // Créez votre instance Retrofit en utilisant cet OkHttpClient
+    private val retrofit: Retrofit = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .client(client)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
 
     // Créez votre service API en utilisant le service Retrofit
     val apiService: LocationApi by lazy {

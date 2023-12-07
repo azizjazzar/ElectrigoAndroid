@@ -5,21 +5,17 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
-import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
 import android.widget.Button
 import android.widget.RadioButton
-
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.example.electrigo.Model.Vehicule
 import com.example.electrigo.R
-import com.example.electrigo.Service.RetrofitClient
 import com.example.electrigo.Service.RetrofitVehicule
 import com.example.electrigo.ViewModel.VehiculeViewModel
 import com.example.electrigo.databinding.ActivityRegisterBinding
@@ -35,29 +31,11 @@ import com.bumptech.glide.request.transition.Transition
 
 
 class formulaireVehiculeActivity : AppCompatActivity() {
-private lateinit var binding: FormulaireVehiculeBinding
+    private lateinit var binding: FormulaireVehiculeBinding
     private lateinit var selectedImage: Bitmap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-import com.example.electrigo.ViewModel.UserViewModel
-import com.example.electrigo.ViewModel.VehiculeViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-
-
-class formulaireVehiculeActivity : AppCompatActivity() {
-    val userViewModel = UserViewModel()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.formulaire_vehicule)
-        val buttonbackhome: Button = findViewById(R.id.buttonbackhome)
-        val button: Button = findViewById(R.id.payer)
-        // bouton back home
-        buttonbackhome.setOnClickListener {
 
         // Initialize ViewBinding
         binding = FormulaireVehiculeBinding.inflate(layoutInflater)
@@ -201,10 +179,6 @@ class formulaireVehiculeActivity : AppCompatActivity() {
 
     ): List<String> {
 
-        button.setOnClickListener {
-            userViewModel.getusers(UserViewModel.TokenManager.accessToken ?: "");
-        }
-
         val errors = mutableListOf<String>()
 
         if (marque.isBlank()) {
@@ -234,7 +208,7 @@ class formulaireVehiculeActivity : AppCompatActivity() {
         }
 
         else if (boite.isBlank()) {
-        errors.add("Le champ boite est obligatoire.")
+            errors.add("Le champ boite est obligatoire.")
 
         } else if (nombreDePlaces.isBlank()) {
             errors.add("Le champ nombredeplace est obligatoire.")

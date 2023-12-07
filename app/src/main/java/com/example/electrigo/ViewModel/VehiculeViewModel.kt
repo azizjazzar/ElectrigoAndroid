@@ -1,5 +1,6 @@
 package com.example.electrigo.ViewModel
 
+import RetrofitClient
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -29,7 +30,7 @@ class VehiculeViewModel :ViewModel(){
 
     fun getVehicule() = viewModelScope.launch(Dispatchers.IO) {
         _jobResponseVehiculeData.postValue(ApiResult.Loading)
-        RetrofitInstance.retrofitService.getVehicule()
+        RetrofitClient.apiService.getVehicule()
             .enqueue(object : Callback<List<Vehicule>> {
                 override fun onResponse(
                     call: Call<List<Vehicule>>,

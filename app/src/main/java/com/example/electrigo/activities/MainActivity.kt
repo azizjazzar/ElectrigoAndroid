@@ -16,6 +16,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.electrigo.R
+import com.example.electrigo.ViewModel.UserViewModel
 import com.example.electrigo.databinding.ActivityMainBinding
 import com.example.electrigo.fragments.LocationFragment
 import com.example.electrigo.fragments.VehiculeFragment
@@ -88,6 +89,8 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.nav_profile -> {
                     // Handle profile item click
+                    println("here")
+
                     Toast.makeText(applicationContext, "Profile clicked", Toast.LENGTH_SHORT).show()
                 }
                 R.id.nav_settings -> {
@@ -100,6 +103,8 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.nav_help -> {
                     // Handle help item click
+                    UserViewModel().getusers()
+
                     Toast.makeText(applicationContext, "Help clicked", Toast.LENGTH_SHORT).show()
                 }
                 R.id.nav_logout -> {

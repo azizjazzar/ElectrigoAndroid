@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.electrigo.Model.Reservation
 import com.example.electrigo.R
 import com.example.electrigo.Service.RetrofitVehicule
+import com.example.electrigo.ViewModel.UserViewModel
 import com.example.electrigo.databinding.ReservationActivityBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -33,8 +34,6 @@ class ReservationActivity : AppCompatActivity() {
         binding = ReservationActivityBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
-import com.example.electrigo.ViewModel.UserViewModel
 
         //backbouton
         binding.buttonbackDetail.setOnClickListener {
@@ -73,9 +72,6 @@ import com.example.electrigo.ViewModel.UserViewModel
                                 val debutDate: Date = dateFormat.parse(dateDebut) ?: Date()
                                 val finDate: Date = dateFormat.parse(dateFin) ?: Date()
 
-        val buttonbackdetail: Button = findViewById(R.id.buttonbackDetail)
-        val button: Button = findViewById(R.id.payer)
-
                                 // Calculer le montant en fonction des dates et du prix du véhicule
                                 val nombreJours =
                                     ((finDate.time - debutDate.time) / (24 * 60 * 60 * 1000)).toInt()
@@ -103,8 +99,6 @@ import com.example.electrigo.ViewModel.UserViewModel
                 }
             }
         }
-
-
     }
 
     private fun isDateDebutBeforeDateFin(dateDebut: String, dateFin: String): Boolean {
@@ -188,7 +182,7 @@ import com.example.electrigo.ViewModel.UserViewModel
     private suspend fun ajouterReservation(reservation: Reservation) {
         try {
             withContext(Dispatchers.IO) {
-                val response = RetrofitVehicule.apiService.ajouterReservation(reservation).await()
+                val response = RetrofitClient.apiService.ajouterReservation(reservation).await()
                 Log.d("API Response", response.toString())
 
                 // Success
