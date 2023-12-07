@@ -12,7 +12,22 @@
         android:icon="@drawable/baseline_shopping_cart_24"
         android:title="store"/>
     <item
-        android:id="@+id/profile"
+        android:id="@+id/prqsdofile"
+        android:enabled="true"
+        android:icon="@drawable/baseline_person_24"
+        android:title="profile"/>
+    <item
+        android:id="@+id/prdsdsofile"
+        android:enabled="true"
+        android:icon="@drawable/baseline_person_24"
+        android:title="profile"/>
+    <item
+        android:id="@+id/qsddd"
+        android:enabled="true"
+        android:icon="@drawable/baseline_person_24"
+        android:title="profile"/>
+    <item
+        android:id="@+id/qsd"
         android:enabled="true"
         android:icon="@drawable/baseline_person_24"
         android:title="profile"/>

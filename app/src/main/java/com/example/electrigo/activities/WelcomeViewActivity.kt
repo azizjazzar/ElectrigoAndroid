@@ -4,7 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.electrigo.databinding.ActivityWelcomeBinding  // Correct import
-
+import android.view.Menu;
+import android.view.MenuItem;
 class WelcomeViewActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWelcomeBinding  // Correct binding class
 
