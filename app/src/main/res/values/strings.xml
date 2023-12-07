@@ -112,8 +112,7 @@
     <!-- TODO: Remove or change this placeholder text -->
 
 
-        <string name="montant_template"> %d €</string>
-
+    <string name="montant_template"> %d €</string>
 
 
 </resources>

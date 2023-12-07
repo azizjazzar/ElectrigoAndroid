@@ -40,8 +40,6 @@ class ReservationActivity : AppCompatActivity() {
         }
 
 
-
-
         // Récupérer l'identifiant du véhicule depuis l'intent
         selectedVehiculeId = intent.getStringExtra("vehiculeId")
 
@@ -55,7 +53,7 @@ class ReservationActivity : AppCompatActivity() {
         }
 
         binding.reserveretpayer.setOnClickListener {
-            // Vérifier si une réservation a déjà été effectuée
+
             if (reservationEffectuee) {
                 showAlert("Vous avez déjà effectué une réservation à cette Véhicule")
             } else {

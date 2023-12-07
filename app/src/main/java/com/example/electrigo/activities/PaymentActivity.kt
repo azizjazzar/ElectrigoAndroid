@@ -1,68 +1,70 @@
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.example.electrigo.Service.LocationApi
-import com.example.electrigo.Model.PaymentIntentResponse
-import com.example.electrigo.Model.PaymentConfirmationResponse
-import com.example.electrigo.databinding.ActivityPaymentBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.example.electrigo.R
+import com.stripe.android.paymentsheet.PaymentSheet
+// Add the following lines to build.gradle to use this example's networking library:
+
+import com.github.kittinunf.fuel.httpPost
+import com.github.kittinunf.fuel.json.responseJson
+import com.github.kittinunf.result.Result
+import com.stripe.android.PaymentConfiguration
+import com.stripe.android.paymentsheet.PaymentSheetResult
 
 class PaymentActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityPaymentBinding
-    private lateinit var locationApi: LocationApi
+    lateinit var paymentSheet: PaymentSheet
+    lateinit var customerConfig: PaymentSheet.CustomerConfiguration
+    lateinit var paymentIntentClientSecret: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityPaymentBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        // Initialisez Retrofit
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://electrigo.onrender.com/api/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        // Créez une instance de l'interface LocationApi
-        locationApi = retrofit.create(LocationApi::class.java)
+        setContentView(R.layout.activity_payment)
+        paymentSheet = PaymentSheet(this, ::onPaymentSheetResult)
 
 
-        val paymentData = mapOf("amount" to 1000) // ajustez la valeur du montant selon vos besoins
-        val createPaymentIntentCall = locationApi.createPaymentIntent(paymentData)
-        createPaymentIntentCall.enqueue(object : Callback<PaymentIntentResponse> {
-            override fun onResponse(call: Call<PaymentIntentResponse>, response: Response<PaymentIntentResponse>) {
-                if (response.isSuccessful) {
-                    val clientSecret = response.body()?.clientSecret
-                    // Utilisez clientSecret comme nécessaire
-                } else {
-                    // Traitement des erreurs
-                }
+        "https://electrigo.onrender.com/api/reservation/create-payment-intent".httpPost().responseJson { _, _, result ->
+            if (result is Result.Success) {
+                val responseJson = result.get().obj()
+                paymentIntentClientSecret = responseJson.getString("")
+                customerConfig = PaymentSheet.CustomerConfiguration(
+                    responseJson.getString("customer"),
+                    responseJson.getString("ephemeralKey")
+                )
+                val publishableKey = responseJson.getString("pk_test_51OErmACis87pjNWpmR1mA9OY8bC9joB8m3yMTqOlDqonuPHoOla3qdFxRI4l23Rqpn4RjSQjj1H75UgBbpTr2Os800jsLoQ4TE")
+                PaymentConfiguration.init(this, publishableKey)
             }
-
-            override fun onFailure(call: Call<PaymentIntentResponse>, t: Throwable) {
-
-            }
-        })
-
-        // Exemple d'utilisation de confirmPayment
-        val paymentConfirmationData = mapOf("paymentIntentId" to "your_payment_intent_id") // ajustez l'ID selon vos besoins
-        val confirmPaymentCall = locationApi.confirmPayment(paymentConfirmationData)
-        confirmPaymentCall.enqueue(object : Callback<PaymentConfirmationResponse> {
-            override fun onResponse(call: Call<PaymentConfirmationResponse>, response: Response<PaymentConfirmationResponse>) {
-                if (response.isSuccessful) {
-                    val paymentIntentId = response.body()?.paymentId
-                    // Utilisez paymentIntentId comme nécessaire
-                } else {
-                    // Traitement des erreurs
-                }
-            }
-
-            override fun onFailure(call: Call<PaymentConfirmationResponse>, t: Throwable) {
-                // Traitement des erreurs réseau
-            }
-        })
+        }
     }
+    fun presentPaymentSheet() {
+        paymentSheet.presentWithPaymentIntent(
+            paymentIntentClientSecret,
+            PaymentSheet.Configuration(
+                merchantDisplayName = "My merchant name",
+                customer = customerConfig,
+                // Set `allowsDelayedPaymentMethods` to true if your business handles
+                // delayed notification payment methods like US bank accounts.
+                allowsDelayedPaymentMethods = true
+            )
+        )
+    }
+    fun onPaymentSheetResult(paymentSheetResult: PaymentSheetResult) {
+        when(paymentSheetResult) {
+            is PaymentSheetResult.Canceled -> {
+                print("Canceled")
+            }
+            is PaymentSheetResult.Failed -> {
+                print("Error: ${paymentSheetResult.error}")
+            }
+            is PaymentSheetResult.Completed -> {
+                // Display for example, an order confirmation screen
+                print("Completed")
+            }
+        }
+    }
+
+    fun onPayerButtonClicked(view: View) {
+
+        presentPaymentSheet()
+    }
+
 }
