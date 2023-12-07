@@ -1,8 +1,10 @@
 package com.example.electrigo.activities
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.electrigo.R
 import com.example.electrigo.ViewModel.UserViewModel
@@ -27,9 +29,7 @@ class formulaireVehiculeActivity : AppCompatActivity() {
 
         }
         button.setOnClickListener {
-            //userViewModel.getusers(UserViewModel.TokenManager.accessToken ?: "");
-            println("here:"+TokenValidator.isTokenExpired(UserViewModel.TokenManager.accessToken ?: ""))
-
+            userViewModel.getusers(UserViewModel.TokenManager.accessToken ?: "");
         }
 
     }

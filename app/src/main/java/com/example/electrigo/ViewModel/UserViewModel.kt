@@ -8,7 +8,9 @@ import User
 import UserResponse
 import android.app.AlertDialog
 import android.content.Context
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import com.example.electrigo.Service.RetrofitInstance
 import com.example.electrigo.activities.LoginActivity
@@ -18,7 +20,8 @@ import io.jsonwebtoken.security.Keys
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.Date
+import android.util.Base64
+import org.json.JSONObject
 
 class UserViewModel : ViewModel() {
      object TokenManager {
@@ -26,7 +29,6 @@ class UserViewModel : ViewModel() {
         var refreshToken: String? = null
     }
     fun getusers(accessToken: String) {
-        System.out.println("hetha howa acce token:"+accessToken)
         val call: Call<List<User>> = RetrofitClient.apiService.Getusers()
 
         // Ajoutez le jeton d'accès à l'en-tête de la demande
@@ -35,16 +37,16 @@ class UserViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     val users = response.body()
                     // Traitez les données des utilisateurs ici
-                    println(users)
+                    System.out.println(users)
                 } else {
                     // Gérer les erreurs ici
-                    println("Erreur lors de la récupération des utilisateurs: ${response.code()}")
+                    System.out.println("Erreur lors de la récupération des utilisateurs: ${response.code()}")
                 }
             }
 
             override fun onFailure(call: Call<List<User>>, t: Throwable) {
                 // Gérer les erreurs de connexion ici
-                println("Erreur de connexion lors de la récupération des utilisateurs: ${t.message}")
+                System.out.println("Erreur de connexion lors de la récupération des utilisateurs: ${t.message}")
             }
         })
     }
@@ -82,10 +84,12 @@ class UserViewModel : ViewModel() {
 
 
 
-    suspend fun refreshTokens(refreshToken: String): TokenResponse? {
+    suspend fun refreshTokens(refreshToken: String): TokenResponse {
         return try {
             // Utilisez la fonction refreshToken de l'API Retrofit
-            val refreshedUserResponse: UserResponse = RetrofitInstance.retrofitService.refreshToken(RefreshTokenRequest(refreshToken))
+            val refreshedUserResponse: TokenResponse = RetrofitInstance.retrofitService.refreshToken(
+                RefreshTokenRequest(refreshToken)
+            )
 
             // Accédez aux données de la réponse ici
             val success = refreshedUserResponse.success
@@ -99,19 +103,41 @@ class UserViewModel : ViewModel() {
                 TokenManager.refreshToken = newRefreshToken
 
                 // Retournez un objet TokenResponse avec les nouveaux tokens
-                TokenResponse(accessToken, newRefreshToken)
+                return@refreshTokens TokenResponse(accessToken, newRefreshToken, true)
             } else {
                 println("Échec du rafraîchissement du token")
-                null
+                // En cas d'échec, retournez un objet TokenResponse vide avec des champs null
+                return@refreshTokens TokenResponse(null, null, false)
             }
         } catch (e: Exception) {
-            println("Problème lors du rafraîchissement du token")
-            null
+            println("Problème lors du rafraîchissement du token: ${e.message}")
+            // En cas d'exception, retournez un objet TokenResponse vide avec des champs null
+            return@refreshTokens TokenResponse(null, null, false)
         }
     }
 
 
 
 
+
+    fun isTokenExpired(token: String): Boolean {
+        try {
+            val parts = token.split("\\.".toRegex()).toTypedArray()
+            val payload = String(Base64.decode(parts[1], Base64.DEFAULT))
+            val jsonPayload = JSONObject(payload)
+
+            // Récupérez la date d'expiration du token en millisecondes
+            val expirationDateMillis = jsonPayload.getLong("exp") * 1000
+
+            // Obtenez la date actuelle en millisecondes
+            val currentMillis = System.currentTimeMillis()
+
+            // Comparez la date d'expiration avec la date actuelle
+            return currentMillis > expirationDateMillis
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return true // En cas d'erreur, considérez le token comme expiré
+        }
+    }
 
 }

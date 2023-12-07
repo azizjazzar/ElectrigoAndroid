@@ -23,9 +23,13 @@ data class LoginRequest(
 )
 
 data class TokenResponse(
-    val accessToken: String,
-    val refreshToken: String
+    val accessToken: String?,
+    val refreshToken: String?,
+    val success: Boolean
 )
+
+
+
 
 data class RefreshTokenRequest(
     val refreshToken: String
@@ -35,8 +39,8 @@ data class UserResponse(
     val type: String,
     val success: Boolean,
     val message: String,
-    val accessToken: String,
-    val refreshToken: String,
+    val accessToken: String?,
+    val refreshToken: String?,
     val user: User
 )
 

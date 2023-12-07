@@ -3,6 +3,7 @@ package com.example.electrigo.Service
 
 import LoginRequest
 import RefreshTokenRequest
+import TokenResponse
 import User
 import UserResponse
 import com.example.electrigo.Model.LocationItem
@@ -33,7 +34,7 @@ interface LocationApi {
     suspend fun login(@Body loginRequest: LoginRequest): UserResponse
 
     @POST("auth/refresh")
-    suspend fun refreshToken(@Body refreshToken: RefreshTokenRequest): UserResponse
+    suspend fun refreshToken(@Body refreshToken: RefreshTokenRequest): TokenResponse
 
 }
 

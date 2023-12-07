@@ -3,7 +3,10 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.Html
+import java.util.*
 import android.content.Context
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.electrigo.R
 import com.example.electrigo.ViewModel.UserViewModel
@@ -12,6 +15,7 @@ import com.example.electrigo.fragments.VehiculeFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 import retrofit2.await
 
 class LoginActivity : AppCompatActivity() {
@@ -45,7 +49,6 @@ class LoginActivity : AppCompatActivity() {
                 try {
                     // Utilisez l'extension await pour attendre la réponse de l'appel réseau
                       userViewModel.login("kil@gmail.com", "jazzar147")
-
 
                 } catch (e: Exception) {
                     // Gérez les exceptions ici
