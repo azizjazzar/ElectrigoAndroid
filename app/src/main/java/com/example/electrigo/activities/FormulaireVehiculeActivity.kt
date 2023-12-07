@@ -1,12 +1,19 @@
 package com.example.electrigo.activities
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Base64
 import android.util.Log
 import android.widget.Button
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
 import com.example.electrigo.Model.Vehicule
 import com.example.electrigo.R
 import com.example.electrigo.Service.RetrofitClient
@@ -20,10 +27,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.await
+import java.io.ByteArrayOutputStream
+import com.bumptech.glide.request.transition.Transition
 
 
 class formulaireVehiculeActivity : AppCompatActivity() {
 private lateinit var binding: FormulaireVehiculeBinding
+    private lateinit var selectedImage: Bitmap
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -85,7 +96,7 @@ private lateinit var binding: FormulaireVehiculeBinding
                     boite = selectedValueBoite.orEmpty(),
                     nombreDePlaces = nombreDePlaces ?: 0,
                     imagecartegrise = "",
-                    image = "",
+                    image = convertBitmapToString(selectedImage),
                     _v = 0
                 )
 
@@ -98,23 +109,62 @@ private lateinit var binding: FormulaireVehiculeBinding
                 showAlert(validationErrors.joinToString("\n"))
             }
         }
+
+        binding.btnSelectImage.setOnClickListener {
+            // Open gallery for image selection
+            val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE)
+        }
+    }
+    private fun convertBitmapToString(bitmap: Bitmap): String {
+        val stream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, stream)
+        val byteArray = stream.toByteArray()
+        return Base64.encodeToString(byteArray, Base64.DEFAULT)
     }
 
 
-        private suspend fun ajouterVehicule(vehicule: Vehicule) {
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == GALLERY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            data?.data?.let { selectedImageUri ->
+                Glide.with(this)
+                    .asBitmap()
+                    .load(selectedImageUri)
+                    .into(object : CustomTarget<Bitmap>() {
+                        override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                            selectedImage = resource
+                            Log.d("ImageLoading", "Image loaded successfully")
+                            binding.selectedImageView.setImageBitmap(selectedImage)
+                        }
+
+                        override fun onLoadCleared(placeholder: Drawable?) {
+                            Log.d("ImageLoading", "Image load cleared")
+                        }
+                    })
+            }
+        }
+    }
+
+
+
+
+    private suspend fun ajouterVehicule(vehicule: Vehicule) {
         try {
             withContext(Dispatchers.IO) {
-                RetrofitVehicule.apiService.ajouterVehicule(vehicule).await()
+                val response = RetrofitVehicule.apiService.ajouterVehicule(vehicule).await()
+                Log.d("APIResponse", "Response: $response")
 
                 // Success
                 showAlert("Vehicule ajouté avec succès")
             }
         } catch (e: Exception) {
-            // Handle network or other exceptions
-            println("Erreur lors de la communication avec l'API: ${e.message}")
+            e.printStackTrace()
             showAlert("Erreur lors de l'ajout")
         }
     }
+
 
 
     private fun validateInput(
@@ -177,5 +227,7 @@ private lateinit var binding: FormulaireVehiculeBinding
             dialog.show()
         }
     }
-
+    companion object {
+        private const val GALLERY_REQUEST_CODE = 100
+    }
 }

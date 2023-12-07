@@ -103,9 +103,13 @@ dependencies {
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.9.3"))
     implementation ("com.squareup.okhttp3:okhttp")
     implementation ("com.squareup.okhttp3:logging-interceptor")
+
+    implementation ("com.stripe:stripe-android:20.35.1")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
-    implementation ("com.stripe:stripe-android:20.35.1")
+    implementation ("com.github.bumptech.glide:okhttp3-integration:4.12.0")
+    implementation ("com.github.bumptech.glide:recyclerview-integration:4.12.0")
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
 
     implementation ("com.github.kittinunf.fuel:fuel:2.3.1")
     implementation ("com.github.kittinunf.fuel:fuel-json:2.3.1")

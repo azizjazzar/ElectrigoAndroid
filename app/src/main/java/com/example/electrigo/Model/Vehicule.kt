@@ -18,7 +18,7 @@ data class Vehicule(
     @SerializedName("boite"            ) var boite            : String? = null,
     @SerializedName("nombreDePlaces"   ) var nombreDePlaces   : Int?    = null,
     @SerializedName("imagecartegrise"  ) var imagecartegrise  : String? = null,
-    @SerializedName("image"            ) var image            : String? = null,
+    @SerializedName("image") var image: String? = null,
     @SerializedName("__v"              ) var _v               : Int?    = null
 
 )
