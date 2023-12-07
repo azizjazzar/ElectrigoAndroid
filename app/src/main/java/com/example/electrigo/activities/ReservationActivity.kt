@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.electrigo.Model.Reservation
 import com.example.electrigo.Service.RetrofitVehicule
 import com.example.electrigo.databinding.ReservationActivityBinding
@@ -36,33 +37,36 @@ class ReservationActivity : AppCompatActivity() {
         binding.reserveretpayer.setOnClickListener {
             val dateDebut = binding.tiDateDebut.text.toString()
             val dateFin = binding.tiDateFin.text.toString()
-            val montant = binding.tiMontant.text.toString()
 
             // Assurez-vous que selectedVehiculeId n'est pas null avant de créer l'objet Reservation
             selectedVehiculeId?.let {
-                try {
-                    // Convertir les chaînes de caractères en objets Date
-                    val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-                    val debutDate: Date = dateFormat.parse(dateDebut) ?: Date()
-                    val finDate: Date = dateFormat.parse(dateFin) ?: Date()
+                lifecycleScope.launch {
+                    try {
+                        // Convertir les chaînes de caractères en objets Date
+                        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                        val debutDate: Date = dateFormat.parse(dateDebut) ?: Date()
+                        val finDate: Date = dateFormat.parse(dateFin) ?: Date()
 
-                    val reservation = Reservation(
-                        dateDebut = debutDate.toString(),
-                        dateFin = finDate.toString(),
-                        montant = montant.toInt(),
-                        vehicule = it
-                    )
+                        // Calculer le montant en fonction des dates et du prix du véhicule
+                        val nombreJours = ((finDate.time - debutDate.time) / (24 * 60 * 60 * 1000)).toInt()
+                        val montant = nombreJours * getPrixVehicule(it)!!
 
-                    CoroutineScope(Dispatchers.Main).launch {
+                        val reservation = Reservation(
+                            dateDebut = debutDate.toString(),
+                            dateFin = finDate.toString(),
+                            montant = montant,
+                            vehicule = it
+                        )
+
                         ajouterReservation(reservation)
+                    } catch (e: ParseException) {
+                        showAlert("Veuillez entrer des dates valides au format JJ/MM/AAAA.")
                     }
-                } catch (e: ParseException) {
-                    showAlert("Veuillez entrer des dates valides au format JJ/MM/AAAA.")
-                } catch (e: NumberFormatException) {
-                    showAlert("Veuillez entrer un montant valide.")
                 }
             }
         }
+
+
     }
 
     fun showDatePicker(view: View) {
@@ -122,4 +126,18 @@ class ReservationActivity : AppCompatActivity() {
             dialog.show()
         }
     }
+
+    private suspend fun getPrixVehicule(vehiculeId: String): Int? {
+        try {
+            val vehicule = RetrofitVehicule.apiService.getVehiculeDetails(vehiculeId).await()
+            return vehicule.prix
+        } catch (e: Exception) {
+
+            Log.e("Exception", "Erreur lors de la récupération du prix du véhicule: ${e.message}")
+            return null
+        }
+    }
+
+
 }
+
