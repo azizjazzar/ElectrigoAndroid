@@ -199,7 +199,7 @@
             android:id="@+id/tiMontant"
             android:layout_width="195dp"
             android:layout_height="52dp"
-            android:inputType="text" />
+            android:inputType="numberDecimal" /> />
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

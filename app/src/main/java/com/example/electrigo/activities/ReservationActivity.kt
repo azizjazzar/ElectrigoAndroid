@@ -2,13 +2,11 @@ package com.example.electrigo.activities
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.electrigo.Model.Reservation
-import com.example.electrigo.Model.Vehicule
 import com.example.electrigo.Service.RetrofitVehicule
 import com.example.electrigo.databinding.ReservationActivityBinding
 import kotlinx.coroutines.CoroutineScope
@@ -17,7 +15,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import retrofit2.await
-import java.util.Calendar
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ReservationActivity : AppCompatActivity() {
     private lateinit var binding: ReservationActivityBinding
@@ -40,10 +40,26 @@ class ReservationActivity : AppCompatActivity() {
 
             // Assurez-vous que selectedVehiculeId n'est pas null avant de créer l'objet Reservation
             selectedVehiculeId?.let {
-                val reservation = Reservation(dateDebut = dateDebut, dateFin = dateFin, montant = montant.toInt(), vehicule = it)
-                // Appel de la fonction d'ajout de réservation avec l'objet Reservation
-                CoroutineScope(Dispatchers.Main).launch {
-                    ajouterReservation(reservation)
+                try {
+                    // Convertir les chaînes de caractères en objets Date
+                    val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                    val debutDate: Date = dateFormat.parse(dateDebut) ?: Date()
+                    val finDate: Date = dateFormat.parse(dateFin) ?: Date()
+
+                    val reservation = Reservation(
+                        dateDebut = debutDate.toString(),
+                        dateFin = finDate.toString(),
+                        montant = montant.toInt(),
+                        vehicule = it
+                    )
+
+                    CoroutineScope(Dispatchers.Main).launch {
+                        ajouterReservation(reservation)
+                    }
+                } catch (e: ParseException) {
+                    showAlert("Veuillez entrer des dates valides au format JJ/MM/AAAA.")
+                } catch (e: NumberFormatException) {
+                    showAlert("Veuillez entrer un montant valide.")
                 }
             }
         }
@@ -95,7 +111,6 @@ class ReservationActivity : AppCompatActivity() {
             showAlert("Erreur lors de l'ajout: ${e.message}")
         }
     }
-
 
     private fun showAlert(message: String) {
         runOnUiThread {
