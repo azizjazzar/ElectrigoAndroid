@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Button
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.electrigo.Model.LocationItem
 import com.example.electrigo.R
 import com.example.electrigo.ViewModel.LocationViewModel
+import com.example.electrigo.activities.AddLocation
 import com.example.electrigo.activities.DetailLocation
 import com.example.electrigo.databinding.FragmentLocationBinding
 import com.example.electrigo.utils.ApiResult
@@ -72,6 +74,11 @@ class LocationFragment : Fragment(R.layout.fragment_location), OnItemClickListen
         resetFilterButton.setOnClickListener {
             locationViewModel.resetFilter()
         }
+
+        val addLocationButton = view.findViewById<ImageView>(R.id.addlocation)
+        addLocationButton.setOnClickListener {
+            navigateToAddLocation()
+        }
     }
 
     override fun onItemClick(locationItem: LocationItem) {
@@ -107,6 +114,11 @@ class LocationFragment : Fragment(R.layout.fragment_location), OnItemClickListen
     private fun navigateToDetailActivity(locationId: String) {
         val intent = Intent(requireContext(), DetailLocation::class.java)
         intent.putExtra("locationId", locationId)
+        startActivity(intent)
+    }
+
+    private fun navigateToAddLocation() {
+        val intent = Intent(requireContext(), AddLocation::class.java)
         startActivity(intent)
     }
 }

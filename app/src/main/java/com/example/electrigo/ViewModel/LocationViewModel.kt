@@ -2,6 +2,7 @@
 
 package com.example.electrigo.ViewModel
 
+import android.location.LocationRequest
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -109,6 +110,29 @@ class LocationViewModel : ViewModel() {
         }
 
         return resultLiveData
+    }
+
+
+    fun addLocation(locationRequest: LocationItem) = viewModelScope.launch(Dispatchers.IO) {
+        _jobResponseLocationData.postValue(ApiResult.Loading)
+        RetrofitInstance.retrofitService.addLocation(locationRequest)
+            .enqueue(object : Callback<LocationItem> {
+                override fun onResponse(
+                    call: Call<LocationItem>,
+                    response: Response<LocationItem>
+                ) {
+                    if (response.isSuccessful) {
+                        val locationItem = response.body()
+                        _jobResponseLocationData.postValue(ApiResult.Success(listOfNotNull(locationItem)))
+                    } else {
+                        _jobResponseLocationData.postValue(ApiResult.Empty)
+                    }
+                }
+
+                override fun onFailure(call: Call<LocationItem>, t: Throwable) {
+                    _jobResponseLocationData.postValue(ApiResult.Failure(t))
+                }
+            })
     }
 
 

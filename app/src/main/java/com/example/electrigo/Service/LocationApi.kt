@@ -3,6 +3,7 @@ package com.example.electrigo.Service
 
 import User
 import UserResponse
+import android.location.LocationRequest
 import com.example.electrigo.Model.LocationItem
 import com.example.electrigo.Model.Vehicule
 
@@ -24,4 +25,7 @@ interface LocationApi {
 
     @POST("register")
     fun ajouterUtilisateur(@Body user: User): Call<UserResponse>
+
+    @POST("borne/addborne")
+    fun addLocation(@Body locationRequest: LocationItem): Call<LocationItem>
 }
