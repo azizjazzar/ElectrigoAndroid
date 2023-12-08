@@ -18,8 +18,10 @@ import androidx.fragment.app.Fragment
 import com.example.electrigo.R
 import com.example.electrigo.ViewModel.UserViewModel
 import com.example.electrigo.databinding.ActivityMainBinding
+import com.example.electrigo.databinding.ProduitHomeFragmentBinding
 import com.example.electrigo.fragments.LocationFragment
 import com.example.electrigo.fragments.VehiculeFragment
+import com.example.electrigo.fragments.ProductHomeFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.gson.Gson
 
@@ -73,6 +75,7 @@ class MainActivity : AppCompatActivity() {
             when (menuItem.itemId) {
                 R.id.map -> replaceFragment(LocationFragment())
                 R.id.vehicule -> replaceFragment(VehiculeFragment())
+                R.id.store -> replaceFragment(ProductHomeFragment())
 
                 else -> {
                 }

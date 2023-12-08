@@ -35,6 +35,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
 
 
@@ -131,4 +132,5 @@ dependencies {
 
     implementation ("com.github.kittinunf.fuel:fuel:2.3.1")
     implementation ("com.github.kittinunf.fuel:fuel-json:2.3.1")
+    implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 }

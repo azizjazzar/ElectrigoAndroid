@@ -13,6 +13,7 @@ import com.example.electrigo.Model.Reservation
 import com.example.electrigo.Model.ReservationResponse
 import com.example.electrigo.Model.Vehicule
 import com.example.electrigo.Model.VehiculeResponse
+import com.example.electrigo.Model.Product
 
 
 import retrofit2.Call
@@ -59,6 +60,14 @@ interface LocationApi {
     suspend fun refreshToken(@Body refreshToken: RefreshTokenRequest): TokenResponse
     @GET("auth/user/{email}")
     fun getUserByEmail(@Path("email") email: String): Call<User>
+
+
+    //produit
+
+    @GET("product/products")
+    fun getProducts() :Call<List<Product>>
+    @POST("product/addproduct")
+    fun addProduct(@Body product: Product): Call<Void>
 
 }
 
