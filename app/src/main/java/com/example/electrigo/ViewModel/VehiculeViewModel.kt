@@ -1,9 +1,11 @@
 package com.example.electrigo.ViewModel
 
+import android.widget.ImageView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bumptech.glide.Glide
 import com.example.electrigo.Model.LocationItem
 import com.example.electrigo.Model.Vehicule
 import com.example.electrigo.Service.RetrofitInstance
@@ -25,7 +27,14 @@ class VehiculeViewModel :ViewModel(){
     private val _filteredVehicules: MutableLiveData<List<Vehicule>> = MutableLiveData()
     val filteredLocations: LiveData<List<Vehicule>>
         get() = _filteredVehicules
-
+    fun loadVehiculeImage(imageUrl: String, imageView: ImageView) {
+        viewModelScope.launch(Dispatchers.Main) {
+            Glide.with(imageView.context)
+                .load(imageUrl)
+                .override(310, 170) // Ajustez la taille souhaitée
+                .into(imageView)
+        }
+    }
 
     fun getVehicule() = viewModelScope.launch(Dispatchers.IO) {
         _jobResponseVehiculeData.postValue(ApiResult.Loading)

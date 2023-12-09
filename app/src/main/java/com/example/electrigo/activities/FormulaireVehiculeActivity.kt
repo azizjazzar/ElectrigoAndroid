@@ -144,6 +144,7 @@ private lateinit var binding: FormulaireVehiculeBinding
                         }
                     })
             }
+
         }
     }
 

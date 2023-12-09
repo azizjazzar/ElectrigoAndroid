@@ -3,9 +3,12 @@ package com.example.electrigo.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.electrigo.Model.Vehicule
 import com.example.electrigo.R
 import com.example.electrigo.ViewModel.VehiculeViewModel
@@ -70,6 +73,12 @@ class DetailsVehiculeActivity : AppCompatActivity() {
     }
 
     private fun updateUI(vehicule: Vehicule) {
+        val imageView = findViewById<ImageView>(R.id.detailimg)
+        Glide.with(this)
+            .load(vehicule.image)
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(imageView)
+
         findViewById<TextView>(R.id.detailMarque).text = vehicule.marque.toString()
         findViewById<TextView>(R.id.detailPrix).text = vehicule.prix.toString()
         findViewById<TextView>(R.id.detailmodele).text = vehicule.modele.toString()
