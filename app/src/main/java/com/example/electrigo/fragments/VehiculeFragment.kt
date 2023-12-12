@@ -49,6 +49,8 @@ class VehiculeFragment : Fragment(R.layout.fragment_vehicule), OnItemClickListen
         recyclerView.adapter = vehiculeAdapter
         // Set the adapter to the RecyclerView
 
+        //test
+
 
         val bmwFilter = view.findViewById<ImageView>(R.id.bmwFilter)
         val fiatFilter = view.findViewById<ImageView>(R.id.fiatFilter)
