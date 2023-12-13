@@ -13,7 +13,6 @@ import androidx.lifecycle.lifecycleScope
 import com.example.electrigo.Model.Reservation
 import com.example.electrigo.R
 import com.example.electrigo.Service.RetrofitVehicule
-import com.example.electrigo.ViewModel.UserViewModel
 import com.example.electrigo.databinding.ReservationActivityBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -182,7 +181,7 @@ class ReservationActivity : AppCompatActivity() {
     private suspend fun ajouterReservation(reservation: Reservation) {
         try {
             withContext(Dispatchers.IO) {
-                val response = RetrofitClient.apiService.ajouterReservation(reservation).await()
+                val response = RetrofitVehicule.apiService.ajouterReservation(reservation).await()
                 Log.d("API Response", response.toString())
 
                 // Success

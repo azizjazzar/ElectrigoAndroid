@@ -3,9 +3,12 @@ package com.example.electrigo.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.electrigo.Model.Vehicule
 import com.example.electrigo.R
 import com.example.electrigo.ViewModel.VehiculeViewModel
@@ -19,12 +22,12 @@ class DetailsVehiculeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-    binding = ActivityDetailsVehiculeBinding.inflate(layoutInflater)
-    val view = binding.root
-    setContentView(view)
-    binding.buttonbackhomedetail.setOnClickListener {
-        super.onBackPressedDispatcher.onBackPressed()
-    }
+        binding = ActivityDetailsVehiculeBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+        binding.buttonbackhomedetail.setOnClickListener {
+            super.onBackPressedDispatcher.onBackPressed()
+        }
 
 
         val vehiculeId = intent.getStringExtra("vehiculeId")
@@ -65,11 +68,19 @@ class DetailsVehiculeActivity : AppCompatActivity() {
                 is ApiResult.Loading -> {
                     // Handle loading state if needed
                 }
+
+                else -> {}
             }
         }
     }
 
     private fun updateUI(vehicule: Vehicule) {
+        val imageView = findViewById<ImageView>(R.id.detailimg)
+        Glide.with(this)
+            .load(vehicule.image)
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(imageView)
+
         findViewById<TextView>(R.id.detailMarque).text = vehicule.marque.toString()
         findViewById<TextView>(R.id.detailPrix).text = vehicule.prix.toString()
         findViewById<TextView>(R.id.detailmodele).text = vehicule.modele.toString()

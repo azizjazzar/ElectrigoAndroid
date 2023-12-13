@@ -9,13 +9,16 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.RadioButton
+import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.example.electrigo.Model.Vehicule
 import com.example.electrigo.R
+
 import com.example.electrigo.Service.RetrofitVehicule
 import com.example.electrigo.ViewModel.VehiculeViewModel
 import com.example.electrigo.databinding.ActivityRegisterBinding
@@ -33,6 +36,8 @@ import com.bumptech.glide.request.transition.Transition
 class formulaireVehiculeActivity : AppCompatActivity() {
     private lateinit var binding: FormulaireVehiculeBinding
     private lateinit var selectedImage: Bitmap
+    //liste de capacite de batterie
+    private val capaciteBatterieOptions = arrayOf("30 kWh", "40 kWh", "50 kWh", "60 kWh", "70 kWh", "80 kWh", "100 kWh")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +49,11 @@ class formulaireVehiculeActivity : AppCompatActivity() {
         binding.buttonbackhome.setOnClickListener {
             super.onBackPressedDispatcher.onBackPressed()
         }
-
+        //pour  la  liste deroulante  de  capacite de batterie
+        val spinnerCapaciteBatterie: Spinner = findViewById(R.id.spinnerCapaciteBatterie)
+        val capaciteBatterieAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, capaciteBatterieOptions)
+        capaciteBatterieAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerCapaciteBatterie.adapter = capaciteBatterieAdapter
 
 
 
@@ -63,7 +72,7 @@ class formulaireVehiculeActivity : AppCompatActivity() {
             val prix = binding.tiPrix.text.toString()
             val vitesseMax = binding.tiVitesseMax.text.toString()
             val description = binding.tiDescription.text.toString()
-            val capaciteBatterie = binding.tiCapaciteBatterie.text.toString()
+            val capaciteBatterie = spinnerCapaciteBatterie.selectedItem.toString()
 
             // Extract numeric part from selectedValuePlace
             val numericPart = selectedValuePlace?.replace("[^\\d]".toRegex(), "")
@@ -143,6 +152,7 @@ class formulaireVehiculeActivity : AppCompatActivity() {
                         }
                     })
             }
+
         }
     }
 
