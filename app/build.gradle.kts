@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+
 }
 
 android {
@@ -133,4 +134,11 @@ dependencies {
     implementation ("com.github.kittinunf.fuel:fuel:2.3.1")
     implementation ("com.github.kittinunf.fuel:fuel-json:2.3.1")
     implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
+
+    implementation ("com.stripe:stripe-android:19.1.1")
+
+    //Network call
+    implementation ("com.squareup.okhttp3:okhttp:4.4.0")
+    implementation ("com.google.code.gson:gson:2.8.9")
 }
