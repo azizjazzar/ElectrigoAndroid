@@ -34,6 +34,8 @@ class ReservationActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+import com.example.electrigo.ViewModel.UserViewModel
+
         //backbouton
         binding.buttonbackDetail.setOnClickListener {
             super.onBackPressedDispatcher.onBackPressed()
@@ -71,6 +73,9 @@ class ReservationActivity : AppCompatActivity() {
                                 val debutDate: Date = dateFormat.parse(dateDebut) ?: Date()
                                 val finDate: Date = dateFormat.parse(dateFin) ?: Date()
 
+        val buttonbackdetail: Button = findViewById(R.id.buttonbackDetail)
+        val button: Button = findViewById(R.id.payer)
+
                                 // Calculer le montant en fonction des dates et du prix du véhicule
                                 val nombreJours =
                                     ((finDate.time - debutDate.time) / (24 * 60 * 60 * 1000)).toInt()
@@ -98,6 +103,8 @@ class ReservationActivity : AppCompatActivity() {
                 }
             }
         }
+
+
     }
 
     private fun isDateDebutBeforeDateFin(dateDebut: String, dateFin: String): Boolean {
