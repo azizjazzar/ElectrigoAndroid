@@ -1,112 +1,101 @@
 package com.example.electrigo.activities
 
-import android.content.Intent
+import android.app.AlertDialog
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Button
-import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
-import com.google.gson.GsonBuilder
+import androidx.fragment.app.DialogFragment
 import com.stripe.android.ApiResultCallback
 import com.stripe.android.PaymentConfiguration
 import com.stripe.android.PaymentIntentResult
 import com.stripe.android.Stripe
 import com.stripe.android.model.ConfirmPaymentIntentParams
-import com.stripe.android.model.StripeIntent
 import com.stripe.android.view.CardInputWidget
 import com.example.electrigo.R
 import com.example.electrigo.Service.RetrofitInstance
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-val backendUrl = "https://electrigo.onrender.com/api/reservation/"
+val backendUrl = "http://10.0.2.2:3000/api/reservation/"
 
-class CardActivity : AppCompatActivity() {
+
+class CardActivity : BottomSheetDialogFragment() {
 
     private lateinit var paymentIntentClientSecret: String
     private lateinit var stripe: Stripe
-    private lateinit var payButton: Button
     private lateinit var cardInputWidget: CardInputWidget
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_card)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Utilisez le fichier XML avec ScrollView pour augmenter la hauteur
+        val view = inflater.inflate(R.layout.activity_card, container, false)
+        dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         PaymentConfiguration.init(
-            applicationContext,
+            requireContext(),
             "pk_test_51OErmACis87pjNWpmR1mA9OY8bC9joB8m3yMTqOlDqonuPHoOla3qdFxRI4l23Rqpn4RjSQjj1H75UgBbpTr2Os800jsLoQ4TE"
         )
 
-        stripe = Stripe(this, PaymentConfiguration.getInstance(applicationContext).publishableKey)
+        stripe = Stripe(requireContext(), PaymentConfiguration.getInstance(requireContext()).publishableKey)
 
-        val amount = intent.getDoubleExtra("transactionAmount", 0.0)
+        cardInputWidget = view.findViewById(R.id.cardInputWidget)
 
-        payButton = findViewById(R.id.payButton)
-        cardInputWidget = findViewById(R.id.cardInputWidget)
+        val amount = requireArguments().getInt("transactionAmount", 0)
 
         startCheckout(amount)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-        // Handle the result of stripe.confirmPayment
-        stripe.onPaymentResult(requestCode, data, object : ApiResultCallback<PaymentIntentResult> {
-            override fun onSuccess(result: PaymentIntentResult) {
-                val paymentIntent = result.intent
-                if (paymentIntent.status == StripeIntent.Status.Succeeded) {
-                    val gson = GsonBuilder().setPrettyPrinting().create()
-                    displayAlert("Payment succeeded", gson.toJson(paymentIntent))
-                } else if (paymentIntent.status == StripeIntent.Status.RequiresPaymentMethod) {
-                    displayAlert(
-                        "Payment failed",
-                        paymentIntent.lastPaymentError?.message.orEmpty()
-                    )
-                }
-            }
-
-            override fun onError(e: Exception) {
-                displayAlert("Error", e.toString())
-            }
-        })
     }
 
-    private fun startCheckout(amountPay: Double) {
+
+
+    private fun startCheckout(amountPay: Int) {
+        val amountPayDouble = amountPay.toDouble() // Convertir l'Int en Double
         RetrofitInstance.ApiClient().createPaymentIntent(
-            amountPay,
+            amountPayDouble,
             "card",
             "usd",
             completion = { paymentIntentClientSecret, error ->
                 run {
-
                     paymentIntentClientSecret?.let {
                         this.paymentIntentClientSecret = it
                     }
                     error?.let {
-                        displayAlert("Failed to load PaymentIntent", "Error: $error")
+                        // Gérer l'erreur de chargement du PaymentIntent
                     }
                 }
             })
 
-        // Confirm the PaymentIntent with the card widget
-        payButton.setOnClickListener {
+        // Confirmez le PaymentIntent avec le widget de carte
+        view?.findViewById<Button>(R.id.payButton)?.setOnClickListener {
             cardInputWidget.paymentMethodCreateParams?.let { params ->
                 val confirmParams = ConfirmPaymentIntentParams.createWithPaymentMethodCreateParams(
                     params,
                     paymentIntentClientSecret
                 )
-                stripe.confirmPayment(this, confirmParams)
+                stripe.confirmPayment(requireActivity(), confirmParams)
             }
         }
     }
 
     private fun displayAlert(title: String, message: String) {
-        runOnUiThread {
-            val builder = AlertDialog.Builder(this)
-                .setTitle(title)
-                .setMessage(message)
+        // Afficher l'alerte à l'intérieur du fragment (vous pouvez personnaliser cela selon vos besoins)
+        val builder = AlertDialog.Builder(requireContext())
+            .setTitle(title)
+            .setMessage(message)
 
-            builder.setPositiveButton("Ok") { _, _ ->
-                val intent = Intent(applicationContext, LauncherActivity::class.java)
-                startActivity(intent)
-            }
-            builder.create().show()
-        }
+        builder.create().show()
     }
 }

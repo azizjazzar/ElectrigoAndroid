@@ -6,28 +6,141 @@
     android:layout_height="match_parent"
     tools:context=".activities.CardActivity">
 
-
-    <com.stripe.android.view.CardInputWidget
-        android:id="@+id/cardInputWidget"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/payButton"
+    <View
+        android:id="@+id/spaceAboveCardInput"
+        android:layout_width="406dp"
+        android:layout_height="373dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.stripe.android.view.CardInputWidget
+        android:id="@+id/cardInputWidget"
+        android:layout_width="373dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="-100dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="154dp"
+        app:layout_constraintBottom_toTopOf="@+id/payButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/spaceAboveCardInput"
+        app:layout_constraintVertical_bias="0.778"
         app:layout_constraintVertical_chainStyle="packed" />
+
+
+    <LinearLayout
+        android:id="@+id/formulaireLayout"
+        android:layout_width="370dp"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.365"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardInputWidget"
+        app:layout_constraintVertical_bias="0.066">
+
+        <!-- Marque -->
+
+        <!-- Modèle -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiNomLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:hint="Nom"
+            app:errorEnabled="true"
+            app:layout_constraintHorizontal_bias="0.0">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiNom"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiPrenomLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:hint="Prénom"
+            app:errorEnabled="true"
+            app:layout_constraintHorizontal_bias="0.0">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiPrenom"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Prix -->
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiNumeroLayout"
+        android:layout_width="356dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="-20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_weight="1"
+        android:hint="+216"
+        app:errorEnabled="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.695"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/formulaireLayout"
+        app:layout_constraintVertical_bias="0.178"
+        app:startIconDrawable="@drawable/appel">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiNumero"
+            android:layout_width="340dp"
+            android:layout_height="46dp"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/payButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/holo_green_light"
-        android:text="@string/pay"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:backgroundTint="#51E457"
+        android:text="Payer"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardInputWidget"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976"
         app:layout_constraintVertical_chainStyle="packed" />
 
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Informations de carte"
+        android:fontFamily="@font/myfont"
+        android:textSize="11dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardInputWidget"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

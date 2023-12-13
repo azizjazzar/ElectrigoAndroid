@@ -1,5 +1,6 @@
 package com.example.electrigo.activities
 
+
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Intent
@@ -29,17 +30,12 @@ class ReservationActivity : AppCompatActivity() {
     private var isDateDebutSelected = false
     private var selectedVehiculeId: String? = null
     private var reservationEffectuee = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ReservationActivityBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
-        //backbouton
-        binding.buttonbackDetail.setOnClickListener {
-            super.onBackPressedDispatcher.onBackPressed()
-        }
-
 
         // Récupérer l'identifiant du véhicule depuis l'intent
         selectedVehiculeId = intent.getStringExtra("vehiculeId")
@@ -76,8 +72,14 @@ class ReservationActivity : AppCompatActivity() {
                                 val nombreJours =
                                     ((finDate.time - debutDate.time) / (24 * 60 * 60 * 1000)).toInt()
                                 val montant = nombreJours * getPrixVehicule(it)!!
-                                updateMontantField(montant)
 
+
+                                // Afficher le BottomSheetFragment
+                                val bottomSheetFragment = CardActivity()
+                                val bundle = Bundle()
+                                bundle.putInt("transactionAmount", montant)
+                                bottomSheetFragment.arguments = bundle
+                                bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
                                 val reservation = Reservation(
                                     dateDebut = debutDate.toString(),
                                     dateFin = finDate.toString(),
@@ -86,7 +88,6 @@ class ReservationActivity : AppCompatActivity() {
                                 )
 
                                 ajouterReservation(reservation)
-
                                 // Marquer la réservation comme effectuée
                                 reservationEffectuee = true
                             } catch (e: ParseException) {
@@ -99,6 +100,7 @@ class ReservationActivity : AppCompatActivity() {
                 }
             }
         }
+
     }
 
     private fun isDateDebutBeforeDateFin(dateDebut: String, dateFin: String): Boolean {
@@ -185,8 +187,6 @@ class ReservationActivity : AppCompatActivity() {
                 val response = RetrofitVehicule.apiService.ajouterReservation(reservation).await()
                 Log.d("API Response", response.toString())
 
-                // Success
-                showAlert("Reservation ajouté avec succès")
             }
         } catch (e: HttpException) {
             // Handle HTTP exceptions
