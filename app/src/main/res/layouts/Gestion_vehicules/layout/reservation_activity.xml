@@ -19,19 +19,19 @@
 
     <TextView
         android:id="@+id/textAcceuil2"
-        android:layout_width="204dp"
-        android:layout_height="89dp"
+        android:layout_width="232dp"
+        android:layout_height="93dp"
         android:fontFamily="@font/myfont"
         android:text="Réservez dès \nmaintenant!"
         android:textColor="@color/white"
-        android:textSize="20dp"
+        android:textSize="22dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/view_entete"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.188"
+        app:layout_constraintHorizontal_bias="0.189"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.877" />
 
     <TextView
         android:id="@+id/textView4"
@@ -152,17 +152,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.043"
         app:srcCompat="@drawable/flechback" />
-
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/gifImageView"
-        android:layout_width="318dp"
-        android:layout_height="183dp"
-        android:layout_marginStart="92dp"
-        android:src="@drawable/finale"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.051" />
 
     <TextView
         android:id="@+id/textView11"

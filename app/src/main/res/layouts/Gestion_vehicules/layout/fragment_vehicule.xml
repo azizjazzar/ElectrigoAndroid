@@ -250,22 +250,22 @@
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintHorizontal_bias="0.953"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/recyclerViewVehicules"
-        app:layout_constraintVertical_bias="0.872" />
+        app:layout_constraintVertical_bias="0.793" />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/imageView6"
-        android:layout_width="67dp"
-        android:layout_height="55dp"
+        android:layout_width="63dp"
+        android:layout_height="49dp"
         android:src="@drawable/boutonplus"
         app:layout_constraintBottom_toBottomOf="@+id/buttonaddVehicule"
         app:layout_constraintEnd_toEndOf="@+id/buttonaddVehicule"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/buttonaddVehicule"
         app:layout_constraintTop_toTopOf="@+id/buttonaddVehicule"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.32"
         app:srcCompat="@drawable/addcar" />
 
     <TextView

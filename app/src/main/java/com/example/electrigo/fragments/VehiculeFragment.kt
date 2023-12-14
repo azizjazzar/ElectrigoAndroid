@@ -43,13 +43,11 @@ class VehiculeFragment : Fragment(R.layout.fragment_vehicule), OnItemClickListen
 
         val binding = FragmentVehiculeBinding.bind(view)
         val recyclerView = binding.recyclerViewVehicules
-
-
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        vehiculeAdapter = VehiculeAdapter(mutableListOf(), this)
+        vehiculeAdapter = VehiculeAdapter(mutableListOf(), this, vehiculeViewModel)
 
-
-        recyclerView.adapter = vehiculeAdapter  // Set the adapter to the RecyclerView
+        recyclerView.adapter = vehiculeAdapter
+        // Set the adapter to the RecyclerView
 
 
         val bmwFilter = view.findViewById<ImageView>(R.id.bmwFilter)
@@ -138,6 +136,11 @@ class VehiculeFragment : Fragment(R.layout.fragment_vehicule), OnItemClickListen
     override fun onItemClick(vehiculeItem: Vehicule) {
         vehiculeItem.Id?.let { navigateToDetailActivity(it) }
     }
+    private fun loadVehiculeImage(imageUrl: String, imageView: ImageView) {
+        vehiculeViewModel.loadVehiculeImage(imageUrl, imageView)
+    }
+
+
 
     private fun observeAllVehiculeResponse() {
         vehiculeViewModel.jobResponseVehiculeData.observe(viewLifecycleOwner) { apiResult ->

@@ -1,11 +1,25 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+
 }
 
 android {
     namespace = "com.example.electrigo"
     compileSdk = 34
+
+
+
+    packagingOptions {
+        exclude ("META-INF/DEPENDENCIES")
+        exclude ("META-INF/NOTICE")
+        exclude ("META-INF/NOTICE.md")
+        exclude ("META-INF/LICENSE")
+        exclude ("META-INF/LICENSE.txt")
+        exclude ("META-INF/NOTICE.txt")
+        exclude ("META-INF/ASL2.0")
+        exclude ("META-INF/LICENSE.md")
+    }
 
     defaultConfig {
         applicationId = "com.example.electrigo"
@@ -133,4 +147,22 @@ dependencies {
     implementation ("com.github.kittinunf.fuel:fuel:2.3.1")
     implementation ("com.github.kittinunf.fuel:fuel-json:2.3.1")
     implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
+
+    implementation ("com.stripe:stripe-android:19.1.1")
+
+    //Network call
+    implementation ("com.squareup.okhttp3:okhttp:4.4.0")
+    implementation ("com.google.code.gson:gson:2.8.9")
+    implementation ("com.google.android.gms:play-services-wallet:18.1.2")
+    implementation ("com.airbnb.android:lottie:4.1.0")
+    implementation("com.twilio.sdk:twilio:9.2.1")
+
+    implementation ("com.sun.mail:android-mail:1.6.7")
+    implementation ("com.sun.mail:android-activation:1.6.7")
+    implementation ("com.itextpdf:itextpdf:5.5.13.2")
+
+
+
+
 }

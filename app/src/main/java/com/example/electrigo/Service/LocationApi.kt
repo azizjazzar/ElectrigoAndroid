@@ -49,10 +49,6 @@ interface LocationApi {
     @POST("reservation/addreservations")
     fun ajouterReservation(@Body reservation: Reservation): Call<ReservationResponse>
 
-    @POST("reservation/create-payment-intent")
-    fun createPaymentIntent(@Body paymentData: Map<String, Any>): Call<PaymentIntentResponse>
-    @POST("reservation/confirm-payment")
-    fun confirmPayment(@Body paymentData: Map<String, Any>): Call<PaymentConfirmationResponse>
 
     @GET("auth/users")
     fun Getusers(): Call<List<User>>
