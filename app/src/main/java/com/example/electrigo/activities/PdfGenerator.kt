@@ -18,7 +18,7 @@ class PdfGenerator(private val context: Context) {
         val dir = context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
         val pdfFilePath = File(dir, fileName).absolutePath
         val document = Document()
-        val paymentAmountMultiplied = paymentAmount * 10
+        val paymentAmountMultiplied = paymentAmount * 100
         try {
             val outputStream = FileOutputStream(pdfFilePath)
             PdfWriter.getInstance(document, outputStream)

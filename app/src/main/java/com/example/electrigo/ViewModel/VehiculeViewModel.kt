@@ -57,6 +57,7 @@ class VehiculeViewModel :ViewModel(){
     }
 
     fun filterVehiculesByMarque(type: String) {
+        // vérifie si la valeur obtenue est de type succes
         val allVehicule = (_jobResponseVehiculeData.value as? ApiResult.Success)?.data
 
         if (allVehicule is List<*>) {

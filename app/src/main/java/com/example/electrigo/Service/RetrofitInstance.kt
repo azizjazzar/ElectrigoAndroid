@@ -65,7 +65,6 @@ object RetrofitInstance {
     class ApiClient {
         private val httpClient = OkHttpClient()
 
-//convertir automatiquement les données JSON reçues depuis une API REST en objets  Kotlin
         fun createPaymentIntent(
             amount: Double,
             paymentMethodType: String,

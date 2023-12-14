@@ -25,6 +25,9 @@ class VehiculeAdapter(
 ) : RecyclerView.Adapter<VehiculeAdapter.VehiculeViewHolder>() {
 
 
+
+
+    //Cette fonction est responsable de la création des instances de VehiculeViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VehiculeViewHolder {
         val binding = ItemVehiculeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return VehiculeViewHolder(binding)
@@ -32,6 +35,8 @@ class VehiculeAdapter(
     private fun loadVehiculeImage(imageUrl: String, imageView: ImageView) {
         vehiculeViewModel.loadVehiculeImage(imageUrl, imageView)
     }
+
+    //pour lier les données d'un véhicule spécifique à un VehiculeViewHolder
     override fun onBindViewHolder(holder: VehiculeViewHolder, position: Int) {
         val vehicule = vehiculeList[position]
 
@@ -57,11 +62,6 @@ class VehiculeAdapter(
         vehiculeList.addAll(newList)
         notifyDataSetChanged()
     }
-
-
-
-
-
 
 
 
