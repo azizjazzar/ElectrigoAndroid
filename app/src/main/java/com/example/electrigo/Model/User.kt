@@ -17,6 +17,23 @@ data class User(
     val type: String?,
     val picture: String?
 )
+data class User_session(
+    val id: String?,
+    val nom: String?,
+    val prenom: String?,
+    var email: String?,
+    val genre: String?,
+    val datenaissance: String?,
+    val telephone: String?,
+    val adresse: String?,
+    val mot_passe: String?,
+    val type: String?,
+    val picture: String?
+)
+data class Password_change(
+    val mot_passe: String?,
+
+)
 
 
 
@@ -48,7 +65,7 @@ data class UserResponse(
     val user: User
 )
 object SessionManager {
-    var currentUser: User? = null
+    var currentUser: User_session? = null
 }
 object TokenValidator {
     // Use the previously defined secretKey constant

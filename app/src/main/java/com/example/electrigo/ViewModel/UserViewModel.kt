@@ -7,6 +7,7 @@ import SessionManager
 import TokenResponse
 import User
 import UserResponse
+import User_session
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Build
@@ -22,8 +23,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import android.util.Base64
+import kotlinx.coroutines.suspendCancellableCoroutine
 import org.json.JSONObject
 import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 class UserViewModel : ViewModel() {
@@ -146,17 +149,17 @@ class UserViewModel : ViewModel() {
             return true // En cas d'erreur, considérez le token comme expiré
         }
     }
-    suspend fun getUserByEmail(email: String): User? = suspendCoroutine { continuation ->
-        val call: Call<User> = RetrofitInstance.retrofitService.getUserByEmail(email)
+    suspend fun getUserByEmail(email: String): User_session? = suspendCoroutine { continuation ->
+        val call: Call<User_session> = RetrofitInstance.retrofitService.getUserByEmail(email)
 
         // Ajoutez le jeton d'accès à l'en-tête de la demande
-        call.enqueue(object : Callback<User> {
-            override fun onResponse(call: Call<User>, response: Response<User>) {
+        call.enqueue(object : Callback<User_session> {
+            override fun onResponse(call: Call<User_session>, response: Response<User_session>) {
                 if (response.isSuccessful) {
                     val user = response.body()
                     // Traitement des données de l'utilisateur ici si nécessaire
                     System.out.println(user)
-                    SessionManager.currentUser=user
+                    SessionManager.currentUser = user
                     continuation.resume(user)
                 } else {
                     // Gérer les erreurs ici
@@ -165,7 +168,7 @@ class UserViewModel : ViewModel() {
                 }
             }
 
-            override fun onFailure(call: Call<User>, t: Throwable) {
+            override fun onFailure(call: Call<User_session>, t: Throwable) {
                 // Gérer les erreurs de connexion ici
                 System.out.println("Erreur de connexion lors de la récupération de l'utilisateur: ${t.message}")
                 continuation.resume(null)
@@ -175,5 +178,31 @@ class UserViewModel : ViewModel() {
 
 
 
+    suspend fun updateUser(email: String, updates: User) {
+        return suspendCancellableCoroutine { continuation ->
+            val updateUserCall = RetrofitInstance.retrofitService.updateUser(email, updates)
 
+            updateUserCall.enqueue(object : Callback<UserResponse> {
+                override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
+                    if (response.isSuccessful) {
+                        // Handle the successful response
+                        continuation.resume(Unit)
+                    } else {
+                        // Handle the error response
+                        continuation.resumeWithException(Exception("Failed to update user"))
+                    }
+                }
+
+                override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                    // Handle network failure
+                    continuation.resumeWithException(t)
+                }
+            })
+
+            // Specify cancellation callback
+            continuation.invokeOnCancellation {
+                updateUserCall.cancel()
+            }
+        }
+    }
 }

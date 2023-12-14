@@ -5,6 +5,7 @@ import User
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.MenuItem
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navigationView: NavigationView
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var binding: ActivityMainBinding
+    val SHARED_PREF: String = "sharedPrefs"
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +40,6 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
 
-        // Utilisez le binding pour gonfler le layout de l'activité
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
@@ -46,10 +47,18 @@ class MainActivity : AppCompatActivity() {
         // Récupérez la référence au TextView dans le layout principal
         val userInfoTextView: TextView = binding.navView.getHeaderView(0).findViewById(R.id.kilemail)
         val nom: TextView = binding.navView.getHeaderView(0).findViewById(R.id.nom)
+        val sharedPreferences = getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
+        val id_data = sharedPreferences.getString("id", null)
+        val nom_data = sharedPreferences.getString("nom", null)
 
-        userInfoTextView.text = SessionManager.currentUser?.email ?: ""
-        nom.text = "${SessionManager.currentUser?.nom ?: ""} ${SessionManager.currentUser?.prenom ?: ""}"
+        val prenom_data= sharedPreferences.getString("prenom", null)
+        val email_data= sharedPreferences.getString("email", null)
 
+        if (id_data != null && id_data.isNotEmpty()) {
+            userInfoTextView.text = email_data
+            nom.text = "${nom_data} ${prenom_data}"
+
+        }
 
         // Définir la Toolbar en tant qu'ActionBar
         setSupportActionBar(binding.toolbar)
@@ -91,8 +100,8 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext, "Home clicked", Toast.LENGTH_SHORT).show()
                 }
                 R.id.nav_profile -> {
-                    // Handle profile item click
-                    println("here")
+                    val intent = Intent(this@MainActivity, ProfileActivity::class.java)
+                    startActivity(intent)
 
                     Toast.makeText(applicationContext, "Profile clicked", Toast.LENGTH_SHORT).show()
                 }
@@ -112,7 +121,12 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.nav_logout -> {
                     // Handle logout item click
-                    Toast.makeText(applicationContext, "Logout clicked", Toast.LENGTH_SHORT).show()
+                    val sharedPreferences = getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
+                    val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                    editor.clear()
+                    editor.apply()
+                    val intent = Intent(this@MainActivity, LoginActivity::class.java)
+                    startActivity(intent)
                 }
                 R.id.nav_contactus -> {
                     // Handle contact us item click
