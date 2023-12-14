@@ -13,10 +13,12 @@ android {
     packagingOptions {
         exclude ("META-INF/DEPENDENCIES")
         exclude ("META-INF/NOTICE")
+        exclude ("META-INF/NOTICE.md")
         exclude ("META-INF/LICENSE")
         exclude ("META-INF/LICENSE.txt")
         exclude ("META-INF/NOTICE.txt")
         exclude ("META-INF/ASL2.0")
+        exclude ("META-INF/LICENSE.md")
     }
 
     defaultConfig {
@@ -155,6 +157,9 @@ dependencies {
     implementation ("com.google.android.gms:play-services-wallet:18.1.2")
     implementation ("com.airbnb.android:lottie:4.1.0")
     implementation("com.twilio.sdk:twilio:9.2.1")
+
+    implementation ("com.sun.mail:android-mail:1.6.7")
+    implementation ("com.sun.mail:android-activation:1.6.7")
 
 
 
