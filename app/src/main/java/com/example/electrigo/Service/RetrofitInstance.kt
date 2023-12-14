@@ -31,7 +31,7 @@ object RetrofitInstance {
 
 
         return Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:3000/api/")
+            .baseUrl("https://electrigo.onrender.com/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(clientWith60sTimeout)
             .build()
@@ -65,7 +65,7 @@ object RetrofitInstance {
     class ApiClient {
         private val httpClient = OkHttpClient()
 
-
+//convertir automatiquement les données JSON reçues depuis une API REST en objets  Kotlin
         fun createPaymentIntent(
             amount: Double,
             paymentMethodType: String,
@@ -81,7 +81,7 @@ object RetrofitInstance {
             }
         """.trimIndent()
 
-            //bech yab3eth requete  http lel serveur
+
             val body = requestJson.toRequestBody(mediaType)
             val request = Request.Builder().url("$backendUrl/addpayment").post(body).build()
             httpClient.newCall(request).enqueue(object : Callback {

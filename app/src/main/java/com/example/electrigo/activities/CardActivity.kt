@@ -7,26 +7,30 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
-import androidx.fragment.app.DialogFragment
-import com.stripe.android.ApiResultCallback
 import com.stripe.android.PaymentConfiguration
-import com.stripe.android.PaymentIntentResult
 import com.stripe.android.Stripe
 import com.stripe.android.model.ConfirmPaymentIntentParams
 import com.stripe.android.view.CardInputWidget
 import com.example.electrigo.R
 import com.example.electrigo.Service.RetrofitInstance
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import javax.mail.*
-import javax.mail.internet.InternetAddress
-import javax.mail.internet.MimeMessage
-import kotlin.concurrent.thread
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.io.File
+import javax.activation.DataHandler
+import javax.activation.FileDataSource
+import javax.mail.*
+import javax.mail.internet.InternetAddress
+import javax.mail.internet.MimeBodyPart
+import javax.mail.internet.MimeMessage
+import javax.mail.internet.MimeMultipart
 import android.app.AlertDialog
 
 
-val backendUrl = "http://10.0.2.2:3000/api/payment/"
+val backendUrl = "https://electrigo.onrender.com/api/payment/"
 
 class CardActivity : BottomSheetDialogFragment() {
 
@@ -36,19 +40,21 @@ class CardActivity : BottomSheetDialogFragment() {
     private lateinit var tiEmail: TextInputEditText
     private lateinit var tiEmailLayout: TextInputLayout
     private lateinit var emailErrorTextView: TextView
+    private lateinit var tiNom: TextInputEditText
+    private lateinit var tiPrenom: TextInputEditText
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Utilisez le fichier XML avec ScrollView pour augmenter la hauteur
         val view = inflater.inflate(R.layout.activity_card, container, false)
         dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
 
-        // Récupérer la référence au champ d'adresse e-mail
         tiEmail = view.findViewById(R.id.tiEmail)
         tiEmailLayout = view.findViewById(R.id.tiEmailLayout)
         emailErrorTextView = view.findViewById(R.id.emailErrorTextView)
+        tiNom = view.findViewById(R.id.tiNom)
+        tiPrenom = view.findViewById(R.id.tiPrenom)
 
         return view
     }
@@ -67,7 +73,6 @@ class CardActivity : BottomSheetDialogFragment() {
 
         val amount = requireArguments().getInt("transactionAmount", 0)
 
-        // Pour afficher le montant sur le bouton
         val payButton = view.findViewById<Button>(R.id.payButton)
         payButton.text = "Payer $$amount"
 
@@ -90,7 +95,6 @@ class CardActivity : BottomSheetDialogFragment() {
                     }
                 }
             })
-
         // Confirmez le PaymentIntent avec le widget de carte
         view?.findViewById<Button>(R.id.payButton)?.setOnClickListener {
             cardInputWidget.paymentMethodCreateParams?.let { params ->
@@ -103,21 +107,27 @@ class CardActivity : BottomSheetDialogFragment() {
                     emailErrorTextView.text = "Veuillez entrer une adresse e-mail valide"
                     emailErrorTextView.visibility = View.VISIBLE
                 } else {
-                    // Si l'adresse e-mail est valide et non vide, masquez le message d'erreur
                     emailErrorTextView.visibility = View.GONE
+
+                    val recipientName = "${tiNom.text.toString()} ${tiPrenom.text.toString()}"
+                    val paymentAmount = amountPay.toDouble() / 100.0
+
+                    GlobalScope.launch(Dispatchers.IO) {
+                        //appel de pdf et email
+                        val pdfGenerator = PdfGenerator(requireContext())
+                        val pdfFilePath = pdfGenerator.generateInvoicePDF(paymentAmount, recipientName)
+                        sendPaymentConfirmationEmail(pdfFilePath)
+                    }
+
                     val confirmParams = ConfirmPaymentIntentParams.createWithPaymentMethodCreateParams(
                         params,
                         paymentIntentClientSecret
                     )
                     stripe.confirmPayment(requireActivity(), confirmParams)
                     showPaymentSuccessDialog()
-
-                    // Envoyer un e-mail
-                    sendPaymentConfirmationEmail()
                 }
             }
         }
-
     }
 
     private fun showPaymentSuccessDialog() {
@@ -125,34 +135,31 @@ class CardActivity : BottomSheetDialogFragment() {
         alertDialog.setTitle("Paiement réussi")
         alertDialog.setMessage("Le paiement a été effectué avec succès.")
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK") { _, _ ->
-            // Fermer la boîte de dialogue de succès
             alertDialog.dismiss()
-
-            // Fermer également le BottomSheetDialogFragment et simuler le retour en arrière
             requireActivity().onBackPressed()
         }
         alertDialog.setCancelable(false)
         alertDialog.show()
     }
 
-    // Email
-    private fun sendPaymentConfirmationEmail() {
-        thread {
+
+    //EMAIL
+    private fun sendPaymentConfirmationEmail(pdfFilePath: String) {
+        GlobalScope.launch(Dispatchers.IO) {
             try {
-                // Récupérer l'adresse e-mail entrée par l'utilisateur
+
+                //recuperer l@ ecrire  par utilisateur
                 val recipientEmail = tiEmail.text.toString().trim()
 
-                // Valider que l'adresse e-mail est valide avant de l'utiliser
                 if (isValidEmail(recipientEmail)) {
-                    // Paramètres du serveur de messagerie
                     val props = System.getProperties()
+                    //Configuration des paramètres du serveur de messagerie SMTP
                     props["mail.smtp.host"] = "smtp.gmail.com"
                     props["mail.smtp.socketFactory.port"] = "465"
                     props["mail.smtp.socketFactory.class"] = "javax.net.ssl.SSLSocketFactory"
                     props["mail.smtp.auth"] = "true"
                     props["mail.smtp.port"] = "465"
 
-                    // Authentification
                     val session = Session.getInstance(props, object : Authenticator() {
                         override fun getPasswordAuthentication(): PasswordAuthentication {
                             return PasswordAuthentication("stepstyle15@gmail.com", "bfxmzezqqknqmete")
@@ -166,9 +173,22 @@ class CardActivity : BottomSheetDialogFragment() {
                         InternetAddress.parse(recipientEmail)
                     )
                     message.subject = "Confirmation de paiement"
-                    message.setText("Votre paiement a été effectué avec succès. Merci!")
 
-                    // Envoi du message
+                    val multipart = MimeMultipart()
+
+                    val messageContent = "Bonjour! ${tiNom.text.toString()} ${tiPrenom.text.toString()}, Votre paiement a été effectué avec succès. Merci!"
+                    val textPart = MimeBodyPart()
+                    textPart.setText(messageContent)
+                    multipart.addBodyPart(textPart)
+
+                    val pdfAttachment = MimeBodyPart()
+                    val pdfFileDataSource = FileDataSource(pdfFilePath)
+                    pdfAttachment.dataHandler = DataHandler(pdfFileDataSource)
+                    pdfAttachment.fileName = "invoice.pdf"
+                    multipart.addBodyPart(pdfAttachment)
+
+                    message.setContent(multipart)
+
                     Transport.send(message)
                 }
             } catch (e: Exception) {
@@ -181,5 +201,4 @@ class CardActivity : BottomSheetDialogFragment() {
         val emailRegex = "^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})"
         return email.matches(emailRegex.toRegex())
     }
-
 }
