@@ -61,7 +61,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tiNom"
                 android:layout_width="match_parent"
-                android:layout_height="46dp"
+                android:layout_height="50dp"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,7 +79,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tiPrenom"
                 android:layout_width="match_parent"
-                android:layout_height="46dp"
+                android:layout_height="50dp"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -87,14 +87,14 @@
     </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiNumeroLayout"
+        android:id="@+id/tiEmailLayout"
         android:layout_width="356dp"
         android:layout_height="63dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="-20dp"
         android:layout_marginEnd="10dp"
         android:layout_weight="1"
-        android:hint="+216"
+        android:hint="Exemple@email.com"
         app:errorEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -102,13 +102,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/formulaireLayout"
         app:layout_constraintVertical_bias="0.178"
-        app:startIconDrawable="@drawable/appel">
+        app:startIconDrawable="@drawable/ic_email">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiNumero"
+            android:id="@+id/tiEmail"
             android:layout_width="340dp"
-            android:layout_height="46dp"
-            android:inputType="number" />
+            android:layout_height="50dp"
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

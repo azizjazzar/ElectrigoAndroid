@@ -18,7 +18,7 @@ import com.example.electrigo.R
 import com.example.electrigo.Service.RetrofitInstance
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-val backendUrl = "http://10.0.2.2:3000/api/reservation/"
+val backendUrl = "http://10.0.2.2:3000/api/payment/"
 
 
 class CardActivity : BottomSheetDialogFragment() {
@@ -66,9 +66,9 @@ class CardActivity : BottomSheetDialogFragment() {
 
 
     private fun startCheckout(amountPay: Int) {
-        val amountPayInt = amountPay * 100 // Pas besoin de conversion ici
+        val amountPayInt = amountPay * 100
         RetrofitInstance.ApiClient().createPaymentIntent(
-            amountPayInt.toDouble(), // Convertir en Double si nécessaire
+            amountPayInt.toDouble(),
             "card",
             "usd",
             completion = { paymentIntentClientSecret, error ->

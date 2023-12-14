@@ -8,6 +8,17 @@ android {
     namespace = "com.example.electrigo"
     compileSdk = 34
 
+
+
+    packagingOptions {
+        exclude ("META-INF/DEPENDENCIES")
+        exclude ("META-INF/NOTICE")
+        exclude ("META-INF/LICENSE")
+        exclude ("META-INF/LICENSE.txt")
+        exclude ("META-INF/NOTICE.txt")
+        exclude ("META-INF/ASL2.0")
+    }
+
     defaultConfig {
         applicationId = "com.example.electrigo"
         minSdk = 24
@@ -143,5 +154,8 @@ dependencies {
     implementation ("com.google.code.gson:gson:2.8.9")
     implementation ("com.google.android.gms:play-services-wallet:18.1.2")
     implementation ("com.airbnb.android:lottie:4.1.0")
+    implementation("com.twilio.sdk:twilio:9.2.1")
+
+
 
 }

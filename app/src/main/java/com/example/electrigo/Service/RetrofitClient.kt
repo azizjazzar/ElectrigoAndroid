@@ -18,7 +18,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = "https://electrigo.onrender.com/api/"
+    private const val BASE_URL = "http://10.0.2.2:3000/api/"
 
     // Créez un OkHttpClient avec deux Interceptors
     private val client = OkHttpClient.Builder()

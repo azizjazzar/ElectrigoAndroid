@@ -31,7 +31,7 @@ object RetrofitInstance {
 
 
         return Retrofit.Builder()
-            .baseUrl("https://electrigo.onrender.com/api/")
+            .baseUrl("http://10.0.2.2:3000/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(clientWith60sTimeout)
             .build()
@@ -65,6 +65,7 @@ object RetrofitInstance {
     class ApiClient {
         private val httpClient = OkHttpClient()
 
+
         fun createPaymentIntent(
             amount: Double,
             paymentMethodType: String,
@@ -79,13 +80,15 @@ object RetrofitInstance {
             "paymentMethodType": "$paymentMethodType"
             }
         """.trimIndent()
+
+            //bech yab3eth requete  http lel serveur
             val body = requestJson.toRequestBody(mediaType)
-            val request = Request.Builder().url("$backendUrl/create-payment-intent").post(body).build()
+            val request = Request.Builder().url("$backendUrl/addpayment").post(body).build()
             httpClient.newCall(request).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     completion(null, "$e")
                 }
-
+            //reponse fail ou succes
                 override fun onResponse(call: Call, response: Response) {
                     if (response.isSuccessful) {
                         val responseData = response.body?.string()
