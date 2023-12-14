@@ -114,7 +114,7 @@ class formulaireVehiculeActivity : AppCompatActivity() {
                     ajouterVehicule(vehicule)
                 }
             } else {
-                showAlert(validationErrors.joinToString("\n"))
+                showAlert(validationErrors.joinToString("\n"),false)
             }
         }
 
@@ -159,20 +159,7 @@ class formulaireVehiculeActivity : AppCompatActivity() {
 
 
 
-    private suspend fun ajouterVehicule(vehicule: Vehicule) {
-        try {
-            withContext(Dispatchers.IO) {
-                val response = RetrofitVehicule.apiService.ajouterVehicule(vehicule).await()
-                Log.d("APIResponse", "Response: $response")
 
-                // Success
-                showAlert("Vehicule ajouté avec succès")
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            showAlert("Erreur lors de l'ajout")
-        }
-    }
 
 
 
@@ -226,16 +213,43 @@ class formulaireVehiculeActivity : AppCompatActivity() {
 
         return errors
     }
-    private fun showAlert(message: String) {
-        runOnUiThread {
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("Message")
-            builder.setMessage(message)
-            builder.setPositiveButton("OK", null)
-            val dialog = builder.create()
-            dialog.show()
+    private suspend fun ajouterVehicule(vehicule: Vehicule) {
+        try {
+            withContext(Dispatchers.IO) {
+                val response = RetrofitVehicule.apiService.ajouterVehicule(vehicule).await()
+                Log.d("APIResponse", "Response: $response")
+
+                // Success
+                runOnUiThread {
+                    showAlert("Véhicule ajouté avec succès", true)
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            runOnUiThread {
+                showAlert("Erreur lors de l'ajout", false)
+            }
         }
     }
+
+
+    private fun showAlert(message: String, isSuccess: Boolean) {
+        val alertDialog = AlertDialog.Builder(this).create()
+        alertDialog.setMessage(message)
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK") { _, _ ->
+            alertDialog.dismiss()
+
+            if (isSuccess) {
+                // Redirigez l'utilisateur vers l'écran précédent (back page)
+                finish()
+            }
+        }
+        alertDialog.setCancelable(false)
+        alertDialog.show()
+    }
+
+
+
     companion object {
         private const val GALLERY_REQUEST_CODE = 100
     }

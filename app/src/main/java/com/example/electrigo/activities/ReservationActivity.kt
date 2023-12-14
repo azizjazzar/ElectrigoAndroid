@@ -16,6 +16,7 @@ import com.example.electrigo.Model.Reservation
 import com.example.electrigo.R
 import com.example.electrigo.Service.RetrofitVehicule
 import com.example.electrigo.databinding.ReservationActivityBinding
+import com.example.electrigo.fragments.VehiculeFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -25,7 +26,7 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ReservationActivity : AppCompatActivity() {
+class ReservationActivity : AppCompatActivity(){
     private lateinit var binding: ReservationActivityBinding
     private var isDateDebutSelected = false
     private var selectedVehiculeId: String? = null

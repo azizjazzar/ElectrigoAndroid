@@ -142,4 +142,6 @@ dependencies {
     implementation ("com.squareup.okhttp3:okhttp:4.4.0")
     implementation ("com.google.code.gson:gson:2.8.9")
     implementation ("com.google.android.gms:play-services-wallet:18.1.2")
+    implementation ("com.airbnb.android:lottie:4.1.0")
+
 }

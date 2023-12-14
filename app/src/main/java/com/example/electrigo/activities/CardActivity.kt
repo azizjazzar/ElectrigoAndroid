@@ -51,6 +51,10 @@ class CardActivity : BottomSheetDialogFragment() {
 
         val amount = requireArguments().getInt("transactionAmount", 0)
 
+        //pour afficher le  montant sur  le bouton
+        val payButton = view?.findViewById<Button>(R.id.payButton)
+        payButton?.text = "Payer $$amount"
+
         startCheckout(amount)
     }
 
@@ -62,9 +66,9 @@ class CardActivity : BottomSheetDialogFragment() {
 
 
     private fun startCheckout(amountPay: Int) {
-        val amountPayDouble = amountPay.toDouble() // Convertir l'Int en Double
+        val amountPayInt = amountPay * 100 // Pas besoin de conversion ici
         RetrofitInstance.ApiClient().createPaymentIntent(
-            amountPayDouble,
+            amountPayInt.toDouble(), // Convertir en Double si nécessaire
             "card",
             "usd",
             completion = { paymentIntentClientSecret, error ->
@@ -86,9 +90,27 @@ class CardActivity : BottomSheetDialogFragment() {
                     paymentIntentClientSecret
                 )
                 stripe.confirmPayment(requireActivity(), confirmParams)
+                showPaymentSuccessDialog()
             }
         }
     }
+
+    private fun showPaymentSuccessDialog() {
+        val alertDialog = AlertDialog.Builder(requireContext()).create()
+        alertDialog.setTitle("Paiement réussi")
+        alertDialog.setMessage("Le paiement a été effectué avec succès.")
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK") { _, _ ->
+            // Fermer la boîte de dialogue de succès
+            alertDialog.dismiss()
+
+            // Fermer également le BottomSheetDialogFragment et simuler le retour en arrière
+            requireActivity().onBackPressed()
+        }
+        alertDialog.setCancelable(false)
+        alertDialog.show()
+    }
+
+
 
     private fun displayAlert(title: String, message: String) {
         // Afficher l'alerte à l'intérieur du fragment (vous pouvez personnaliser cela selon vos besoins)
