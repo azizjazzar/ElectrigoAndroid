@@ -11,7 +11,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import User
 import android.app.AlertDialog
+import android.content.Intent
 import android.widget.RadioButton
+import android.widget.Toast
+import com.example.electrigo.Service.RetrofitInstance
 import retrofit2.await
 import java.security.MessageDigest
 import java.nio.charset.StandardCharsets
@@ -55,7 +58,7 @@ class RegisterActivity : AppCompatActivity() {
                 val user = User(
                     nom, prenom, email, selectedValue,
                     dateNaissance, telephone, adresse, confirmMotPasse,
-                    "client", "Default"
+                    "Utilisateur", "Default"
                 )
 
                 CoroutineScope(Dispatchers.Main).launch {
@@ -126,8 +129,19 @@ class RegisterActivity : AppCompatActivity() {
             withContext(Dispatchers.IO) {
                 RetrofitClient.apiService.ajouterUtilisateur(user).await()
 
-                // Success
-                showAlert("Utilisateur ajouté avec succès")
+                runOnUiThread {
+                    val builder = AlertDialog.Builder(this@RegisterActivity)
+                    builder.setTitle("Message")
+                    builder.setMessage("Ajout avec succès")
+                    builder.setPositiveButton("OK") { _, _ ->
+                        // Success
+                        val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                        startActivity(intent)
+                    }
+
+                    val dialog = builder.create()
+                    dialog.show()
+                }
             }
         } catch (e: Exception) {
             // Handle network or other exceptions
@@ -135,6 +149,7 @@ class RegisterActivity : AppCompatActivity() {
             showAlert("Erreur lors de l'ajout")
         }
     }
+
 
 
     private fun showAlert(message: String) {
@@ -148,5 +163,8 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
 
 }

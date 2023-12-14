@@ -2,10 +2,12 @@ package com.example.electrigo.Service
 
 
 import LoginRequest
+import Password_change
 import RefreshTokenRequest
 import TokenResponse
 import User
 import UserResponse
+import User_session
 import com.example.electrigo.Model.LocationItem
 import com.example.electrigo.Model.PaymentConfirmationResponse
 import com.example.electrigo.Model.PaymentIntentResponse
@@ -23,6 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 import retrofit2.http.Query
@@ -59,7 +62,7 @@ interface LocationApi {
     @POST("auth/refresh")
     suspend fun refreshToken(@Body refreshToken: RefreshTokenRequest): TokenResponse
     @GET("auth/user/{email}")
-    fun getUserByEmail(@Path("email") email: String): Call<User>
+    fun getUserByEmail(@Path("email") email: String): Call<User_session>
 
 
     //produit
@@ -68,7 +71,22 @@ interface LocationApi {
     fun getProducts() :Call<List<Product>>
     @POST("product/addproduct")
     fun addProduct(@Body product: Product): Call<Void>
+    @PUT("auth/update/{email}")
+    fun updateUser(
+        @Path("email") email: String,
+        @Body updates: User
+    ): Call<UserResponse>
 
+    @PUT("auth/update/{email}")
+    fun updatepassword(
+        @Path("email") email: String,
+        @Body updates: Password_change
+    ): Call<UserResponse>
+    @GET("auth/email/{email}/{code}")
+    fun sendValidationCodeByEmail(
+        @Path("email") email: String,
+        @Path("code") code: String
+    ): Call<Void>
 }
 
 
