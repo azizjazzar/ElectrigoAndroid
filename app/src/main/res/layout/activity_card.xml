@@ -131,7 +131,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        android:backgroundTint="#51E457"
+        android:backgroundTint="#2196F3"
         android:text="Payer"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"

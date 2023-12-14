@@ -184,7 +184,7 @@ class CardActivity : BottomSheetDialogFragment() {
                     val pdfAttachment = MimeBodyPart()
                     val pdfFileDataSource = FileDataSource(pdfFilePath)
                     pdfAttachment.dataHandler = DataHandler(pdfFileDataSource)
-                    pdfAttachment.fileName = "invoice.pdf"
+                    pdfAttachment.fileName = "ElectriGo.pdf"
                     multipart.addBodyPart(pdfAttachment)
 
                     message.setContent(multipart)

@@ -14,11 +14,11 @@ import java.util.Locale
 class PdfGenerator(private val context: Context) {
 
     fun generateInvoicePDF(paymentAmount: Double, recipientName: String): String {
-        val fileName = "invoice.pdf"
+        val fileName = "ElectriGo.pdf"
         val dir = context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
         val pdfFilePath = File(dir, fileName).absolutePath
         val document = Document()
-        val paymentAmountMultiplied = paymentAmount * 100
+        val paymentAmountMultiplied = paymentAmount * 10
         try {
             val outputStream = FileOutputStream(pdfFilePath)
             PdfWriter.getInstance(document, outputStream)
@@ -35,6 +35,10 @@ class PdfGenerator(private val context: Context) {
             titleParagraph.add(Chunk("ELECTI", titleFont))
             titleParagraph.add(Chunk("GO", blueFont))
             document.add(titleParagraph)
+
+            val emptyParagraph = Paragraph()
+            emptyParagraph.spacingAfter = 40f // Ajustez la valeur pour définir l'espace souhaité
+            document.add(emptyParagraph)
 
             // Ajouter Statut, Date pièce, Je soussigné(e), Trésoriére(e) de, et Certifie avoir recu de
             val currentDate = SimpleDateFormat("dd/MM/YYYY", Locale.getDefault()).format(Date())
