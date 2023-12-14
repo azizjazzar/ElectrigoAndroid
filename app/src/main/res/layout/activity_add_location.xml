@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".activities.AddLocation">
 
-
+    <!-- Top View -->
     <View
         android:id="@+id/view_entete"
         android:layout_width="418dp"
@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
+    <!-- Title -->
     <TextView
         android:id="@+id/textAcceuil2"
         android:layout_width="wrap_content"
@@ -79,10 +79,9 @@
                 android:layout_height="wrap_content"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
-
-        <!-- Prix -->
     </LinearLayout>
 
+    <!-- Prix -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tiPrixLayout"
         android:layout_width="369dp"
@@ -124,6 +123,7 @@
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Boite (RadioGroup) -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tiBoiteLayout"
         android:layout_width="366dp"
@@ -166,6 +166,7 @@
         </RadioGroup>
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Nombre de Places (RadioGroup) -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tiNombrePlacesLayout"
         android:layout_width="367dp"
@@ -201,6 +202,21 @@
         </RadioGroup>
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- MapView -->
+
+    <!-- Add Location Button -->
+
+    <com.mapbox.maps.MapView
+        android:id="@+id/mapViewAdd"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toTopOf="@id/addlocation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tiNombrePlacesLayout"
+        app:layout_constraintVertical_bias="0.0" />
+
     <Button
         android:id="@+id/addlocation"
         android:layout_width="203dp"
@@ -217,6 +233,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.847" />
 
+    <!-- Back Button -->
     <Button
         android:id="@+id/buttonbackhome"
         android:layout_width="44dp"
@@ -229,6 +246,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Back Arrow Image -->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="35dp"

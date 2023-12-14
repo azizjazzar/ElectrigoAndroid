@@ -20,8 +20,9 @@ class MainActivity : AppCompatActivity() {
         replaceFragrament(LocationFragment())
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.map -> replaceFragrament(LocationFragment())
+                R.id.map -> replaceFragrament(VehiculeFragment())
                 R.id.vehicule -> replaceFragrament(MapBoxFragment())
+
                 else -> {
                 }
             }

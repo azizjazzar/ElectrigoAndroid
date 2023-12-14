@@ -1,14 +1,19 @@
 package com.example.electrigo.activities
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.example.electrigo.Model.Coordinate
 import com.example.electrigo.Model.LocationItem
 import com.example.electrigo.R
 import com.example.electrigo.ViewModel.LocationViewModel
 import com.example.electrigo.utils.ApiResult
+
 
 class DetailLocation : AppCompatActivity() {
     private lateinit var locationViewModel: LocationViewModel
@@ -52,6 +57,12 @@ class DetailLocation : AppCompatActivity() {
         findViewById<TextView>(R.id.locationAddress).text = "Address: ${locationItem.adresse}"
         findViewById<TextView>(R.id.locationType).text = "Type of Location: ${locationItem.typelocation}"
         findViewById<TextView>(R.id.locationChargeType).text = "Charge Type: ${locationItem.typecharge}"
+        val getDirectionsButton = findViewById<Button>(R.id.viewMapButton)
 
     }
+
+
+
+
+
 }

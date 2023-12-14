@@ -16,6 +16,9 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.GET
+import retrofit2.http.Query
+
 
 class LocationViewModel : ViewModel() {
     private val _jobResponseLocationData: MutableLiveData<ApiResult> =
@@ -37,7 +40,14 @@ class LocationViewModel : ViewModel() {
                 ) {
                     if (response.isSuccessful) {
                         val locationList = response.body()
-                        _jobResponseLocationData.postValue(ApiResult.Success(locationList!!))
+                        if (locationList != null) {
+                            _jobResponseLocationData.postValue(ApiResult.Success(locationList))
+                        } else {
+                            _jobResponseLocationData.postValue(ApiResult.Empty)
+                        }
+                    } else {
+                        Log.e("LocationViewModel", "Error: ${response.errorBody()?.string()}")
+                        _jobResponseLocationData.postValue(ApiResult.Failure(Throwable(response.message())))
                     }
                 }
 

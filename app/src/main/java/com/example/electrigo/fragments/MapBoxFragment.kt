@@ -1,4 +1,6 @@
+
 package com.example.electrigo.fragments
+
 import com.google.android.material.snackbar.Snackbar
 import android.content.Context
 import android.graphics.Bitmap
@@ -9,7 +11,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.appcompat.content.res.AppCompatResources
@@ -33,9 +34,7 @@ class MapBoxFragment : Fragment() {
     private lateinit var binding: FragmentMapBoxBinding
     private lateinit var locationViewModel: LocationViewModel
 
-
     private var locationList: List<Pair<Point, String>> = emptyList()
-
     private var currentLocationIndex = 0
 
     override fun onCreateView(
@@ -43,59 +42,72 @@ class MapBoxFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         val accessToken =
             "sk.eyJ1IjoiZGhpYWFpc3NhNzAiLCJhIjoiY2xwdHJuZDE0MGdxMTJtbzk3dWRmMHRndiJ9.KdTM-MXtfHdAPG6t5dHccQ"
         MapboxOptions.accessToken = accessToken
         binding = FragmentMapBoxBinding.inflate(inflater, container, false)
-        locationViewModel =
-            ViewModelProvider(requireActivity())[LocationViewModel::class.java]
+        locationViewModel = ViewModelProvider(requireActivity())[LocationViewModel::class.java]
 
         binding.mapView.mapboxMap.loadStyleUri(Style.MAPBOX_STREETS) {
-
-            locationViewModel.jobResponseLocationData.observe(viewLifecycleOwner) { apiResult ->
-                when (apiResult) {
-                    is ApiResult.Success -> {
-                        locationList = (apiResult.data as List<LocationItem>).mapNotNull { locationItem ->
-                            locationItem.coordinate?.coordinates?.let { coordinates ->
-                                val point = Point.fromLngLat(coordinates[0], coordinates[1])
-                                val locationName = locationItem.name ?: "Unknown Location"
-                                Pair(point, locationName)
-                            }
-                        }
-
-                        // Display the first location
-                        showLocationAtIndex(currentLocationIndex)
-                        displayLocationName(locationList[currentLocationIndex].second)
-
-
-                        // Set up next and previous buttons
-                        val btnNext: Button = binding.root.findViewById(R.id.btnNext)
-                        val btnPrevious: Button = binding.root.findViewById(R.id.btnPrevious)
-
-                        btnNext.setOnClickListener {
-                            showNextLocation()
-                            displayLocationName(locationList[currentLocationIndex].second)
-                        }
-
-                        btnPrevious.setOnClickListener {
-                            showPreviousLocation()
-                            displayLocationName(locationList[currentLocationIndex].second)
-                        }
-
-                        // Add annotations for all locations
-                        addAnnotationsToMap(locationList)
-                    }
-                    else -> {
-                        // Handle other cases if needed
-                    }
-                }
-            }
+            observeViewModelData()
         }
+        setupNavigationButtons()
 
         return binding.root
     }
 
+    private fun observeViewModelData() {
+        locationViewModel.jobResponseLocationData.observe(viewLifecycleOwner) { apiResult ->
+            when (apiResult) {
+                is ApiResult.Success -> handleSuccess(apiResult.data)
+                is ApiResult.Failure -> handleError(apiResult.message)
+
+                else -> {}
+            }
+        }
+    }
+
+    private fun handleSuccess(data: Any) {
+        if (data is List<*>) {
+            val locationItems = data.filterIsInstance<LocationItem>()
+            locationList = locationItems.mapNotNull { locationItem ->
+                locationItem.coordinate?.coordinates?.let { coordinates ->
+                    if (coordinates.size >= 2) {
+                        val point = Point.fromLngLat(coordinates[0], coordinates[1])
+                        val locationName = locationItem.name ?: "Unknown Location"
+                        Pair(point, locationName)
+                    } else {
+                        null
+                    }
+                }
+            }
+
+            if (locationList.isNotEmpty()) {
+                showLocationAtIndex(currentLocationIndex)
+                displayLocationName(locationList[currentLocationIndex].second)
+                addAnnotationsToMap(locationList)
+            }
+        } else {
+            handleError("Data is not a list of LocationItem")
+        }
+    }
+
+
+    private fun handleError(message: String) {
+        Snackbar.make(binding.root, "Error: $message", Snackbar.LENGTH_LONG).show()
+    }
+
+    private fun setupNavigationButtons() {
+        binding.btnNext.setOnClickListener {
+            showNextLocation()
+            displayLocationName(locationList[currentLocationIndex].second)
+        }
+
+        binding.btnPrevious.setOnClickListener {
+            showPreviousLocation()
+            displayLocationName(locationList[currentLocationIndex].second)
+        }
+    }
     private fun addAnnotationsToMap(locations: List<Pair<Point, String>>) {
         val annotationApi = binding.mapView.annotations
         val pointAnnotationManager = annotationApi.createPointAnnotationManager()
@@ -171,9 +183,20 @@ class MapBoxFragment : Fragment() {
     }
 
 
-    private fun showSnackbar(locationName: String) {
-        val rootView: View = binding.root.findViewById(android.R.id.content)
-        Snackbar.make(rootView, "Location: $locationName", Snackbar.LENGTH_SHORT).show()
+    override fun onStart() {
+        super.onStart()
+        binding.mapView.onStart()
     }
 
+
+    override fun onStop() {
+        super.onStop()
+        binding.mapView.onStop()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.mapView.onDestroy()
+    }
 }
+
