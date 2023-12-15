@@ -196,17 +196,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.343" />
 
-    <ImageView
-        android:id="@+id/imageView13"
-        android:layout_width="40dp"
-        android:layout_height="25dp"
-        android:layout_marginBottom="156dp"
-        android:src="@drawable/stripe_ic_paymentsheet_card_dinersclub"
-        app:layout_constraintBottom_toBottomOf="@+id/cardInputWidget"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/spaceAboveCardInput"
-        app:layout_constraintVertical_bias="0.6" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
