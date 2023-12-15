@@ -7,190 +7,256 @@
     android:layout_height="match_parent"
     tools:context=".activities.AddLocation">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="410dp"
-        android:layout_height="144dp"
-        android:layout_marginTop="4dp"
-        android:adjustViewBounds="false"
-        android:scaleType="centerCrop"
-        android:src="@drawable/top_background"
+    <!-- Top View -->
+    <View
+        android:id="@+id/view_entete"
+        android:layout_width="418dp"
+        android:layout_height="150dp"
+        android:background="@drawable/top_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/textAcceuil2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/myfont"
+        android:text="Ajoutez votre Borne\nmaintenant!"
+        android:textColor="@color/white"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view_entete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.412" />
+
+    <!-- Formulaire -->
+    <LinearLayout
+        android:id="@+id/formulaireLayout"
+        android:layout_width="408dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="28dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_entete">
+
+        <!-- Marque -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiMarqueLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:hint="Nom"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiMarque"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Modèle -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiModeleLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:hint="Ville de la borne"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiModele"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <!-- Prix -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiPrixLayout"
+        android:layout_width="369dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="72dp"
+        android:layout_weight="1"
+        android:hint="@string/prix"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/formulaireLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiPrix"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Vitesse Max -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiVitesseMaxLayout"
+        android:layout_width="372dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_weight="1"
+        android:hint="Adresse de la borne"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tiPrixLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiVitesseMax"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Boite (RadioGroup) -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiBoiteLayout"
+        android:layout_width="366dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_weight="1"
+        android:hint="@string/boite"
+        app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tiVitesseMaxLayout">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:text="Ajout Borne"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:textColor="#ffffff"
+        <RadioGroup
+            android:id="@+id/boiteRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/Restaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Restaurant" />
+
+            <RadioButton
+                android:id="@+id/Hotel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Hotel" />
+
+            <RadioButton
+                android:id="@+id/Station"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Station" />
+        </RadioGroup>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Nombre de Places (RadioGroup) -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiNombrePlacesLayout"
+        android:layout_width="367dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_weight="1"
+        android:hint="@string/nombreDePlaces"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tiBoiteLayout">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="32dp"
+        <RadioGroup
+            android:id="@+id/nombrePlacesRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/nombrePlaces5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Paye" />
+
+            <RadioButton
+                android:id="@+id/nombrePlaces2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Gratuit" />
+        </RadioGroup>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- MapView -->
+
+    <!-- Add Location Button -->
+
+    <com.mapbox.maps.MapView
+        android:id="@+id/mapViewAdd"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toTopOf="@id/addlocation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tiNombrePlacesLayout"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/addlocation"
+        android:layout_width="203dp"
+        android:layout_height="74dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:fontFamily="@font/myfont"
+        android:gravity="center"
+        android:text="Ajouter"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.443"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.847" />
 
-        <!-- Nom -->
-        <TextView
-            android:id="@+id/textViewNom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nom :"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+    <!-- Back Button -->
+    <Button
+        android:id="@+id/buttonbackhome"
+        android:layout_width="44dp"
+        android:layout_height="39dp"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/myfont"
+        app:layout_constraintBottom_toBottomOf="@+id/view_entete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.008"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/editTextNom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/edittextbackground"
-            android:ems="10"
-            android:hint="Nom du borne"
-            android:inputType="text"
-            android:padding="12dp"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+    <!-- Back Arrow Image -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_entete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.031"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.043"
+        app:srcCompat="@drawable/flechback" />
 
-        <!-- Ville -->
-        <TextView
-            android:id="@+id/textViewCity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ville :"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/editTextCity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/edittextbackground"
-            android:ems="10"
-            android:hint="Ville de la borne"
-            android:inputType="text"
-            android:padding="12dp"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
-
-        <!-- Adresse -->
-        <TextView
-            android:id="@+id/textViewAdresse"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Adresse :"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/editTextAdresse"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/edittextbackground"
-            android:ems="10"
-            android:hint="Adresse de la borne"
-            android:inputType="text"
-            android:padding="12dp"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
-
-        <!-- Type Location -->
-        <TextView
-            android:id="@+id/textViewTypeLocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Type de Location :"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/editTextTypeLocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/edittextbackground"
-            android:ems="10"
-            android:hint="Type de la borne"
-            android:inputType="text"
-            android:padding="12dp"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
-
-        <!-- Type Charge -->
-        <TextView
-            android:id="@+id/textViewTypeCharge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Type de Charge :"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/editTextTypeCharge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/edittextbackground"
-            android:ems="10"
-            android:hint="Type de charge de la borne"
-            android:inputType="text"
-            android:padding="12dp"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
-
-        <!-- Picture -->
-        <TextView
-            android:id="@+id/textViewPicture"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Image :"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/editTextPicture"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/edittextbackground"
-            android:ems="10"
-            android:hint="URL de l'image de la borne"
-            android:inputType="text"
-            android:padding="12dp"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/colorPrimary"
-            android:backgroundTint="@color/colorPrimary"
-            android:text="Ajout Borne" />
-
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

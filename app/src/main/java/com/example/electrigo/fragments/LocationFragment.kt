@@ -3,6 +3,7 @@
 package com.example.electrigo.fragments
 
 import LocationAdapter
+import LocationViewModel
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -17,7 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewbinding.ViewBindings
 import com.example.electrigo.Model.LocationItem
 import com.example.electrigo.R
-import com.example.electrigo.ViewModel.LocationViewModel
+
 import com.example.electrigo.activities.AddLocation
 import com.example.electrigo.activities.DetailLocation
 import com.example.electrigo.databinding.FragmentLocationBinding

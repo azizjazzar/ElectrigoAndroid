@@ -16,8 +16,7 @@ import com.example.electrigo.Model.ReservationResponse
 import com.example.electrigo.Model.Vehicule
 import com.example.electrigo.Model.VehiculeResponse
 import com.example.electrigo.Model.Product
-
-
+import com.example.electrigo.Model.ReviewItem
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -27,7 +26,6 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
-
 import retrofit2.http.Query
 
 
@@ -48,7 +46,8 @@ interface LocationApi {
     fun getVehiculeDetails(@Path("vehiculeId") vehiculeId: String): Call<Vehicule>
     @POST("reservation/addreservations")
     fun ajouterReservation(@Body reservation: Reservation): Call<ReservationResponse>
-
+    @GET("borne/borne/{locationId}")
+    fun getDetailLocation(@Path("locationId") locationId: String): Call<LocationItem>
 
     @GET("auth/users")
     fun Getusers(): Call<List<User>>
@@ -83,7 +82,13 @@ interface LocationApi {
         @Path("email") email: String,
         @Path("code") code: String
     ): Call<Void>
-}
 
+
+    @POST("borne/addborne")
+    fun addLocation(@Body locationRequest: LocationItem): Call<LocationItem>
+
+    @GET("borne/bornereview/{locationId}")
+    fun getLocationReviews(@Path("locationId") locationId: String): Call<List<ReviewItem>>
+}
 
 

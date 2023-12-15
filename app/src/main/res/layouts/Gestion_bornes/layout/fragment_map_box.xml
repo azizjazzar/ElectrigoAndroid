@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- MapView -->
+    <com.mapbox.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:mapbox_cameraTargetLat="40.7128"
+        app:mapbox_cameraTargetLng="-74.0060"
+        app:mapbox_cameraZoom="9.0">
+
+        <!-- Next Button -->
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Suivant"
+            android:textSize="20sp"
+            app:cornerRadius="20dp" />
+
+    </com.mapbox.maps.MapView>
+
+    <!-- Previous Button -->
+    <Button
+        android:id="@+id/btnPrevious"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/green"
+        android:text="Précédent"
+        android:textSize="20sp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        app:cornerRadius="20dp"
+        android:layout_margin="16dp"/>
+
+    <!-- TextView above Previous Button -->
+    <TextView
+        android:id="@+id/annotation"
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btnPrevious"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:padding="8dp"
+        android:background="@drawable/rounded_corner_background"
+        android:textColor="@android:color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
+
+
+    <!-- Next Button above Previous Button -->
+    <Button
+        android:id="@+id/list_item"
+        android:layout_width="72dp"
+        android:layout_height="64dp"
+        android:layout_above="@id/btnPrevious"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="27dp"
+        android:backgroundTint="@color/mediumGray"
+        android:drawableLeft="@drawable/ic_location_icon"
+        android:textSize="18sp"
+        app:cornerRadius="20dp" />
+
+</RelativeLayout>

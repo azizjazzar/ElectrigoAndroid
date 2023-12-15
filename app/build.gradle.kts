@@ -162,7 +162,8 @@ dependencies {
     implementation ("com.sun.mail:android-activation:1.6.7")
     implementation ("com.itextpdf:itextpdf:5.5.13.2")
 
-
+    //mapbox implementation
+    implementation("com.mapbox.maps:android:11.0.0")
 
 
 }

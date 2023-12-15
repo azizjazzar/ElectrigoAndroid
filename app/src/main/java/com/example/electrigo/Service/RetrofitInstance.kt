@@ -1,5 +1,6 @@
 package com.example.electrigo.Service
 
+import MapboxDirectionsApi
 import com.example.electrigo.ViewModel.UserViewModel
 import com.example.electrigo.activities.backendUrl
 import okhttp3.Call
@@ -35,6 +36,27 @@ object RetrofitInstance {
             .addConverterFactory(GsonConverterFactory.create())
             .client(clientWith60sTimeout)
             .build()
+    }
+    private fun mapboxRetrofit(): Retrofit {
+        val okHttpClient = OkHttpClient()
+
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+
+        val clientWith60sTimeout = okHttpClient.newBuilder()
+            .addInterceptor(interceptor)
+            .readTimeout(60, TimeUnit.SECONDS)
+            .build()
+
+        return Retrofit.Builder()
+            .baseUrl("https://api.mapbox.com/") // Base URL for Mapbox Directions API
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(clientWith60sTimeout)
+            .build()
+    }
+
+    val mapboxDirectionsService: MapboxDirectionsApi by lazy {
+        mapboxRetrofit().create(MapboxDirectionsApi::class.java)
     }
 
     val retrofitService: LocationApi by lazy {
@@ -101,6 +123,11 @@ object RetrofitInstance {
             })
         }
     }
+
+
+
+
+
 
 }
 
