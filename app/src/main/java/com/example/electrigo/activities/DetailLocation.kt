@@ -1,5 +1,6 @@
 package com.example.electrigo.activities
 
+import LocationViewModel
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -8,20 +9,31 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.example.electrigo.Model.Coordinate
 import com.example.electrigo.Model.LocationItem
 import com.example.electrigo.R
-import com.example.electrigo.ViewModel.LocationViewModel
+
 import com.example.electrigo.utils.ApiResult
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class DetailLocation : AppCompatActivity() {
     private lateinit var locationViewModel: LocationViewModel
+    private val mapboxAccessToken = "sk.eyJ1IjoiZGhpYWFpc3NhNzAiLCJhIjoiY2xxNXV4dXd3MGpoajJscGF1Y213dDlzNiJ9.YViPARD5NLeg0QhANkqZUQ" // Replace with
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_location)
+        val readReviewsButton = findViewById<Button>(R.id.readReviewsButton)
+        readReviewsButton.setOnClickListener {
+            // Create an Intent to navigate to the ReviewsActivity
+            val intent = Intent(this, Review::class.java)
 
+            // Start the ReviewsActivity
+            startActivity(intent)
+        }
         val locationId = intent.getStringExtra("locationId")
         locationViewModel = ViewModelProvider(this).get(LocationViewModel::class.java)
 
@@ -36,6 +48,14 @@ class DetailLocation : AppCompatActivity() {
                     if (locationList.isNotEmpty()) {
                         val locationItem = locationList[0]
                         updateUI(locationItem)
+
+                        val getDirectionsButton = findViewById<Button>(R.id.viewMapButton)
+                        getDirectionsButton.setOnClickListener {
+                            locationItem.coordinate?.let { coordinate ->
+                                // Call the function to get directions
+                                getDirections(coordinate)
+                            }
+                        }
                     }
                 }
                 is ApiResult.Empty -> {
@@ -60,6 +80,30 @@ class DetailLocation : AppCompatActivity() {
         val getDirectionsButton = findViewById<Button>(R.id.viewMapButton)
 
     }
+
+    private fun getDirections(destination: Coordinate) {
+        locationViewModel.viewModelScope.launch(Dispatchers.IO) {
+            // Define your start coordinates here (example: user's current location)
+            val startCoordinates = "10.1815,36.8065" // Replace with actual start coordinates
+
+            // Check destination coordinates
+            if (destination.coordinates.size >= 2) {
+                val destinationCoordinates = "${destination.coordinates[1]},${destination.coordinates[0]}" // latitude,longitude
+                val formattedCoordinates = "$startCoordinates;$destinationCoordinates"
+
+                try {
+                    val directionsResponse = locationViewModel.getDirections(formattedCoordinates, mapboxAccessToken)
+                    runOnUiThread {
+                        // Handle directions response
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    // Handle error
+                }
+            }
+        }
+    }
+
 
 
 

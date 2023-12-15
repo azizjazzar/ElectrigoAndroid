@@ -88,6 +88,8 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics:1.5.4")
     implementation("androidx.compose.ui:ui-tooling-preview:1.5.4")
     implementation("androidx.compose.material3:material3:1.1.2")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
+    implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
     testImplementation("junit:junit:4.13.2")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0-rc01")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

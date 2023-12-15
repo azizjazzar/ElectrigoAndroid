@@ -1,14 +1,10 @@
-// LocationViewModel.kt
-
-package com.example.electrigo.ViewModel
-
-import android.location.LocationRequest
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.electrigo.Model.LocationItem
+import com.example.electrigo.Model.ReviewItem
 import com.example.electrigo.Service.RetrofitInstance
 import com.example.electrigo.utils.ApiResult
 import kotlinx.coroutines.Dispatchers
@@ -16,9 +12,6 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Query
-
 
 class LocationViewModel : ViewModel() {
     private val _jobResponseLocationData: MutableLiveData<ApiResult> =
@@ -29,6 +22,8 @@ class LocationViewModel : ViewModel() {
     private val _filteredLocations: MutableLiveData<List<LocationItem>> = MutableLiveData()
     val filteredLocations: LiveData<List<LocationItem>>
         get() = _filteredLocations
+
+    private val mapboxDirectionsApi = RetrofitInstance.mapboxDirectionsService
 
     fun getLocations() = viewModelScope.launch(Dispatchers.IO) {
         _jobResponseLocationData.postValue(ApiResult.Loading)
@@ -57,8 +52,6 @@ class LocationViewModel : ViewModel() {
             })
     }
 
-    // LocationViewModel.kt
-
     fun searchLocations(query: String) {
         val allLocations = (_jobResponseLocationData.value as? ApiResult.Success)?.data
         if (allLocations is List<*>) {
@@ -83,7 +76,6 @@ class LocationViewModel : ViewModel() {
         }
     }
 
-
     fun resetFilter() {
         val allLocations = (_jobResponseLocationData.value as? ApiResult.Success)?.data
         if (allLocations is List<*>) {
@@ -92,7 +84,12 @@ class LocationViewModel : ViewModel() {
         }
     }
 
-    // Add this function to LocationViewModel
+    // Function to get directions using Mapbox Directions API
+    suspend fun getDirections(coordinates: String, accessToken: String): DirectionsResponse {
+        return mapboxDirectionsApi.getDirections(coordinates, accessToken)
+    }
+
+    // Function to get detail location by ID
     fun getDetailLocation(locationId: String?): LiveData<ApiResult> {
         val resultLiveData = MutableLiveData<ApiResult>()
 
@@ -122,7 +119,6 @@ class LocationViewModel : ViewModel() {
         return resultLiveData
     }
 
-
     fun addLocation(locationRequest: LocationItem) = viewModelScope.launch(Dispatchers.IO) {
         _jobResponseLocationData.postValue(ApiResult.Loading)
         RetrofitInstance.retrofitService.addLocation(locationRequest)
@@ -145,6 +141,34 @@ class LocationViewModel : ViewModel() {
             })
     }
 
+    fun getLocationReviews(locationId: String): LiveData<ApiResult> {
+        viewModelScope.launch(Dispatchers.IO) {
+            _jobResponseLocationData.postValue(ApiResult.Loading)
+            RetrofitInstance.retrofitService.getLocationReviews(locationId)
+                .enqueue(object : Callback<List<ReviewItem>> {
+                    override fun onResponse(
+                        call: Call<List<ReviewItem>>,
+                        response: Response<List<ReviewItem>>
+                    ) {
+                        if (response.isSuccessful) {
+                            val reviewList = response.body() // This should be a List<ReviewItem>
+                            _jobResponseLocationData.postValue(reviewList?.let {
+                                ApiResult.Success(
+                                    it
+                                )
+                            })
+                        } else {
+                            Log.e("LocationViewModel", "Error: ${response.errorBody()?.string()}")
+                            _jobResponseLocationData.postValue(ApiResult.Failure(Throwable(response.message())))
+                        }
+                    }
 
+                    override fun onFailure(call: Call<List<ReviewItem>>, t: Throwable) {
+                        _jobResponseLocationData.postValue(ApiResult.Failure(t))
+                    }
+                })
+        }
+        return _jobResponseLocationData
+    }
 
 }

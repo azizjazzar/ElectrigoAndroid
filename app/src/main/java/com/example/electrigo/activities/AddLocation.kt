@@ -1,5 +1,6 @@
 package com.example.electrigo.activities
 
+import LocationViewModel
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.widget.RadioButton
@@ -9,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.electrigo.Model.Coordinate
 import com.example.electrigo.Model.LocationItem
 import com.example.electrigo.R
-import com.example.electrigo.ViewModel.LocationViewModel
 import com.example.electrigo.databinding.ActivityAddLocationBinding
 import com.mapbox.common.MapboxOptions
 import com.mapbox.geojson.Point

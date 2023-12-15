@@ -1,6 +1,7 @@
 
 package com.example.electrigo.fragments
 
+import LocationViewModel
 import com.google.android.material.snackbar.Snackbar
 import android.content.Context
 import android.graphics.Bitmap
@@ -18,7 +19,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.electrigo.Model.LocationItem
 import com.example.electrigo.R
-import com.example.electrigo.ViewModel.LocationViewModel
 import com.example.electrigo.databinding.FragmentMapBoxBinding
 import com.example.electrigo.utils.ApiResult
 import com.mapbox.common.MapboxOptions
