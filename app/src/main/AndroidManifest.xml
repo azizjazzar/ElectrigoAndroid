@@ -50,14 +50,19 @@
             android:exported="false" />
         <activity
             android:name=".activities.WelcomeViewActivity"
-            android:exported="false">
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+
         <activity
             android:name=".activities.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".activities.MainActivity"></activity>
 
         <activity
             android:name=".activities.AddLocation"
