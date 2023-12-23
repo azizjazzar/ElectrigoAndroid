@@ -12,6 +12,7 @@
         android:layout_height="373dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -108,7 +109,7 @@
             android:id="@+id/tiEmail"
             android:layout_width="340dp"
             android:layout_height="50dp"
-            android:inputType="text" />
+            android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -156,5 +157,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="40dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="-2dp"
+        android:src="@drawable/stripe_ic_paymentsheet_card_visa"
+        app:layout_constraintBottom_toBottomOf="@+id/cardInputWidget"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.343" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="40dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="1dp"
+        android:src="@drawable/stripe_ic_paymentsheet_card_mastercard"
+        app:layout_constraintBottom_toBottomOf="@+id/cardInputWidget"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageView9"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.343" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="40dp"
+        android:layout_height="25dp"
+        android:src="@drawable/stripe_ic_paymentsheet_card_jcb"
+        app:layout_constraintBottom_toBottomOf="@+id/cardInputWidget"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageView10"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.343" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

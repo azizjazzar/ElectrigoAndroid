@@ -21,6 +21,7 @@ import com.example.electrigo.activities.DetailsVehiculeActivity
 import com.example.electrigo.activities.formulaireVehiculeActivity
 import com.example.electrigo.databinding.FragmentVehiculeBinding
 import com.example.electrigo.utils.ApiResult
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 interface OnItemClickListener {
@@ -122,7 +123,8 @@ class VehiculeFragment : Fragment(R.layout.fragment_vehicule), OnItemClickListen
 
         observeFilteredVehiculeData()
 
-        val buttonAddVehicule: Button = view.findViewById(R.id.buttonaddVehicule)
+        val buttonAddVehicule: FloatingActionButton = view.findViewById(R.id.buttonaddVehicule)
+
 
 // Ajouter un écouteur de clic au bouton
         buttonAddVehicule.setOnClickListener {
@@ -195,15 +197,3 @@ class VehiculeFragment : Fragment(R.layout.fragment_vehicule), OnItemClickListen
         startActivity(intent)
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-

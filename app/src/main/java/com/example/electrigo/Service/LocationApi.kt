@@ -7,8 +7,7 @@ import TokenResponse
 import User
 import UserResponse
 import com.example.electrigo.Model.LocationItem
-import com.example.electrigo.Model.PaymentConfirmationResponse
-import com.example.electrigo.Model.PaymentIntentResponse
+
 import com.example.electrigo.Model.Reservation
 import com.example.electrigo.Model.ReservationResponse
 import com.example.electrigo.Model.Vehicule

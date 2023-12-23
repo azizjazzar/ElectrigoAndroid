@@ -90,4 +90,3 @@ class DetailsVehiculeActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.detailcapacitebatterie).text = vehicule.capaciteBatterie.toString()
     }
 }
-

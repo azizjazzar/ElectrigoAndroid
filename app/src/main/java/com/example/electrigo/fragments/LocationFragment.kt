@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
@@ -22,6 +23,9 @@ import com.example.electrigo.activities.AddLocation
 import com.example.electrigo.activities.DetailLocation
 import com.example.electrigo.databinding.FragmentLocationBinding
 import com.example.electrigo.utils.ApiResult
+import android.app.AlertDialog
+import android.app.Dialog
+
 
 class LocationFragment : Fragment(R.layout.fragment_location) {
 
@@ -31,6 +35,7 @@ class LocationFragment : Fragment(R.layout.fragment_location) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         locationViewModel = ViewModelProvider(requireActivity())[LocationViewModel::class.java]
+
         locationViewModel.getLocations()
         observeAllLocationResponse()
 

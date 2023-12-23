@@ -31,7 +31,7 @@ object RetrofitInstance {
 
 
         return Retrofit.Builder()
-            .baseUrl("https://electrigo.onrender.com/api/")
+            .baseUrl("http://10.0.2.2:3000/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(clientWith60sTimeout)
             .build()

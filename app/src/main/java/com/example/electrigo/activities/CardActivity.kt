@@ -30,7 +30,9 @@ import javax.mail.internet.MimeMultipart
 import android.app.AlertDialog
 
 
-val backendUrl = "https://electrigo.onrender.com/api/payment/"
+
+
+val backendUrl = "http://10.0.2.2:3000/api/payment/"
 
 class CardActivity : BottomSheetDialogFragment() {
 
