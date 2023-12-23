@@ -17,6 +17,8 @@ import com.bumptech.glide.Glide
 import com.example.electrigo.ViewModel.VehiculeViewModel
 import com.example.electrigo.fragments.LocationFragment
 import com.example.electrigo.fragments.VehiculeFragment
+import com.example.electrigo.utils.downloadFromUrl
+import com.example.electrigo.utils.placeholderProgressBar
 
 class VehiculeAdapter(
     private val  vehiculeList :MutableList<Vehicule>,
@@ -32,9 +34,7 @@ class VehiculeAdapter(
         val binding = ItemVehiculeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return VehiculeViewHolder(binding)
     }
-    private fun loadVehiculeImage(imageUrl: String, imageView: ImageView) {
-        vehiculeViewModel.loadVehiculeImage(imageUrl, imageView)
-    }
+
 
     //pour lier les données d'un véhicule spécifique à un VehiculeViewHolder
     override fun onBindViewHolder(holder: VehiculeViewHolder, position: Int) {
@@ -44,7 +44,10 @@ class VehiculeAdapter(
         holder.binding.Textprice.text = vehicule.prix.toString()
         holder.binding.textNbredeplaces.text = vehicule.nombreDePlaces.toString()
         holder.binding.textvitesseMax.text = vehicule.vitesseMax.toString()
-        loadVehiculeImage(vehicule.image.toString(), holder.binding.imageViewVehicule)
+        holder.binding.imageViewVehicule.downloadFromUrl(
+            vehiculeList[position].image,
+            placeholderProgressBar(holder.itemView.context)
+        )
 
         holder.itemView.setOnClickListener {
             itemClickListener.onItemClick(vehicule)

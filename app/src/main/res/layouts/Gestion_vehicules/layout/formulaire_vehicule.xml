@@ -1,341 +1,285 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/context_view">
+    android:layout_height="match_parent">
 
-    <View
-        android:id="@+id/view_entete"
-        android:layout_width="418dp"
-        android:layout_height="150dp"
-        android:background="@drawable/entete_bleu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textAcceuil2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/myfont"
-        android:text="Ajoutez votre véhicule\nmaintenant!"
-        android:textColor="@color/white"
-        android:textSize="17dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/view_entete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.067"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.412" />
-
-    <!-- Formulaire -->
     <LinearLayout
-        android:id="@+id/formulaireLayout"
-        android:layout_width="408dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="28dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_entete">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <!-- Marque -->
+        <!-- Champ Product Name -->
+
+        <TextView
+            android:layout_width="319dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:fontFamily="@font/myfont"
+            android:text="Ajoutez votre véhicule maintenant!"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tiMarqueLayout"
-            android:layout_width="0dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_weight="1"
             android:hint="@string/Marque"
-            app:errorEnabled="true">
+            android:layout_marginBottom="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tiMarque"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text" />
+                android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Modèle -->
+
+
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tiModeleLayout"
-            android:layout_width="0dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_weight="1"
             android:hint="@string/modele"
-            app:errorEnabled="true">
+            android:layout_marginBottom="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tiModele"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text" />
+                android:inputType="text"
+               />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Prix -->
-    </LinearLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiPrixLayout"
-        android:layout_width="369dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="72dp"
-        android:layout_weight="1"
-        android:hint="@string/prix"
-        app:errorEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/formulaireLayout">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiPrix"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiPrixLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:hint="@string/prix"
+            android:layout_marginBottom="16dp">
 
-    <!-- Vitesse Max -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiVitesseMaxLayout"
-        android:layout_width="372dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_weight="1"
-        android:hint="@string/vitessemax"
-        app:errorEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tiPrixLayout">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiVitesseMax"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <!-- Description -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiDescriptionLayout"
-        android:layout_width="372dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_weight="1"
-        android:hint="@string/description"
-        app:errorEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tiVitesseMaxLayout">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiDescription"
-            android:layout_width="match_parent"
-            android:layout_height="71dp"
-            android:inputType="textMultiLine"
-            android:lines="3" />
-    </com.google.android.material.textfield.TextInputLayout>
-    <!-- Capacité de Batterie -->
-
-    <!-- Boîte -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiCapaciteBatterieLayout"
-        android:layout_width="376dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:layout_weight="1"
-        android:hint="@string/capaciteBatterie"
-        app:errorEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tiDescriptionLayout">
-
-        <Spinner
-            android:id="@+id/spinnerCapaciteBatterie"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="none" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiBoiteLayout"
-        android:layout_width="366dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_weight="1"
-        android:hint="@string/boite"
-        app:errorEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tiCapaciteBatterieLayout">
-
-        <RadioGroup
-            android:id="@+id/boiteRadioGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/boiteManuelle"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiPrix"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Manuelle" />
+                android:inputType="numberDecimal" />
 
-            <RadioButton
-                android:id="@+id/boiteAutomatique"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Automatique" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        </RadioGroup>
-    </com.google.android.material.textfield.TextInputLayout>
-    <!-- Nombre de Places -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiNombrePlacesLayout"
-        android:layout_width="367dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_weight="1"
-        android:hint="@string/nombreDePlaces"
-        app:errorEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tiBoiteLayout">
 
-        <RadioGroup
-            android:id="@+id/nombrePlacesRadioGroup"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiVitesseMaxLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:hint="@string/vitessemax"
 
-            <RadioButton
-                android:id="@+id/nombrePlaces5"
-                android:layout_width="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiVitesseMax"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="5 Places" />
+                android:inputType="numberDecimal" />
 
-            <RadioButton
-                android:id="@+id/nombrePlaces2"
-                android:layout_width="wrap_content"
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiDescriptionLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/description"
+
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiDescription"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="2 Places" />
+                android:inputType="textMultiLine"
+                android:lines="3" />
 
-        </RadioGroup>
-    </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Capacite de Batterie :"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginBottom="10dp"/>
 
 
-    <Button
-        android:id="@+id/addvehicule"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimary"
-        android:fontFamily="@font/myfont"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiCapaciteBatterieLayout"
+            android:layout_width="376dp"
+            android:layout_height="54dp"
+            android:hint="@string/capaciteBatterie"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.333"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tiDescriptionLayout">
 
-        android:gravity="center"
-        android:text="Ajouter"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.112"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+            <Spinner
+                android:id="@+id/spinnerCapaciteBatterie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
 
-    <Button
-        android:id="@+id/buttonbackhome"
-        android:layout_width="44dp"
-        android:layout_height="39dp"
-        android:color="@color/colorPrimary"
-        android:background="@android:color/transparent"
-        android:fontFamily="@font/myfont"
-        app:layout_constraintBottom_toBottomOf="@+id/view_entete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.008"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.009" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view_entete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.031"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.043"
-        app:srcCompat="@drawable/flechback" />
-
-    <!-- Add these lines inside your ConstraintLayout -->
-
-    <Button
-        android:id="@+id/btnSelectImage"
-        android:layout_width="56dp"
-        android:layout_height="48dp"
-        android:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.439"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
-
-    <ImageView
-        android:id="@+id/selectedImageView"
-        android:layout_width="127dp"
-        android:layout_height="89dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.942"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view_entete"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="33dp"
-        android:layout_height="35dp"
-        app:layout_constraintBottom_toBottomOf="@+id/btnSelectImage"
-        app:layout_constraintEnd_toEndOf="@+id/btnSelectImage"
-        app:layout_constraintStart_toStartOf="@+id/btnSelectImage"
-        app:layout_constraintTop_toTopOf="@+id/btnSelectImage"
-        app:srcCompat="@drawable/imageicon" />
+        </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="5dp"
-        android:layout_weight="1"
-        android:text="Capacite de batterie:"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.03"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tiDescriptionLayout"
-        app:layout_constraintVertical_bias="0.026" />
+        android:text="Boite :"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginBottom="4dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiBoiteLayout"
+            android:layout_width="366dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            android:hint="@string/boite"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tiCapaciteBatterieLayout">
+
+            <RadioGroup
+                android:id="@+id/boiteRadioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/boiteManuelle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Manuelle" />
+
+                <RadioButton
+                    android:id="@+id/boiteAutomatique"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="Automatique" />
+
+            </RadioGroup>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:text="Nombre de place:"
+            android:layout_marginBottom="3dp"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiNombrePlacesLayout"
+            android:layout_width="367dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="12dp"
+            android:hint="@string/nombreDePlaces"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tiBoiteLayout">
+
+            <RadioGroup
+                android:id="@+id/nombrePlacesRadioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/nombrePlaces5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5 Places" />
+
+                <RadioButton
+                    android:id="@+id/nombrePlaces2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="2 Places" />
+
+            </RadioGroup>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Image URL du Vehicule"
+            android:textColor="@color/colorPrimary"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiProductImageUrlLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiProductImageUrl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/colorPrimary"
+                android:fontFamily="@font/myfont"
+                android:gravity="center"
+                android:text="Cancel"
+                android:textColor="@color/white"
+                android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+            <!-- Bouton Ajouter -->
+            <Button
+                android:id="@+id/addvehicule"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/colorPrimary"
+                android:fontFamily="@font/myfont"
+                android:gravity="center"
+                android:text="Ajouter"
+                android:textColor="@color/white"
+                android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
