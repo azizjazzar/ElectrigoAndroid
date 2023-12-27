@@ -32,7 +32,7 @@ import android.app.AlertDialog
 
 
 
-val backendUrl = "http://10.0.2.2:3000/api/payment/"
+val backendUrl = "https://electrigo.onrender.com/api/payment/"
 
 class CardActivity : BottomSheetDialogFragment() {
 
