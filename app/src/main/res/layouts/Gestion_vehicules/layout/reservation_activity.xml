@@ -1,190 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.ReservationActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <View
-        android:id="@+id/view_entete"
-        android:layout_width="418dp"
-        android:layout_height="150dp"
-        android:background="@drawable/entete_bleu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- DatePicker for the date de fin -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textAcceuil2"
-        android:layout_width="232dp"
-        android:layout_height="93dp"
-        android:fontFamily="@font/myfont"
-        android:text="Réservez dès \nmaintenant!"
-        android:textColor="@color/white"
-        android:textSize="22dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/view_entete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.173"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.877" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+
+
+        <Button
+            android:id="@+id/buttonbackDetail"
+            android:layout_width="33dp"
+            android:layout_height="35dp"
+            android:background="@android:color/transparent"
+            android:color="@color/colorPrimary"
+            android:fontFamily="@font/myfont"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.017"
+            app:layout_constraintHorizontal_bias="0.019" />
+
+
+        <View
+            android:id="@+id/view_entete"
+            android:layout_width="418dp"
+            android:layout_height="150dp"
+            android:background="@drawable/entete_bleu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="32dp"
+            android:layout_height="31dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/flechback" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
-        android:fontFamily="@font/myfont"
-        android:text="DATE DE DEBUT:"
-        android:textColor="@color/colorPrimary"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.113"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_entete" />
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:ignore="MissingConstraints">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiDateDebutLayout"
-        android:layout_width="353dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="12dp"
-        android:hint="Date de debut "
-        app:errorEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.563"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintWidth_default="spread">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiDateDebut"
-            android:layout_width="347dp"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="30dp"
+            android:fontFamily="@font/myfont"
+            android:gravity="center"
+            android:text="Réservez dès \nmaintenant!"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="23dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="88dp"
+            android:fontFamily="@font/myfont"
+            android:text="DATE DE DEBUT:"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.113"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_entete" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiDateDebutLayout"
+            android:layout_width="353dp"
+            android:layout_height="63dp"
+            android:layout_marginTop="12dp"
+            android:hint="Date de debut "
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.563"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintWidth_default="spread"
+            android:layout_marginBottom="15dp"
+            app:startIconDrawable="@drawable/calendrier">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiDateDebut"
+                android:layout_width="347dp"
+                android:layout_height="57dp"
+                android:focusable="false"
+                android:inputType="none"
+                android:onClick="showDatePicker"
+
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/myfont"
+            android:text="DATE DE FIN:"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiDateFinLayout"
+            android:layout_width="353dp"
+            android:layout_height="63dp"
+            android:layout_marginTop="-8dp"
+            android:hint="Date de fin"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.563"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView10"
+            app:layout_constraintWidth_default="spread"
+            android:layout_marginBottom="10dp"
+            app:startIconDrawable="@drawable/calendrier">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiDateFin"
+                android:layout_width="347dp"
+                android:layout_height="57dp"
+                android:focusable="false"
+                android:inputType="none"
+                android:onClick="showDatePicker"
+                 />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/myfont"
+            android:text="MONTANT TOTAL:"
+
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/tiMontant"
+            android:layout_width="169dp"
             android:layout_height="57dp"
-            android:focusable="false"
-            android:inputType="none"
-            android:onClick="showDatePicker"
-            app:startIconDrawable="@drawable/calendrier" />
+            android:layout_weight="1"
+            android:fontFamily="@font/myfont"
+            android:textSize="20dp"
+            app:errorEnabled="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.148"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView11"
+            app:layout_constraintVertical_bias="0.065"
+            android:layout_marginBottom="70dp"/>
 
-    </com.google.android.material.textfield.TextInputLayout>
 
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="300dp"
-        android:fontFamily="@font/myfont"
-        android:text="DATE DE FIN:"
-        android:textColor="@color/colorPrimary"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.106"
+        <Button
+            android:id="@+id/reserveretpayer"
+            android:layout_width="361dp"
+            android:layout_height="44dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:drawableStart="@drawable/card"
+            android:fontFamily="@font/myfont"
+            android:gravity="center"
+            android:text="Reserver"
+            android:textColor="@color/white"
+ />
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tiDateDebutLayout"
-        app:layout_constraintVertical_bias="0.147" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiDateFinLayout"
-        android:layout_width="356dp"
-        android:layout_height="64dp"
-        android:hint="Date de fin"
-        app:errorEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
-        app:layout_constraintWidth_default="spread">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiDateFin"
-            android:layout_width="347dp"
-            android:layout_height="57dp"
-            android:focusable="false"
-            android:inputType="none"
-            android:onClick="showDatePicker"
-            app:startIconDrawable="@drawable/calendrier" />
 
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/reserveretpayer"
-        android:layout_width="361dp"
-        android:layout_height="44dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:drawableStart="@drawable/card"
-        android:fontFamily="@font/myfont"
-        android:gravity="center"
-        android:text="Reserver"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
 
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.914" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/buttonbackDetail"
-        android:layout_width="44dp"
-        android:layout_height="39dp"
-        android:background="@android:color/transparent"
-        android:fontFamily="@font/myfont"
-        app:layout_constraintBottom_toBottomOf="@+id/view_entete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.008"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.009" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view_entete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.031"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.043"
-        app:srcCompat="@drawable/flechback" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/myfont"
-        android:text="Montant Total:"
-        android:textColor="@color/black"
-        android:textSize="19dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.131"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
-        app:layout_constraintVertical_bias="0.282"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/tiMontant"
-        android:layout_width="169dp"
-        android:layout_height="57dp"
-        android:layout_weight="1"
-        android:fontFamily="@font/myfont"
-        android:textSize="20dp"
-        app:errorEnabled="true"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.148"
-        app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/textView11"
-        app:layout_constraintVertical_bias="0.065" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

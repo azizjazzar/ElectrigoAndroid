@@ -38,6 +38,10 @@ class ReservationActivity : AppCompatActivity(){
         val view = binding.root
         setContentView(view)
 
+        binding.buttonbackDetail.setOnClickListener {
+            super.onBackPressedDispatcher.onBackPressed()
+        }
+
         // Récupérer l'identifiant du véhicule depuis l'intent
         selectedVehiculeId = intent.getStringExtra("vehiculeId")
 
@@ -119,26 +123,33 @@ class ReservationActivity : AppCompatActivity(){
         val dateDebut = binding.tiDateDebut.text.toString()
         val dateFin = binding.tiDateFin.text.toString()
 
-        selectedVehiculeId?.let {
-            lifecycleScope.launch {
-                try {
-                    // Convertir les chaînes de caractères en objets Date
-                    val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-                    val debutDate: Date = dateFormat.parse(dateDebut) ?: Date()
-                    val finDate: Date = dateFormat.parse(dateFin) ?: Date()
+        if (isDateDebutBeforeDateFin(dateDebut, dateFin)) {
+            selectedVehiculeId?.let {
+                lifecycleScope.launch {
+                    try {
+                        // Convertir les chaînes de caractères en objets Date
+                        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                        val debutDate: Date = dateFormat.parse(dateDebut) ?: Date()
+                        val finDate: Date = dateFormat.parse(dateFin) ?: Date()
 
-                    // Calculer le montant en fonction des dates et du prix du véhicule
-                    val nombreJours =
-                        ((finDate.time - debutDate.time) / (24 * 60 * 60 * 1000)).toInt()
-                    val montant = nombreJours * getPrixVehicule(it)!!
-                    updateMontantField(montant)
-                } catch (e: ParseException) {
-                    // Gérer l'exception si les dates ne peuvent pas être analysées
-                    // Vous pouvez ajouter un traitement approprié ici
+                        // Calculer le montant en fonction des dates et du prix du véhicule
+                        val nombreJours =
+                            ((finDate.time - debutDate.time) / (24 * 60 * 60 * 1000)).toInt()
+                        val montant = nombreJours * getPrixVehicule(it)!!
+                        updateMontantField(montant)
+                    } catch (e: ParseException) {
+                        // Gérer l'exception si les dates ne peuvent pas être analysées
+                        // Vous pouvez ajouter un traitement approprié ici
+                    }
                 }
             }
+        } else {
+            // La date de début doit être antérieure à la date de fin, donc le montant ne doit pas être calculé.
+            // Vous pouvez effacer ou masquer le champ montant ici si nécessaire.
+            updateMontantField(0) // Mettez le montant à zéro ou effectuez d'autres actions appropriées.
         }
     }
+
 
     private fun updateMontantField(montant: Int) {
         val montantText = getString(R.string.montant_template, montant)

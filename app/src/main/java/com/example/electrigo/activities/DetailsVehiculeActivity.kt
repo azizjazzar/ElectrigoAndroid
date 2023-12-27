@@ -24,6 +24,9 @@ class DetailsVehiculeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsVehiculeBinding.inflate(layoutInflater)
         val view = binding.root
+
+
+
         setContentView(view)
         binding.buttonbackhomedetail.setOnClickListener {
             super.onBackPressedDispatcher.onBackPressed()

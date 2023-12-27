@@ -13,15 +13,18 @@
 
         <!-- Champ Product Name -->
 
+
         <TextView
-            android:layout_width="319dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_margin="30dp"
             android:fontFamily="@font/myfont"
+            android:gravity="center"
             android:text="Ajoutez votre véhicule maintenant!"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
-            android:textSize="20dp"
+            android:textSize="19dp"
             android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
