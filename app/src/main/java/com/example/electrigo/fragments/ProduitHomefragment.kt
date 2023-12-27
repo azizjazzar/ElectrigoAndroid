@@ -1,7 +1,6 @@
 package com.example.electrigo.fragments
-
-import android.annotation.SuppressLint
 import android.content.Intent
+import android.annotation.SuppressLint
 import com.example.electrigo.ViewModel.ProductViewModel
 import android.os.Bundle
 import android.os.Handler
@@ -9,19 +8,24 @@ import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.electrigo.Adapter.ProductsAdapter
+import com.example.electrigo.Adapter.VehiculeAdapter
 import com.example.electrigo.Model.Product
 import com.example.electrigo.R
 import com.example.electrigo.activities.FormulaireProduitActivity
+import com.example.electrigo.activities.ProductDetailsActivity
 //import com.example.electrigo.activities.formulaireProductActivity
 import com.example.electrigo.databinding.ProduitHomeFragmentBinding
 import com.example.electrigo.utils.ApiResult
+
+interface OnItemClickListenerProduct {
+    fun onItemClick(ProductItem: Product)
+}
 
 class ProductHomeFragment : Fragment(R.layout.produit_home_fragment) {
 
@@ -40,6 +44,7 @@ class ProductHomeFragment : Fragment(R.layout.produit_home_fragment) {
         val binding = ProduitHomeFragmentBinding.bind(view)
         val recyclerView = binding.recyclerView
         val searchBarProduct = binding.searchBarProduct // Ajout de la référence
+        productAdapter = ProductsAdapter(ArrayList(), this)
 // bar de recherche
 
 
@@ -60,12 +65,15 @@ class ProductHomeFragment : Fragment(R.layout.produit_home_fragment) {
         // fonction recherche
 
 
-        productAdapter = ProductsAdapter(ArrayList()) { clickedProduct ->
-            // Handle item click if needed
-        }
+  /*     productAdapter.onItemClick={
+           val intent=Intent(requireContext(),ProductDetailsActivity::class.java)
+           intent.putExtra("product",it)
+           startActivity(intent)
+       }*/
+
 
         recyclerView.adapter = productAdapter
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL, false)
 
         // Your filter image views and click listeners here...
 
@@ -83,6 +91,22 @@ class ProductHomeFragment : Fragment(R.layout.produit_home_fragment) {
 
         buttonAddProduct.setOnClickListener {
             val intent = Intent(requireContext(), FormulaireProduitActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+
+
+    @Override
+    fun onItemClick(productItem: Product) {
+        productItem.let {
+            val intent = Intent(requireContext(), ProductDetailsActivity::class.java).apply{
+              putExtra("productName", it.name)
+                putExtra("productDescription", it.description)
+               putExtra("productImageUrl", it.imageUrl)
+                putExtra("productPrice", it.price)
+            }
+
             startActivity(intent)
         }
     }

@@ -81,6 +81,7 @@
         <activity android:name=".ViewModel.VehiculeViewModel" />
         <activity android:name=".activities.formulaireVehiculeActivity" />
         <activity android:name=".activities.ReservationActivity" />
+        <activity android:name=".activities.ProductDetailsActivity" />
         <activity android:name=".activities.FormulaireProduitActivity" />
     </application>
 

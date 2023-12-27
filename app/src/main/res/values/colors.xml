@@ -70,5 +70,17 @@
     <color name="dark_orange">#ff8f00</color>
     <color name="light_orange">#FFD580</color>
     <color name="green_alternative">#64ba69</color>
+    //product colors
+
+
+
+    <color name="silver">#BEBEBE</color>
+    <color name="off_white">#DDDDDD</color>
+    <color name="dark_gray">#929292</color>
+    <color name="pink">#E80057</color>
+    <color name="whiteTrans">#10000000</color>
+    <color name="gray">#F0F0F0</color>
+    <color name="greenTrans">#EDFBF4</color>
+    <color name="card_color">#F89234</color>
 
 </resources>

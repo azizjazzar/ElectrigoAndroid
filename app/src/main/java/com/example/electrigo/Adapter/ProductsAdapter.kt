@@ -1,22 +1,20 @@
 package com.example.electrigo.Adapter
 
-import com.example.electrigo.Model.Product
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.electrigo.Model.Vehicule
+import com.example.electrigo.Model.Product
 import com.example.electrigo.databinding.EachProductBinding
-import com.example.electrigo.R
-import com.example.electrigo.databinding.ItemVehiculeBinding
+import com.example.electrigo.fragments.ProductHomeFragment
 import com.example.electrigo.utils.downloadFromUrl
 import com.example.electrigo.utils.placeholderProgressBar
 
 class ProductsAdapter(
     private val products: ArrayList<Product>,
-    private val onItemClick : (Product) -> Unit
+    private val OnItemClickListenerProduct: ProductHomeFragment
 ) : RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = EachProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -42,6 +40,9 @@ class ProductsAdapter(
             products[position].imageUrl,
             placeholderProgressBar(holder.itemView.context)
         )
+        holder.itemView.setOnClickListener{
+            OnItemClickListenerProduct.onItemClick(product)
+        }
     }
 
     inner class ViewHolder(val binding: EachProductBinding) : RecyclerView.ViewHolder(binding.root)

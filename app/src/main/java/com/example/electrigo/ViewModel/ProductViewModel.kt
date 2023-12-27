@@ -70,7 +70,7 @@ class ProductViewModel : ViewModel() {
         if (allProducts is List<*>) {
             val productList = allProducts.filterIsInstance<Product>()
             val filteredList = productList.filter { product ->
-                product.name.contains(name, ignoreCase = true)
+                product.name?.contains(name, ignoreCase = true) ?: false
             }
             _filteredProducts.postValue(filteredList)
         }

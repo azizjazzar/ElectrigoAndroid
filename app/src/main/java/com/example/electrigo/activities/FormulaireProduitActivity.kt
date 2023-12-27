@@ -1,16 +1,13 @@
 package com.example.electrigo.activities
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.electrigo.R
-import com.example.electrigo.ViewModel.VehiculeViewModel
-import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.example.electrigo.ViewModel.ProductViewModel
 import com.example.electrigo.Model.Product
+import com.example.electrigo.ViewModel.ProductViewModel
 import com.google.android.material.textfield.TextInputEditText
 
 
