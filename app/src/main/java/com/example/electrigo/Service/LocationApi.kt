@@ -8,7 +8,10 @@ import TokenResponse
 import User
 import UserResponse
 import User_session
+import com.example.electrigo.Model.CommentResponse
+import com.example.electrigo.Model.Get.PostResponse
 import com.example.electrigo.Model.LocationItem
+import com.example.electrigo.Model.Post
 import com.example.electrigo.Model.Product
 import com.example.electrigo.Model.Reservation
 import com.example.electrigo.Model.ReservationResponse
@@ -16,6 +19,7 @@ import com.example.electrigo.Model.Vehicule
 import com.example.electrigo.Model.VehiculeResponse
 import com.example.electrigo.Model.ReviewItem
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -24,6 +28,24 @@ import retrofit2.http.Path
 
 
 interface LocationApi {
+
+    //Post
+    @POST("posts/add")
+    fun addPost(@Body post: Post): Call<Void>
+
+    @GET("posts/posts")
+    fun getPosts(): Call<PostResponse>
+
+    @POST("posts/{id}/like")
+    suspend fun likePost(@Path("id") postId: String): Response<Unit>
+
+    @POST("posts/{id}/dislike")
+    suspend fun dislikePost(@Path("id") postId: String): Response<Unit>
+
+    @GET("posts/comments/{postId}")
+    suspend fun getCommentsForPost(@Path("postId") postId: String): Response<CommentResponse>
+
+    //
     @GET("borne/bornes")
     fun getLocation() :Call<List<LocationItem>>
 

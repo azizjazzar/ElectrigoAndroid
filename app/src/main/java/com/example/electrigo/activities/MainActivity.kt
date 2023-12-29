@@ -20,6 +20,7 @@ import com.example.electrigo.R
 import com.example.electrigo.ViewModel.UserViewModel
 import com.example.electrigo.databinding.ActivityMainBinding
 import com.example.electrigo.databinding.ProduitHomeFragmentBinding
+import com.example.electrigo.fragment.PostFragment
 import com.example.electrigo.fragments.LocationFragment
 import com.example.electrigo.fragments.MapBoxFragment
 import com.example.electrigo.fragments.VehiculeFragment
@@ -87,7 +88,16 @@ class MainActivity : AppCompatActivity() {
                 R.id.vehicule -> replaceFragment(VehiculeFragment())
                 R.id.profile -> replaceFragment(MapBoxFragment())
                 R.id.store -> replaceFragment(ProductHomeFragment())
+                /* R.id.qsddd -> {
+                     val intent = Intent(this@MainActivity, MainActivity2::class.java)
+                     startActivity(intent)
 
+                     Toast.makeText(applicationContext, "Post clicked", Toast.LENGTH_SHORT).show()
+                 }*/
+                R.id.qsddd -> {
+                    replaceFragment(PostFragment())
+                    //Toast.makeText(applicationContext, "Post clicked", Toast.LENGTH_SHORT).show()
+                }
                 else -> {
                 }
             }
@@ -108,8 +118,12 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext, "Profile clicked", Toast.LENGTH_SHORT).show()
                 }
                 R.id.nav_settings -> {
-                    // Handle settings item click
-                    Toast.makeText(applicationContext, "Settings clicked", Toast.LENGTH_SHORT).show()
+
+                    val intent = Intent(this@MainActivity, MainActivity2::class.java)
+                    startActivity(intent)
+
+                    Toast.makeText(applicationContext, "Post clicked", Toast.LENGTH_SHORT).show()
+
                 }
                 R.id.nav_notifications -> {
                     // Handle notifications item click
