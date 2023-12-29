@@ -9,13 +9,18 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="02bd40d0-145c-49fd-82f5-d1a5e7c2ce1e" name="Changes" comment="forum integration" />
+    <list default="true" id="02bd40d0-145c-49fd-82f5-d1a5e7c2ce1e" name="Changes" comment="forum integration">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layouts/Gestion_utilisateur/layout/fragement_add_post.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layouts/Gestion_utilisateur/layout/fragement_add_post.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layouts/Gestion_utilisateur/layout/fragement_post.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layouts/Gestion_utilisateur/layout/fragement_post.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layouts/Gestion_utilisateur/layout/single_item_post.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layouts/Gestion_utilisateur/layout/single_item_post.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\User\.android\avd\Pixel_7_API_24.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\User\.android\avd\Pixel_6a_API_24.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -40,13 +45,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Git.Branch.Popup.ShowAllRemotes": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
-    "last_opened_file_path": "D:/ElectrigoAndroid/app/src/main/res/layouts/Gestion_utilisateur/layout",
+    "last_opened_file_path": "D:/testintegration/ElectrigoAndroid-main/ElectrigoAndroid-main",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
@@ -160,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1703881811888</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="forum integration">
+      <created>1703882284957</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1703882284957</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
