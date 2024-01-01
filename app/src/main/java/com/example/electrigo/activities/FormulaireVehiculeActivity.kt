@@ -9,10 +9,12 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
+import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.Spinner
+
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
@@ -33,6 +35,8 @@ import java.io.ByteArrayOutputStream
 import com.bumptech.glide.request.transition.Transition
 
 
+
+
 class formulaireVehiculeActivity : AppCompatActivity() {
     private lateinit var binding: FormulaireVehiculeBinding
     private lateinit var selectedImage: Bitmap
@@ -46,9 +50,20 @@ class formulaireVehiculeActivity : AppCompatActivity() {
         binding = FormulaireVehiculeBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        binding.buttonbackhome.setOnClickListener {
-            super.onBackPressedDispatcher.onBackPressed()
+
+
+        /*
+                binding.buttonbackhome.setOnClickListener {
+                    super.onBackPressedDispatcher.onBackPressed()
+                }
+
+         */
+
+        binding.btnCancel.setOnClickListener {
+            // Fermer l'activité
+            finish()
         }
+
         //pour  la  liste deroulante  de  capacite de batterie
         val spinnerCapaciteBatterie: Spinner = findViewById(R.id.spinnerCapaciteBatterie)
         val capaciteBatterieAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, capaciteBatterieOptions)
@@ -73,7 +88,7 @@ class formulaireVehiculeActivity : AppCompatActivity() {
             val vitesseMax = binding.tiVitesseMax.text.toString()
             val description = binding.tiDescription.text.toString()
             val capaciteBatterie = spinnerCapaciteBatterie.selectedItem.toString()
-
+            val productImageUrl = binding.tiProductImageUrl.text.toString().trim()
             // Extract numeric part from selectedValuePlace
             val numericPart = selectedValuePlace?.replace("[^\\d]".toRegex(), "")
             val nombreDePlaces = numericPart?.toIntOrNull()
@@ -104,7 +119,7 @@ class formulaireVehiculeActivity : AppCompatActivity() {
                     boite = selectedValueBoite.orEmpty(),
                     nombreDePlaces = nombreDePlaces ?: 0,
                     imagecartegrise = "",
-                    image = convertBitmapToString(selectedImage),
+                    image = productImageUrl,
                     _v = 0
                 )
 
@@ -118,43 +133,14 @@ class formulaireVehiculeActivity : AppCompatActivity() {
             }
         }
 
-        binding.btnSelectImage.setOnClickListener {
-            // Open gallery for image selection
-            val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE)
-        }
-    }
-    private fun convertBitmapToString(bitmap: Bitmap): String {
-        val stream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, stream)
-        val byteArray = stream.toByteArray()
-        return Base64.encodeToString(byteArray, Base64.DEFAULT)
+
     }
 
 
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == GALLERY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            data?.data?.let { selectedImageUri ->
-                Glide.with(this)
-                    .asBitmap()
-                    .load(selectedImageUri)
-                    .into(object : CustomTarget<Bitmap>() {
-                        override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                            selectedImage = resource
-                            Log.d("ImageLoading", "Image loaded successfully")
-                            binding.selectedImageView.setImageBitmap(selectedImage)
-                        }
 
-                        override fun onLoadCleared(placeholder: Drawable?) {
-                            Log.d("ImageLoading", "Image load cleared")
-                        }
-                    })
-            }
 
-        }
-    }
+
 
 
 
@@ -248,9 +234,4 @@ class formulaireVehiculeActivity : AppCompatActivity() {
         alertDialog.show()
     }
 
-
-
-    companion object {
-        private const val GALLERY_REQUEST_CODE = 100
-    }
 }

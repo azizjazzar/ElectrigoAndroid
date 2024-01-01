@@ -1,5 +1,6 @@
 package com.example.electrigo.activities
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +29,7 @@ import javax.mail.internet.MimeBodyPart
 import javax.mail.internet.MimeMessage
 import javax.mail.internet.MimeMultipart
 import android.app.AlertDialog
+import android.content.Intent
 
 
 val backendUrl = "https://electrigo.onrender.com/api/payment/"
@@ -42,6 +44,8 @@ class CardActivity : BottomSheetDialogFragment() {
     private lateinit var emailErrorTextView: TextView
     private lateinit var tiNom: TextInputEditText
     private lateinit var tiPrenom: TextInputEditText
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,6 +62,8 @@ class CardActivity : BottomSheetDialogFragment() {
 
         return view
     }
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -78,6 +84,8 @@ class CardActivity : BottomSheetDialogFragment() {
 
         startCheckout(amount)
     }
+
+
 
     private fun startCheckout(amountPay: Int) {
         val amountPayInt = amountPay * 100
@@ -130,17 +138,28 @@ class CardActivity : BottomSheetDialogFragment() {
         }
     }
 
+
     private fun showPaymentSuccessDialog() {
         val alertDialog = AlertDialog.Builder(requireContext()).create()
         alertDialog.setTitle("Paiement réussi")
         alertDialog.setMessage("Le paiement a été effectué avec succès.")
+
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK") { _, _ ->
             alertDialog.dismiss()
-            requireActivity().onBackPressed()
+
+            // Créez un Intent pour renvoyer un résultat à l'activité appelante
+            val intent = Intent()
+            intent.putExtra("payment_success", true)
+            requireActivity().setResult(Activity.RESULT_OK, intent)
+
+            // Fermez l'activité
+            requireActivity().finish()
         }
+
         alertDialog.setCancelable(false)
         alertDialog.show()
     }
+
 
 
     //EMAIL

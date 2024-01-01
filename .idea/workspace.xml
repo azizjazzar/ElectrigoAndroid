@@ -10,21 +10,79 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02bd40d0-145c-49fd-82f5-d1a5e7c2ce1e" name="Changes" comment="forum integration">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_addv.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layouts/Gestion_utilisateur/layout/fragement_add_post.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layouts/Gestion_utilisateur/layout/fragement_add_post.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layouts/Gestion_utilisateur/layout/fragement_post.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layouts/Gestion_utilisateur/layout/fragement_post.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layouts/Gestion_utilisateur/layout/single_item_post.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layouts/Gestion_utilisateur/layout/single_item_post.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/electrigo/Adapter/VehiculeAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/electrigo/Adapter/VehiculeAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/electrigo/activities/CardActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/electrigo/activities/CardActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/electrigo/activities/DetailsVehiculeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/electrigo/activities/DetailsVehiculeActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/electrigo/activities/FormulaireVehiculeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/electrigo/activities/FormulaireVehiculeActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/electrigo/activities/ReservationActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/electrigo/activities/ReservationActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/electrigo/fragments/VehiculeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/electrigo/fragments/VehiculeFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_card.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_card.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layouts/Gestion_vehicules/layout/activity_details_vehicule.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layouts/Gestion_vehicules/layout/activity_details_vehicule.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layouts/Gestion_vehicules/layout/formulaire_vehicule.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layouts/Gestion_vehicules/layout/formulaire_vehicule.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layouts/Gestion_vehicules/layout/fragment_vehicule.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layouts/Gestion_vehicules/layout/fragment_vehicule.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layouts/Gestion_vehicules/layout/reservation_activity.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layouts/Gestion_vehicules/layout/reservation_activity.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\User\.android\avd\Pixel_6a_API_24.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\adem nsir\.android\avd\Pixel_3a_API_24.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/app">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Electrigo" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Electrigo" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Electrigo" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Electrigo" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,17 +110,17 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
-    "last_opened_file_path": "D:/testintegration/ElectrigoAndroid-main/ElectrigoAndroid-main",
+    "last_opened_file_path": "C:/Users/adem nsir/Documents/trueintegration/app/src/main/res/drawable",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\adem nsir\Documents\trueintegration\app\src\main\res\drawable" />
+      <recent name="C:\Users\adem nsir\Documents\trueintegration\app\src\main\res\layout" />
       <recent name="D:\ElectrigoAndroid\app\src\main\res\layouts\Gestion_utilisateur\layout" />
       <recent name="D:\ElectrigoAndroid\app\src\main\java\com\example\electrigo" />
       <recent name="D:\ElectrigoAndroid\app\src\main\java\com\example\electrigo\Adapter" />
-      <recent name="D:\ElectrigoAndroid\app\src\main\java\com\example\electrigo\fragments" />
-      <recent name="D:\ElectrigoAndroid\app\src\main\java\com\example\electrigo\Model" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\21627\Documents\ElectrigoAndroidGestionBoutique3\app\src\main\java\com\example\electrigo\fragments" />
